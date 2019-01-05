@@ -9,7 +9,7 @@ import Recommend from "../components/recommend.vue";
 import Spot from "../components/spot.vue";
 import Error from "../components/error.vue";
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   routes: [
