@@ -1,28 +1,45 @@
 <template>
 	<div id="footer">
 		<ul>
-			<li>
-               <router-link to="/recommend">推荐</router-link>
+			<li v-for="(item,index) in navs">
+               <router-link :to="{name:item.name}">
+               		<span>{{item.title}}</span>
+               </router-link>
             </li>
-            <li>
-               <router-link to="/spot">看点</router-link>
-            </li>
-            <li>
-               <router-link to="/plus"> + </router-link>
-            </li>
-            <li>
-               <router-link to="/community">社区</router-link>
-            </li>
-            <li>
-               <router-link to="/personal">个人中心</router-link>
-            </li>
+            
 		</ul>
 	</div>
 </template>
 
 <script>
 	export default{
-		
+		data(){
+			return{
+				navs:[
+					{
+						name:"recommend",
+						title:"推荐"
+					},
+					{
+						name:"spot",
+						title:"看点"
+					},
+					{
+						name:"plus",
+						title:" + "
+					},
+					{
+						name:"community",
+						title:"社区"
+					},
+					{
+						name:"personal",
+						title:"个人中心"
+					}
+					
+				]
+			}
+		}
 	}
 </script>
 
@@ -51,10 +68,17 @@
     #footer>ul>li>a{
         width: 100%;
         height: 100%;
-        display: block;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items:enter ;
         text-align: center;
         line-height: 49px;
         color: #fff;
+    }
+    
+    #footer>ul>li>a>span{
+    	font-size: 14px;
     }
 
     #footer>ul>li>.router-link-active{
