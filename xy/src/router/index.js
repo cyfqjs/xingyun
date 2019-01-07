@@ -9,6 +9,7 @@ import Recommend from "../components/recommend";
 import Spot from "../components/spot";
 import Err from "../components/error/error.vue";
 import Login from "../components/login/login.vue"
+import Set from "../components/personal/set/index.vue"
 
 Vue.use(Router)
 
@@ -37,7 +38,13 @@ const router = new Router({
     {
       path:"/personal",
       name:"personal",
-      component:Personal
+      component:Personal,
+      children:[
+        {
+          path:"/set/index",
+          component:Set
+        }
+      ]
     },
     {
       path:"/plus",
@@ -47,7 +54,7 @@ const router = new Router({
     {
       path:"/recommend",
       name:"recommend",
-      component:Recommend
+      component:Recommend,
     },
     {
       path:"/spot",
@@ -62,7 +69,7 @@ const router = new Router({
     {
       path:"**",
       component:Err
-    }
+    },
   ]
 })
 

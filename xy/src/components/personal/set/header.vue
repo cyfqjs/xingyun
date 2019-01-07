@@ -2,7 +2,9 @@
   <div class="topHui">
     <div class="topHui1"></div>
     <div class="topHui2">
-      <a href="#">《</a>
+      <a href="personal#/personal">
+        <img src="../../../assets/set/back@2x.png">
+      </a>
       <div>设置</div>
     </div>
   </div>
@@ -33,6 +35,11 @@ export default {};
     align-items: center;
     a {
       margin-left: 0.2rem;
+      
+    }
+    img{
+      width: 0.2rem;
+      height: 0.34rem;
     }
     div {
       display: flex;

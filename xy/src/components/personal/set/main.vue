@@ -3,16 +3,19 @@
     <ul class="listHui">
       <li>
         <a href="#">绑定账号</a>
-        <img src="../../../assets/set/矢量智能对象@2x.png">
+        <span><a href="#"><img src="../../../assets/set/矢量智能对象@2x(1).png"></a></span>
       </li>
       <li>
         <a href="#">通知设置</a>
+        <span><a href="#"><img src="../../../assets/set/矢量智能对象@2x(1).png"></a></span>
       </li>
       <li>
         <a href="#">意见反馈</a>
+        <span><a href="#"><img src="../../../assets/set/矢量智能对象@2x(1).png"></a></span>
       </li>
       <li>
         <a href="#">关于我们</a>
+        <span><a href="#"><img src="../../../assets/set/矢量智能对象@2x(1).png"></a></span>
       </li>
       <li class="listOut">
         <a href="#">退出登录</a>
@@ -47,6 +50,14 @@ export default {};
         font-weight: 400;
         color: rgba(255, 255, 255, 1);
         margin-left: 0.2rem;
+      }
+      span{
+       margin-left: 5.34rem;
+       img{
+         width: 0.16rem;
+       height: 0.28rem;
+       }
+       
       }
     }
     .listOut {
