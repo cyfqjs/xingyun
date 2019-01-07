@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 import Community from "../components/community";
 import Footer from "../components/footer/index.vue";
-import Personal from "../components/personal";
+import Personal from "../components/personal/main/index";
 import Plus from "../components/plus";
 import Recommend from "../components/recommend";
 import Spot from "../components/spot";
@@ -29,27 +29,27 @@ const router = new Router({
 //      requireAuth:true
 //    }
     },
-    {
+    {  //社区
       path:"/community",
       name:"community",
       component:Community
     },
-    {
+    { //个人中心
       path:"/personal",
       name:"personal",
       component:Personal
     },
-    {
+    { // +
       path:"/plus",
       name:"plus",
       component:Plus
     },
-    {
+    { //推荐
       path:"/recommend",
       name:"recommend",
       component:Recommend
     },
-    {
+    { //看点
       path:"/spot",
       name:"spot",
       component:Spot
