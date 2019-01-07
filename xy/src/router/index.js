@@ -3,6 +3,7 @@ import Router from 'vue-router'
 
 import Community from "../components/community/home/index.vue";
 import TalkList from "../components/community/talklist/index.vue"
+import Chatbox from "../components/community/chatbox/index.vue"
 import Footer from "../components/footer/index.vue";
 import Personal from "../components/personal/main/index";
 import Plus from "../components/plus";
@@ -35,16 +36,18 @@ const router = new Router({
       name:"community",
       component:Community
     },
-<<<<<<< HEAD
-    { //个人中心
-=======
+ 
     {
       path:"/talklist",
       name:"talklist",
       component:TalkList
     },
     {
->>>>>>> zjy
+      path:"/chat",
+      name:"chat",
+      component:Chatbox
+    },
+   { //个人中心
       path:"/personal",
       name:"personal",
       component:Personal

@@ -1,7 +1,7 @@
 <template>
     <div id="header_zjy">
         <p>社区</p>
-        <div class="wx_zjy"><router-link to=""><img src="@/assets/community/img/wx_zjy.png" alt=""></router-link></div>
+        <div class="wx_zjy"><router-link to="/talklist"><img src="@/assets/community/img/wx_zjy.png" alt=""></router-link></div>
     </div>
 </template>
 <script>
@@ -19,7 +19,9 @@ export default {
         align-items: center ;
         color:#fff; 
         font-size:.35rem;
-        padding: 0 .2rem;   
+        padding: 0 .2rem;  
+        position:fixed;
+        z-index:5; 
     }
     .wx_zjy{
         width:.53rem;

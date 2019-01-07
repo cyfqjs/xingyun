@@ -1,54 +1,57 @@
 <template>
     <div id="main">
         <ul>
-            <li>
-            <p class="photo_zjy"><img src="@/assets/community/img/tx.jpeg" alt=""></p>
-            <p class="name_zjy">行走的呆萌天才<span>08-19 17:50</span></p>
+            <li v-for="(item,index) in Moments">
+            <p class="photo_zjy"><img :src="item.photo" alt=""></p>
+            <p class="name_zjy">{{item.name}}<span>{{item.time}}</span></p>
             <p class=" Concern_zjy"><router-link to="">+关注</router-link></p>
             <p class="content_zjy">
-                随时查看大大阿达大大大大大大的撒旦撒大大是的撒大大说打算大的萨达
-            </p>
-            <p class="fdp_zjy">
-                <router-link to=""><img src="@/assets/community/img/fx_zjy.png" alt=""><span>2012</span></router-link>
-                <router-link to=""><img src="@/assets/community/img/pl_zjy.png" alt=""><span>2012</span></router-link>
-                <router-link to=""><img src="@/assets/community/img/dz_zjy.png" alt=""><span>2012</span></router-link>
-            </p>
-            </li>
-            <li>
-            <p class="photo_zjy"><img src="@/assets/community/img/tx.jpeg" alt=""></p>
-            <p class="name_zjy">行走的呆萌天才<span>08-19 17:50</span></p>
-            <p class=" Concern_zjy"><router-link to="">+关注</router-link></p>
-            <p class="content_zjy">
-                随时查看大大阿达大大大大大大的撒旦撒大大是的撒大大说打算大的萨达
+                {{item.content}}
             </p>
             <p class="pic_zjy">
-                <img src="@/assets/community/img/tx.jpeg"  alt="">
-                <img src="@/assets/community/img/tx.jpeg"  alt="">
-                <img src="@/assets/community/img/tx.jpeg"  alt="">
-                <img src="@/assets/community/img/tx.jpeg"  alt="">
+                <img v-for="(ccc,index) in item.pic" :src="ccc"  alt="">
             </p>
             <p class="fdp_zjy">
-                <router-link to=""><img src="@/assets/community/img/fx_zjy.png" alt=""><span>2012</span></router-link>
-                <router-link to=""><img src="@/assets/community/img/pl_zjy.png" alt=""><span>2012</span></router-link>
-                <router-link to=""><img src="@/assets/community/img/dz_zjy.png" alt=""><span>2012</span></router-link>
+                <router-link to=""><img src="@/assets/community/img/fx_zjy.png" alt=""><span>{{item.share}}</span></router-link>
+                <router-link to=""><img src="@/assets/community/img/pl_zjy.png" alt=""><span>{{item.comment}}</span></router-link>
+                <router-link to=""><img src="@/assets/community/img/dz_zjy.png" alt=""><span>{{item.heart}}</span></router-link>
             </p>
             </li>
         </ul>
     </div>
 </template>
 <script>
+import Vuex from "vuex";
 export default {
-    
+    data(){
+        return {
+        }
+    },
+    created(){
+        this.handleMoments();
+    },
+    computed:{
+        ...Vuex.mapState({
+            Moments:state=>state.Community.Moments
+        }),
+    },
+    methods:{
+        ...Vuex.mapMutations({
+
+        }),
+        ...Vuex.mapActions({
+            handleMoments:"Community/handleMoments",
+        }),
+    }
 }
 </script>
 <style scoped>
     #main{
         width:100%;
         height:100%;
-        min-height:1000rem;
         background: #221D3B;
         color:#fff;
-        padding:0 .2rem;
+        padding:.88rem .2rem 1rem ;
     }
     #main>Ul{
         width:100%;
@@ -103,7 +106,7 @@ export default {
          width:100%;
          height:auto;
          font-size:.24rem;
-         margin:.8rem 0 .55rem ;
+         margin:.3rem 0 .3rem ;
      }
       #main .fdp_zjy{
           width:100%;
@@ -133,7 +136,8 @@ export default {
           flex-wrap:wrap;
       }
       #main .pic_zjy>img{
-          width:49%;
+          width:48%;
           height:50%;
+          margin:0 .05rem;
       }
 </style>

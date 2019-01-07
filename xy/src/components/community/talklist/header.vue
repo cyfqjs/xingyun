@@ -1,14 +1,18 @@
 <template>
     <div id="header">
         <div class="back_zjy">
-            <img src="@/assets/community/img/back.png" alt="">
+            <img @click="handleBack" src="@/assets/community/img/back.png" alt="">
         </div>
         <h2>私信</h2>
     </div>
 </template>
 <script>
 export default {
-    
+    methods:{
+        handleBack(){
+            this.$router.back();
+        }
+    }
 }
 </script>
 <style scoped>
@@ -19,7 +23,8 @@ export default {
         align-items: center;
         padding: 0 .2rem;
         color:#fff;
-
+        position: fixed;
+        z-index:5;
         background: #2F284B;
     }
     #header>.back_zjy{
