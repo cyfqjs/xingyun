@@ -54,7 +54,7 @@ const router = new Router({
       name:"spot",
       component:Spot
     },
-    {
+    {  //注册
       path:"/login",
       name:"login",
       component:Login
@@ -62,7 +62,11 @@ const router = new Router({
     {
       path:"**",
       component:Err
-    }
+    },
+    // {
+    //   path:"/set",
+    //   component:
+    // }
   ]
 })
 
