@@ -28,34 +28,21 @@
 				</li>
 				<li>
 					<router-link to="">粉丝<span>6.6k</span></router-link>
-					</li>
+				</li>
 			</ul>
 		</div>
-		<div id="personBottom">
-			<h1>ss</h1>
-			<h1>ss</h1>
-			<h1>ss</h1>
-			<h1>ss</h1>
-			<h1>ss</h1>
-			<h1>ss</h1>
-			<h1>ss</h1>
-			<h1>ss</h1>
-			<h1>ss</h1>
-			<h1>ss</h1>
-			<h1>ss</h1>
-			<h1>ss</h1>
-			<h1>ss</h1>
-			<h1>ss</h1>
-			<h1>ss</h1>
-			<h1>ss</h1>
-			<h1>ss</h1>
-			<h1>ss</h1>
-			<h1>ss</h1>
-		</div>
+		<Time-com/>
 	</div>
 </template>
 
 <script>
+import Time from "./time.vue";
+import bScroll from "better-scroll";
+export default{
+	components:{
+		"Time-com": Time
+	}
+}
 </script>
 
 <style lang="scss">
@@ -164,7 +151,8 @@
 	#personBottom{
 		width:100%;
 		background:rgba(34,29,59,1);
-		overflow-y: auto ;
+		color:#fff;
+		
 	}
 }
 </style>
