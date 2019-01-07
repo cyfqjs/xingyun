@@ -9,7 +9,8 @@
 import Footer from "./components/footer/index.vue";
 export default {
 	  components: {
-    "Footer-com":Footer
+    "Footer-com":Footer,
+    
   }
 }
 </script>
