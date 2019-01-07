@@ -10,60 +10,82 @@ import Spot from "../components/spot";
 import Err from "../components/error/error.vue";
 import Login from "../components/login/login.vue"
 
+import Pushpic from "../components/plus/pic"
+import Pushbook from "../components/plus/book"
+import Pushlanguge from "../components/plus/languge"
+
 Vue.use(Router)
 
 const router = new Router({
-  routes: [
-    {
-      path:"/",
-      redirect:"/recommend"
-    },
-    {
-      path:"/footer",
-      name:"footer",
-      component:Footer,
-//    meta:{
-////    	tab栏的显示
-//    	flag:true,
-////    	路由守卫
-//      requireAuth:true
-//    }
-    },
-    {
-      path:"/community",
-      name:"community",
-      component:Community
-    },
-    {
-      path:"/personal",
-      name:"personal",
-      component:Personal
-    },
-    {
-      path:"/plus",
-      name:"plus",
-      component:Plus
-    },
-    {
-      path:"/recommend",
-      name:"recommend",
-      component:Recommend
-    },
-    {
-      path:"/spot",
-      name:"spot",
-      component:Spot
-    },
-    {
-      path:"/login",
-      name:"login",
-      component:Login
-    },
-    {
-      path:"**",
-      component:Err
-    }
-  ]
+    routes: [{
+            path: "/",
+            redirect: "/recommend"
+        },
+        {
+            path: "/footer",
+            name: "footer",
+            component: Footer,
+            //    meta:{
+            ////    	tab栏的显示
+            //    	flag:true,
+            ////    	路由守卫
+            //      requireAuth:true
+            //    }
+        },
+        {
+            path: "/community",
+            name: "community",
+            component: Community
+        },
+        {
+            path: "/personal",
+            name: "personal",
+            component: Personal
+        },
+        {
+            path: "/plus",
+            name: "plus",
+            component: Plus,
+            meta: {
+                flag: false,
+                requireAuth: true
+            }
+        },
+        {
+            path: "/recommend",
+            name: "recommend",
+            component: Recommend
+        },
+        {
+            path: "/spot",
+            name: "spot",
+            component: Spot
+        },
+        {
+            path: "/login",
+            name: "login",
+            component: Login
+        },
+        {
+            path: "/plus/pushpic",
+            name: "pic",
+            component: Pushpic,
+        },
+        {
+            path: "/plus/pushbook",
+            name: "book",
+            component: Pushbook
+        },
+        {
+            path: "/plus/pushlang",
+            name: "languge",
+            component: Pushlanguge
+        },
+        {
+            path: "**",
+            component: Err
+        }
+    ]
 })
 
 // router.beforeEach((to, from, next) => {
