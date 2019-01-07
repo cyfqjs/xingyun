@@ -1,14 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Community from "../components/community";
+import Community from "../components/community/home/index.vue";
+import TalkList from "../components/community/talklist/index.vue"
 import Footer from "../components/footer/index.vue";
 import Personal from "../components/personal";
 import Plus from "../components/plus";
 import Recommend from "../components/recommend";
 import Spot from "../components/spot";
 import Err from "../components/error/error.vue";
-import Login from "../components/login/login.vue"
+import Login from "../components/login/login.vue";
 
 Vue.use(Router)
 
@@ -33,6 +34,11 @@ const router = new Router({
       path:"/community",
       name:"community",
       component:Community
+    },
+    {
+      path:"/talklist",
+      name:"talklist",
+      component:TalkList
     },
     {
       path:"/personal",
