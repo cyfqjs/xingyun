@@ -11,17 +11,10 @@
     import Star from "./components/star"
     import Push from "./components/push"
     export default {
-        create: {
-
-        },
         data() {
-            return {
-
-            }
+            return {}
         },
-        methods: {
-
-        },
+        methods: {},
         components: {
             "Title-com": Title,
             "Star-com": Star,
