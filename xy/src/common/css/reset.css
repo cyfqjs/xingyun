@@ -14,7 +14,11 @@ body { color:#333; font:12px "SimSun","宋体","Arial Narrow",HELVETICA; backgro
 
 a { color:#666; text-decoration:none; }
 /*清除浮动*/
-.clear{clear:both}
+.clear:after{
+  display: block;
+  content: "";
+  clear: both;
+}
 *{box-sizing:border-box}
 body,html{
     height: 100%;

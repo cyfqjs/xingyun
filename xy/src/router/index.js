@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 import Community from "../components/community";
 import Footer from "../components/footer/index.vue";
-import Personal from "../components/personal";
+import Personal from "../components/personal/main/index";
 import Plus from "../components/plus";
 import Recommend from "../components/recommend";
 import Spot from "../components/spot";
@@ -14,8 +14,16 @@ import Seth from "../components/personal/set/index.vue";
 import BindP from "../components/personal/bindPhone/index.vue";
 import BindOne from "../components/personal/bindPhone/bindPhoneOne/index.vue";
 
+import Login from "../components/login/login.vue"
+import Register from "../components/register"
 
-Vue.use(Router)
+import Seth from "../components/personal/set/index.vue"
+
+import Pushpic from "../components/plus/pic"
+import Pushbook from "../components/plus/book"
+import Pushlanguge from "../components/plus/languge"
+
+Vue.use(Router);
 
 const router = new Router({
   routes: [
