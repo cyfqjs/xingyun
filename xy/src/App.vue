@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-  	<Footer-com/>
+  	<Footer-com v-if="$route.meta.flag"/>
     <router-view/>
   </div>
 </template>
@@ -15,5 +15,9 @@ export default {
 </script>
 
 <style>
-
+	#app{
+		height: 100%;
+		width:100%;
+		background: url(assets/login/dlbj.jpeg);
+	}
 </style>

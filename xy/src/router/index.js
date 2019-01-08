@@ -9,6 +9,8 @@ import Recommend from "../components/recommend";
 import Spot from "../components/spot";
 import Err from "../components/error/error.vue";
 import Login from "../components/login/login.vue"
+import Register from "../components/register"
+
 
 Vue.use(Router)
 
@@ -22,42 +24,89 @@ const router = new Router({
       path:"/footer",
       name:"footer",
       component:Footer,
-//    meta:{
-////    	tab栏的显示
-//    	flag:true,
-////    	路由守卫
-//      requireAuth:true
-//    }
+      meta:{
+//    	tab栏的显示
+      	flag:false,
+//    	路由守卫
+        requireAuth:true
+      }
     },
     {
       path:"/community",
       name:"community",
-      component:Community
+      component:Community,
+      meta:{
+//    	tab栏的显示
+      	flag:true,
+//    	路由守卫
+        requireAuth:true
+      }
     },
     {
       path:"/personal",
       name:"personal",
-      component:Personal
+      component:Personal,
+      meta:{
+//    	tab栏的显示
+      	flag:true,
+//    	路由守卫
+        requireAuth:true
+      }
     },
     {
       path:"/plus",
       name:"plus",
-      component:Plus
+      component:Plus,
+      meta:{
+//    	tab栏的显示
+      	flag:true,
+//    	路由守卫
+        requireAuth:true
+      }
     },
     {
       path:"/recommend",
       name:"recommend",
-      component:Recommend
+      component:Recommend,
+      meta:{
+//    	tab栏的显示
+      	flag:true,
+//    	路由守卫
+        requireAuth:true
+      }
     },
     {
       path:"/spot",
       name:"spot",
-      component:Spot
+      component:Spot,
+      meta:{
+//    	tab栏的显示
+      	flag:true,
+//    	路由守卫
+        requireAuth:true
+      }
     },
     {
       path:"/login",
       name:"login",
-      component:Login
+      component:Login,
+      meta:{
+//    	tab栏的显示
+      	flag:false,
+//    	路由守卫
+        requireAuth:true
+      }
+    },
+    {
+      path:"/register",
+      name:"register",
+      component:Register,
+      meta:{
+//    	tab栏的显示
+      	flag:false,
+//    	路由守卫
+        requireAuth:true
+      }
     },
     {
       path:"**",
