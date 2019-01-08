@@ -1,5 +1,5 @@
 <template>
-	<div id="index">
+	<div id="index" v-show="flag">
 		<Title-com></Title-com>
 		<Star-com></Star-com>
 		<Push-com></Push-com>
@@ -32,6 +32,9 @@
 
 <style lang="scss">
     #index {
+        position: absolute;
+        left: 0;
+        top: 0;
         height: 100%;
         width: 100%;
         display: flex;

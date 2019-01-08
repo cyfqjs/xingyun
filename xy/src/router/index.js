@@ -20,130 +20,75 @@ import Pushlanguge from "../components/plus/languge"
 Vue.use(Router);
 
 const router = new Router({
-  routes: [
-    {
-      path:"/",
-      redirect:"/recommend"
-    },
-    {
-      path:"/footer",
-      name:"footer",
-      component:Footer,
-      meta:{
-//    	tab栏的显示
-      	flag:false,
-//    	路由守卫
-        requireAuth:true
-      }
-    },
-    {  //社区
-      path:"/community",
-      name:"community",
-      component:Community,
-      meta:{
-//    	tab栏的显示
-      	flag:true,
-//    	路由守卫
-        requireAuth:true
-      }
-    },
-    { //个人中心
-      path:"/personal",
-      name:"personal",
-      component:Personal,
-      meta:{
-//    	tab栏的显示
-      	flag:true,
-//    	路由守卫
-        requireAuth:true
-      },
-      children:[
+    routes: [{
+            path: "/",
+            redirect: "/recommend"
+        },
         {
-          path:"/set/index",
-          component:Seth
+            path: "/footer",
+            name: "footer",
+            component: Footer,
+            //    meta:{
+            ////    	tab栏的显示
+            //    	flag:true,
+            ////    	路由守卫
+            //      requireAuth:true
+            //    }
+        },
+        {
+            path: "/community",
+            name: "community",
+            component: Community
+        },
+        {
+            path: "/personal",
+            name: "personal",
+            component: Personal
+        },
+        {
+            path: "/plus",
+            name: "plus",
+            component: Plus,
+            meta: {
+                flag: false,
+                requireAuth: true
+            }
+        },
+        {
+            path: "/recommend",
+            name: "recommend",
+            component: Recommend
+        },
+        {
+            path: "/spot",
+            name: "spot",
+            component: Spot
+        },
+        {
+            path: "/login",
+            name: "login",
+            component: Login
+        },
+        {
+            path: "/plus/pushpic",
+            name: "pic",
+            component: Pushpic,
+        },
+        {
+            path: "/plus/pushbook",
+            name: "book",
+            component: Pushbook
+        },
+        {
+            path: "/plus/pushlang",
+            name: "languge",
+            component: Pushlanguge
+        },
+        {
+            path: "**",
+            component: Err
         }
-      ]
-    },
-    { // +
-      path:"/plus",
-      name:"plus",
-      component:Plus,
-      meta:{
-//    	tab栏的显示
-      	flag:true,
-//    	路由守卫
-        requireAuth:true
-      }
-    },
-    {
-        path: "/plus/pushpic",
-        name: "pic",
-        component: Pushpic,
-    },
-    {
-        path: "/plus/pushbook",
-        name: "book",
-        component: Pushbook
-    },
-    {
-        path: "/plus/pushlang",
-        name: "languge",
-        component: Pushlanguge
-    },
-    { //推荐
-      path:"/recommend",
-      name:"recommend",
-      component:Recommend,
-      meta:{
-//    	tab栏的显示
-      	flag:true,
-//    	路由守卫
-        requireAuth:true
-      },
-    },
-    { //看点
-      path:"/spot",
-      name:"spot",
-      component:Spot,
-      meta:{
-//    	tab栏的显示
-      	flag:true,
-//    	路由守卫
-        requireAuth:true
-      }
-    },
-    {  //注册
-      path:"/login",
-      name:"login",
-      component:Login,
-      meta:{
-//    	tab栏的显示
-      	flag:false,
-//    	路由守卫
-        requireAuth:true
-      }
-    },
-    {
-      path:"/register",
-      name:"register",
-      component:Register,
-      meta:{
-//    	tab栏的显示
-      	flag:false,
-//    	路由守卫
-        requireAuth:true
-      }
-    },
-    {
-      path:"**",
-      component:Err
-    },
-    // {
-    //   path:"/set",
-    //   component:
-    // }
-  ]
-
+    ]
 })
 
 // router.beforeEach((to, from, next) => {
