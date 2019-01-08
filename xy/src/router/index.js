@@ -8,8 +8,13 @@ import Plus from "../components/plus";
 import Recommend from "../components/recommend";
 import Spot from "../components/spot";
 import Err from "../components/error/error.vue";
-import Login from "../components/login/login.vue"
-import Set from "../components/personal/set/index.vue"
+import Login from "../components/login/login.vue";
+import Set from "../components/personal/set/index.vue";
+import Fans from "../components/personal/main/fans";
+import Fansindex from "../components/personal/main/fansindex";
+import Foucson from "../components/personal/main/foucson";
+import Redact from "../components/personal/main/redact";
+
 
 Vue.use(Router);
 
@@ -33,42 +38,97 @@ const router = new Router({
     {  //社区
       path:"/community",
       name:"community",
-      component:Community
+      component:Community,
+      meta:{
+        flag:true
+      }
     },
     { //个人中心
       path:"/personal",
       name:"personal",
       component:Personal,
-      children:[
-        {
-          path:"/set/index",
-          component:Set
+      meta:{
+        flag:true
+      }
+    },
+    { //设置
+      path:"/set",
+      component:Set,
+      name:"set",
+      meta:{
+        flag:false
+      }
+    },
+    {  //粉丝列表
+      path:"/fans",
+      name:"fans",
+      component:Fans,
+      meta:{
+        falg:false
+      }
+    },
+    {  //粉丝主页
+        path:"fansindex",
+        name:"fansindex",
+        component:Fansindex,
+        meta:{
+          flag:false
         }
-      ]
+    },
+    {  //我关注的
+      path:"foucson",
+      name:"foucson",
+      component:Foucson,
+      meta:{
+        flag:false
+      }
+    },
+    { //资料编辑
+      path:"redact",
+      name:"redact",
+      component:Redact,
+      meta:{
+        flag:false
+      }
     },
     { // +
       path:"/plus",
       name:"plus",
-      component:Plus
+      component:Plus,
+      meta:{
+        flag:true
+      }
     },
     { //推荐
       path:"/recommend",
       name:"recommend",
       component:Recommend,
+      meta:{
+        flag:true
+      }
     },
     { //看点
       path:"/spot",
       name:"spot",
-      component:Spot
+      component:Spot,
+      meta:{
+        flag:true
+      }
     },
     {  //注册
       path:"/login",
       name:"login",
-      component:Login
+      component:Login,
+      meta:{
+        flag:true
+      }
     },
     {
       path:"**",
-      component:Err
+      component:Err,
+      meta:{
+        flag:true
+      }
     },
     // {
     //   path:"/set",

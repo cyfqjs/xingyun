@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-  	<Footer-com/>
+  	<Footer-com v-show="this.$route.meta.flag"/>
     <router-view/>
   </div>
 </template>
@@ -10,7 +10,6 @@ import Footer from "./components/footer/index.vue";
 export default {
 	  components: {
     "Footer-com":Footer,
-    
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
 	<div id="Person">
 		<div id="personTop">
-				<router-link to=""><img src="@/assets/personImg/shezhi.png"></router-link>
+				<router-link :to="{name:'set'}"><img src="@/assets/personImg/shezhi.png"></router-link>
 				<div id="name">星空下的友人</div>
 				<div id="photo">
 					<img src="@/assets/personImg/photo.png">
@@ -10,7 +10,7 @@
 		<div id="personContent">
 			<div id="signatrue">
 				<span>梦想着东西想想就可以了</span>
-				<router-link to="">编辑资料</router-link>
+				<router-link :to="{name:'redact'}">编辑资料</router-link>
 			</div>
 			<div id="data">
 				<div id="agreen">已获得认同<span>1.3k</span></div>
@@ -21,13 +21,13 @@
 		<div id="personFans">
 			<ul>
 				<li>
-					<router-link to="">发布<span>12</span></router-link>
+					<a>发布<span>12</span></a>
 				</li>
 				<li>
-					<router-link to="">关注∞</router-link>	
+					<router-link :to="{name:'foucson'}">关注∞</router-link>	
 				</li>
 				<li>
-					<router-link to="">粉丝<span>6.6k</span></router-link>
+					<router-link :to="{name:'fans'}">粉丝<span>6.6k</span></router-link>
 				</li>
 			</ul>
 		</div>
@@ -41,7 +41,10 @@ import bScroll from "better-scroll";
 export default{
 	components:{
 		"Time-com": Time
-	}
+	},
+	created() {
+		//console.log(this)
+	},
 }
 </script>
 
@@ -152,7 +155,6 @@ export default{
 		width:100%;
 		background:rgba(34,29,59,1);
 		color:#fff;
-		
 	}
 }
 </style>

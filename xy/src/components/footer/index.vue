@@ -51,6 +51,7 @@
         position: fixed;
         left: 0;
         bottom: 0;
+        z-index:5;
     }
 
     #footer>ul{
