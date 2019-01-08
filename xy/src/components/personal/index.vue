@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<h2><router-link to="/set/index">Set</router-link></h2>
-		<router-view></router-view>
+		
 	</div>
 </template>
 

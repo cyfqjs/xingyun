@@ -3,24 +3,33 @@
     <ul class="listHui">
       <li>
         <a href="#">绑定账号</a>
-        <span><a href="#"><img src="../../../assets/set/矢量智能对象@2x(1).png"></a></span>
+        <span><router-link :to="{name:'indexPhone'}">
+          <img src="../../../assets/set/矢量智能对象@2x(1).png">
+          </router-link></span>
       </li>
       <li>
         <a href="#">通知设置</a>
-        <span><a href="#"><img src="../../../assets/set/矢量智能对象@2x(1).png"></a></span>
+        <span><router-link :to="{name:'pushSet'}">
+          <img src="../../../assets/set/矢量智能对象@2x(1).png">
+          </router-link></span>
       </li>
       <li>
         <a href="#">意见反馈</a>
-        <span><a href="#"><img src="../../../assets/set/矢量智能对象@2x(1).png"></a></span>
+        <span><router-link to="/set/index">
+          <img src="../../../assets/set/矢量智能对象@2x(1).png">
+          </router-link></span>
       </li>
       <li>
         <a href="#">关于我们</a>
-        <span><a href="#"><img src="../../../assets/set/矢量智能对象@2x(1).png"></a></span>
+        <span><router-link to="/set/index">
+          <img src="../../../assets/set/矢量智能对象@2x(1).png">
+          </router-link></span>
       </li>
       <li class="listOut">
         <a href="#">退出登录</a>
       </li>
     </ul>
+    <router-view></router-view>
   </div>
 </template>
 
