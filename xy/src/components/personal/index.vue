@@ -1,6 +1,7 @@
 <template>
 	<div>
-		<h2>Personal</h2>
+		<h2><router-link to="/set/index">Set</router-link></h2>
+		<router-view></router-view>
 	</div>
 </template>
 
