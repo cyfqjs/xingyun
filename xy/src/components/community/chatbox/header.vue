@@ -1,14 +1,20 @@
 <template>
     <div id="header">
-        <div class="back">
-            <img src="@/assets/community/img/back.png" alt="">
+        <div class="back" @click="handleTalklist_zjy">
+            <!-- <img src="@/assets/community/img/back.png" alt="">
+             -->
+             &lt;
         </div>
         <span>最美天蝎小姐姐</span>
     </div>
 </template>
 <script>
 export default {
-    
+    methods:{
+        handleTalklist_zjy(){
+            this.$router.back();
+        }
+    }
 }
 </script>
 <style scoped>
@@ -25,10 +31,9 @@ export default {
      #header>.back{
          width:.2rem;
          height:.34rem;
-     }
-     #header>.back>img{
-         width:100%;
-         height:100%;
+         color:#fff;
+         font-weight:bold;
+         font-size:.4rem;
      }
      #header>span{
          margin-left:2.23rem;

@@ -1,5 +1,8 @@
 export default {
-    handleMoments(state,params){
-        state.Moments=params;
+    handleMoments_zjy(state,params){
+        state.Moments_zjy=params;
+    },
+    handleTalklist_zjy(state,params){
+        state.Talklist_zjy=params;
     }
 }

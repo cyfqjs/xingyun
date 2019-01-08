@@ -1,4 +1,5 @@
 export default {
-    Moments:[],
-    pageIndex:1,
+    Moments_zjy:[],
+    pageIndex_zjy:1,
+    Talklist_zjy:[],
 }

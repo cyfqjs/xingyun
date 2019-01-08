@@ -1,16 +1,31 @@
 import axios from "../../lib"
 export default {
-    handleMoments({commit,state}){
+    handleMoments_zjy({commit,state}){
         axios({
             method:"get",
             url:"http://localhost:3000/Moments",
             data:{
-                pageIndex:state.pageIndex,
+                pageIndex_zjy:state.pageIndex,
             }
 
         })
         .then(data=>{
-            commit("handleMoments",data);
+            commit("handleMoments_zjy",data);
         })
+    },
+    handleTalklist_zjy({commit,state}){
+        axios({
+            method:"get",
+            url:"http://localhost:3000/Talktlist",
+        })
+        .then(data=>{
+            commit("handleTalklist_zjy",data);
+        })
+    },
+    handleMessage_zjy({commit,state}){
+        // axios({
+        //     method:"get",
+        // })
+        alert(1)
     }
 }

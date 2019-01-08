@@ -20,8 +20,9 @@ import BScroll from "better-scroll";
 
 		},
 		mounted() {
-			this.scroll=new BScroll(this.$refs.homeWrapper)
-			console.log(this.scroll);
+			this.scroll=new BScroll(this.$refs.homeWrapper,{
+				tap:true
+			});
 		},
 	}
 </script>
@@ -30,6 +31,7 @@ import BScroll from "better-scroll";
 	#home{
 		width:100%;
 		height:100%;
+		background:#221D3B;
 	}
 	#home>.wrapper{
 		width:100%;

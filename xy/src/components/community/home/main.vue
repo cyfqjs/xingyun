@@ -1,7 +1,7 @@
 <template>
     <div id="main">
         <ul>
-            <li v-for="(item,index) in Moments">
+            <li v-for="(item,index) in Moments_zjy">
             <p class="photo_zjy"><img :src="item.photo" alt=""></p>
             <p class="name_zjy">{{item.name}}<span>{{item.time}}</span></p>
             <p class=" Concern_zjy"><router-link to="">+关注</router-link></p>
@@ -28,11 +28,11 @@ export default {
         }
     },
     created(){
-        this.handleMoments();
+        this.handleMoments_zjy();
     },
     computed:{
         ...Vuex.mapState({
-            Moments:state=>state.Community.Moments
+            Moments_zjy:state=>state.Community.Moments_zjy
         }),
     },
     methods:{
@@ -40,7 +40,7 @@ export default {
 
         }),
         ...Vuex.mapActions({
-            handleMoments:"Community/handleMoments",
+            handleMoments_zjy:"Community/handleMoments_zjy",
         }),
     }
 }

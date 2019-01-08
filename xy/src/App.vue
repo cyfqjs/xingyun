@@ -1,10 +1,9 @@
 <template>
   <div id="app">
     <router-view/>
-  	<Footer-com/>
+  	<!-- <Footer-com/> -->
   </div>
 </template>
-
 <script>
 import Footer from "./components/footer/index.vue";
 export default {

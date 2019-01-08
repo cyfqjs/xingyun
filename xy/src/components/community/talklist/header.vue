@@ -1,7 +1,7 @@
 <template>
     <div id="header">
         <div class="back_zjy">
-            <img @click="handleBack" src="@/assets/community/img/back.png" alt="">
+            <img @click="handleBack_zjy" src="@/assets/community/img/back.png" alt="">
         </div>
         <h2>私信</h2>
     </div>
@@ -9,7 +9,7 @@
 <script>
 export default {
     methods:{
-        handleBack(){
+        handleBack_zjy(){
             this.$router.back();
         }
     }
