@@ -1,7 +1,7 @@
 <template>
 	<div id="footer">
 		<ul>
-			<li v-for="(item,index) in navs">
+			<li v-for="(item,index) in navs" >
                <router-link :to="{name:item.name}">
                		<span>{{item.title}}</span>
                </router-link>
@@ -22,7 +22,7 @@
 					},
 					{
 						name:"spot",
-						title:"看点"
+                        title:"看点",
 					},
 					{
 						name:"plus",
@@ -41,10 +41,11 @@
 			}
 		}
 	}
+
 </script>
 
 <style>
-	#footer{
+    #footer {
         width: 100%;
         height: 49px;
         background: #000;
@@ -53,36 +54,36 @@
         bottom: 0;
         z-index:5;
     }
-
-    #footer>ul{
+    
+    #footer>ul {
         width: 100%;
         height: 100%;
         display: flex;
         justify-content: space-between;
     }
-
-    #footer>ul>li{
+    
+    #footer>ul>li {
         width: 100%;
         height: 100%;
     }
-
-    #footer>ul>li>a{
+    
+    #footer>ul>li>a {
         width: 100%;
         height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items:enter ;
+        align-items: enter;
         text-align: center;
         line-height: 49px;
         color: #fff;
     }
     
-    #footer>ul>li>a>span{
-    	font-size: 14px;
+    #footer>ul>li>a>span {
+        font-size: 14px;
     }
-
-    #footer>ul>li>.router-link-active{
+    
+    #footer>ul>li>.router-link-active {
         background: #c33;
     }
 </style>
