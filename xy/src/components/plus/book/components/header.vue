@@ -1,7 +1,7 @@
 <template>
         <div id="header">
         <div>取消</div>
-        <div class="title">相机胶卷</div>
+        <div class="title">星书发表</div>
         <div>发表</div>
         </div>
     </template>
@@ -24,6 +24,7 @@
             width: 1.6rem;
             height: .38rem;
             font-size: .38rem;
+            line-height: .38rem;
             font-family: PingFangSC-Regular;
             color: rgba(255, 255, 255, 1);
         }
@@ -40,7 +41,6 @@
             text-align: center;
             line-height: .35rem;
             border: 1px solid #ddd;
-            padding: 2px;
             font-size: .29rem;
             font-family: PingFang-SC-Regular;
             color: rgba(255, 255, 255, 1);

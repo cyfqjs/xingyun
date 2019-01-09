@@ -3,7 +3,7 @@
 		<ul>
 			<li v-for="(item,index) in navs" >
                <router-link :to="{name:item.name}">
-               		<span>{{item.title}}</span>
+               		<span @click="open(index)">{{item.title}}</span>
                </router-link>
             </li>
             
@@ -12,36 +12,36 @@
 </template>
 
 <script>
-	export default{
-		data(){
-			return{
-				navs:[
-					{
-						name:"recommend",
-						title:"推荐"
-					},
-					{
-						name:"spot",
-                        title:"看点",
-					},
-					{
-						name:"plus",
-						title:" + "
-					},
-					{
-						name:"community",
-						title:"社区"
-					},
-					{
-						name:"personal",
-						title:"个人中心"
-					}
-					
-				]
-			}
-		}
-	}
+    import Vuex from "vuex"
+    export default {
+        data() {
+            return {
+                navs: [{
+                        name: "recommend",
+                        title: "推荐"
+                    }, {
+                        name: "spot",
+                        title: "看点"
+                    }, {
+                        name: "plus",
+                        title: " + "
+                    }, {
+                        name: "community",
+                        title: "社区"
+                    }, {
+                        name: "personal",
+                        title: "个人中心"
+                    }
 
+                ]
+            }
+        },
+        methods: {
+            ...Vuex.mapMutations({
+                open: "plus/handleopen"
+            })
+        }
+    }
 </script>
 
 <style>
@@ -52,7 +52,7 @@
         position: fixed;
         left: 0;
         bottom: 0;
-        z-index:5;
+        z-index: 5;
     }
     
     #footer>ul {

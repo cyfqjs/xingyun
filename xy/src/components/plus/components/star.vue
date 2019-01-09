@@ -90,6 +90,10 @@
             height: 2.43rem;
             width: 100%;
         }
+        img {
+            height: 100%;
+            width: 100%;
+        }
         #icon {
             height: 2.67rem;
             width: 2.15rem;

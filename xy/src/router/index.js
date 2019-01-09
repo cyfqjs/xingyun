@@ -30,10 +30,18 @@ import Foucson from "../components/personal/main/foucson";
 import Redact from "../components/personal/main/redact";
 import Proberbs from "../components/personal/main/proberbs";
 
+<<<<<<< HEAD
+=======
+
+import Pushpic from "../components/plus/pic"
+import Pushbook from "../components/plus/book"
+import Pushlanguge from "../components/plus/languge"
+>>>>>>> sjw
 
 Vue.use(Router);
 
 const router = new Router({
+<<<<<<< HEAD
   routes: [
     {
       path: "/",
@@ -225,6 +233,140 @@ const router = new Router({
       }
     },
   ]
+=======
+    routes: [{
+            path: "/",
+            redirect: "/recommend",
+            meta: {
+                flag: true,
+            }
+        },
+        {
+            path: "/footer",
+            name: "footer",
+            component: Footer,
+            meta: {
+                flag: true,
+            }
+            //    meta:{
+            ////    	tab栏的显示
+            //    	flag:true,
+            ////    	路由守卫
+            //      requireAuth:true
+            //    }
+        },
+        {
+            path: "/community",
+            name: "community",
+            component: Community,
+            meta: {
+                flag: true,
+            }
+        },
+        //个人中心
+        {
+            path: "/personal",
+            name: "personal",
+            component: Personal,
+            meta: {
+                flag: true,
+            }
+        },
+        //设置
+        {
+            path: "/set/index",
+            name: "set",
+            component: Seth,
+            meta: {
+                flag: false,
+            }
+        },
+        //绑定手机
+        {
+            path: "/bindPhone/index",
+            name: "indexPhone",
+            component: BindP,
+            meta: {
+                flag: false,
+            }
+        },
+        //绑定手机界面
+        {
+            path: "/bindPhone/bindPhoneOne",
+            name: "bindPhoneOne",
+            component: BindOne,
+            meta: {
+                flag: false,
+            }
+        },
+        //推送设置
+        {
+            path: "/set/pushSet/index",
+            name: "pushSet",
+            component: pushSet,
+            meta: {
+                flag: false
+            }
+        },
+        {
+            path: "/plus",
+            name: "plus",
+            component: Plus,
+            meta: {
+                flag: false,
+            }
+        },
+        {
+            path: "/plus/pic",
+            name: "pic",
+            component: Pushpic,
+            meta: {
+                flag: false,
+            }
+        },
+        {
+            path: "/plus/book",
+            name: "book",
+            component: Pushbook,
+            meta: {
+                flag: false,
+            }
+        },
+        {
+            path: "/plus/languge",
+            name: "languge",
+            component: Pushlanguge,
+            meta: {
+                flag: false,
+            }
+        },
+        {
+            path: "/recommend",
+            name: "recommend",
+            component: Recommend,
+            meta: {
+                flag: true,
+            }
+        },
+        {
+            path: "/spot",
+            name: "spot",
+            component: Spot,
+            meta: {
+                flag: true,
+            }
+        },
+        {
+            path: "/login",
+            name: "login",
+            component: Login
+        },
+        {
+            path: "**",
+            component: Err
+        },
+    ]
+>>>>>>> sjw
 })
 
 // router.beforeEach((to, from, next) => {
