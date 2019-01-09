@@ -149,7 +149,6 @@ export default {
                         color:#fff;
                     }
                     img{
-                        display: inline-block;
                         width:.2rem;
                         height:.28rem;
                         float:right;
