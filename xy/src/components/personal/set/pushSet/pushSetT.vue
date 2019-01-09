@@ -4,15 +4,20 @@
       <li>
         <p class="p1">推送设置</p>
         <p class="p2">不会与每一条重要通知内容擦肩而过</p>
-
       </li>
-      <div class="clickHui"></div>
+      <div class="clickHui">
+        <mt-switch v-model="value"></mt-switch>
+      </div>
+        
     </ul>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import Vue from "vue";
+import { Switch } from "mint-ui";
+Vue.component(Switch.name, Switch);
 export default {};
 </script>
 <style lang="scss">
@@ -52,14 +57,11 @@ export default {};
         margin-top: 0.3rem;
       }
     }
-    .clickHui{
-        width: 1rem;
-        height: 0.5rem;
-        background:rgba(117,80,169,1);
-        border-radius:10px;
-        position: fixed;
-        top: 1.75rem;
-        right: 0.2rem;
+    .clickHui {
+      border-radius: 10px;
+      position: fixed;
+      top: 1.75rem;
+      right: 0.2rem;
     }
   }
 }

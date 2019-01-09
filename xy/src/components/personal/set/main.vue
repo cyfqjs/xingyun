@@ -15,13 +15,13 @@
       </li>
       <li>
         <a href="#">意见反馈</a>
-        <span><router-link to="/set/index">
+        <span><router-link :to="{name:'idea'}">
           <img src="../../../assets/set/矢量智能对象@2x(1).png">
           </router-link></span>
       </li>
       <li>
         <a href="#">关于我们</a>
-        <span><router-link to="/set/index">
+        <span><router-link :to="{name:'about'}">
           <img src="../../../assets/set/矢量智能对象@2x(1).png">
           </router-link></span>
       </li>
