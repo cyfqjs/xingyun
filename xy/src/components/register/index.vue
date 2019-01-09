@@ -16,5 +16,10 @@
 	}
 </script>
 
-<style>
+<style lang="scss">
+	#register{
+		width: 100%;
+		height: 100%;
+		background: #000;
+	}
 </style>

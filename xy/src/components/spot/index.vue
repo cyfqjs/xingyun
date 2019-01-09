@@ -2,9 +2,7 @@
 	<div class="stop">
 		<search-com></search-com>
 		<nav-com></nav-com>
-		
-		
-
+	
 	</div>
 </template>
 
@@ -25,7 +23,7 @@ import Nav from "@/components/spot/components/nav.vue";
 		},
 		data(){
 			return{
-				flog:true,
+				flag:true,
 			}
 		}
 	}

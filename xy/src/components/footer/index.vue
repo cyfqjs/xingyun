@@ -12,7 +12,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
 	export default{
 		data(){
 			return{
@@ -42,32 +41,7 @@
 			}
 		}
 	}
-=======
-    export default {
-        data() {
-            return {
-                navs: [{
-                        name: "recommend",
-                        title: "推荐"
-                    }, {
-                        name: "spot",
-                        title: "看点"
-                    }, {
-                        name: "plus",
-                        title: " + "
-                    }, {
-                        name: "community",
-                        title: "社区"
-                    }, {
-                        name: "personal",
-                        title: "个人中心"
-                    }
 
-                ]
-            }
-        }
-    }
->>>>>>> 92beca15a764bd74a6839eb15ce3b8c0212c734f
 </script>
 
 <style>
