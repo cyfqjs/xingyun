@@ -14,7 +14,7 @@ import Fans from "../components/personal/main/fans";
 import Fansindex from "../components/personal/main/fansindex";
 import Foucson from "../components/personal/main/foucson";
 import Redact from "../components/personal/main/redact";
-
+import Proberbs from "../components/personal/main/proberbs";
 
 Vue.use(Router);
 
@@ -87,6 +87,14 @@ const router = new Router({
       path:"redact",
       name:"redact",
       component:Redact,
+      meta:{
+        flag:false
+      }
+    },
+    {  //个人箴言
+      path:"proberbs",
+      name:"proberbs",
+      component:Proberbs,
       meta:{
         flag:false
       }

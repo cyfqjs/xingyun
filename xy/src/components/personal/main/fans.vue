@@ -30,7 +30,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" >
     #fansTop{
         width:7.5rem;
         height:1.28rem;

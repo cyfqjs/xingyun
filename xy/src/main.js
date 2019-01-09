@@ -6,6 +6,9 @@ import router from './router'
 import store from './store'
 import "./common/css/reset.css";
 import "./common/js/flexble";
+import MintUI from "mint-ui";
+
+Vue.use(MintUI);
 
 Vue.config.productionTip = false
 
