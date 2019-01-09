@@ -9,10 +9,17 @@ import Recommend from "../components/recommend";
 import Spot from "../components/spot";
 import Err from "../components/error/error.vue";
 import Login from "../components/login/login.vue";
+//推送
 import pushSet from "../components/personal/set/pushSet/index.vue";
+//设置
 import Seth from "../components/personal/set/index.vue";
+//绑定
 import BindP from "../components/personal/bindPhone/index.vue";
 import BindOne from "../components/personal/bindPhone/bindPhoneOne/index.vue";
+//意见反馈
+import Idea from "../components/personal/set/idea/index.vue"
+//关于我们
+import About from "../components/personal/set/aboutMe/index.vue"
 
 
 Vue.use(Router)
@@ -89,6 +96,24 @@ const router = new Router({
       path:"/set/pushSet/index",
       name:"pushSet",
       component:pushSet,
+      meta:{
+        flag:false
+      }
+    },
+    //意见反馈
+    {
+      path:"/set/idea/index",
+      name:"idea",
+      component:Idea,
+      meta:{
+        flag:false
+      }
+    },
+    //关于我们
+    {
+      path:"/set/aboutMe/index",
+      name:"about",
+      component:About,
       meta:{
         flag:false
       }

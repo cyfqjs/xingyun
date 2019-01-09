@@ -63,7 +63,7 @@ export default {
           width: 0.16rem;
           height: 0.28rem;
           margin-top: -0.2rem;
-          margin-left: 1.1rem;
+          margin-left: 1rem;
         }
         .p2 {
           width: 1rem;
