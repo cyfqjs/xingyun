@@ -22,12 +22,6 @@ export default {};
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  .topHui1 {
-    width: 7.13rem;
-    height: 0.25rem;
-    background: red;
-    margin-top: 0.06rem;
-  }
   .topHui2 {
     width: 100%;
     height: 0.98rem;
