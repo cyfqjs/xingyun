@@ -22,7 +22,7 @@
 					},
 					{
 						name:"spot",
-						title:"看点"
+                        title:"看点",
 					},
 					{
 						name:"plus",

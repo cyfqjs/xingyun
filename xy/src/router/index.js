@@ -8,9 +8,14 @@ import Plus from "../components/plus";
 import Recommend from "../components/recommend";
 import Spot from "../components/spot";
 import Err from "../components/error/error.vue";
+<<<<<<< HEAD
 import Login from "../components/login/login.vue"
 import Set from "../components/personal/set/index.vue"
 
+=======
+import Login from "../components/login/login.vue";
+import Topiccontent from "@/components/spot/components/topiccontent";
+>>>>>>> zln
 Vue.use(Router)
 
 const router = new Router({
@@ -59,8 +64,28 @@ const router = new Router({
     {
       path:"/spot",
       name:"spot",
-      component:Spot
+      component:Spot,
+      meta:{
+        footeradd:true,
+        flog:true,
+      },
+      children:[
+        {
+          path:"/topiccontent/:topicid/:backimg",
+          component:Topiccontent,
+          meta:{
+            footeradd:false,
+            flog:false
+          }
+        },
+        {
+          path:"",
+          name:"topiccontent",
+          component:Topiccontent,
+        }
+      ]
     },
+    
     {
       path:"/login",
       name:"login",
