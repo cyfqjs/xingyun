@@ -3,7 +3,7 @@
 		<ul>
 			<li v-for="(item,index) in navs" >
                <router-link :to="{name:item.name}">
-               		<span>{{item.title}}</span>
+               		<span @click="open(index)">{{item.title}}</span>
                </router-link>
             </li>
             
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+    import Vuex from "vuex"
     export default {
         data() {
             return {
@@ -34,6 +35,11 @@
 
                 ]
             }
+        },
+        methods: {
+            ...Vuex.mapMutations({
+                open: "plus/handleopen"
+            })
         }
     }
 </script>

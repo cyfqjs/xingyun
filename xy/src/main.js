@@ -8,12 +8,15 @@ import "./common/css/reset.css";
 import "./common/js/flexble";
 
 Vue.config.productionTip = false
-
-/* eslint-disable no-new */
+import { AlertPlugin, ToastPlugin, ConfirmPlugin } from 'vux'
+Vue.use(AlertPlugin)
+Vue.use(ToastPlugin)
+Vue.use(ConfirmPlugin)
+    /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  store,
-  router,
-  components: { App },
-  template: '<App/>'
+    el: '#app',
+    store,
+    router,
+    components: { App },
+    template: '<App/>'
 })

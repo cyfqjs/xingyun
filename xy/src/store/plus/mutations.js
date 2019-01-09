@@ -1,8 +1,15 @@
 export default {
-    handleHomeData(state, params) {
-        state.banners = params.banners;
-        state.others = params.others;
-        state.presets = params.presets;
-        state.tabs = params.tabs;
+    handleclose(state) {
+        state.flag = false;
+        location.href = state.linkto;
+    },
+    handleopen(state, parms) {
+        if (parms == 2) {
+            var str = location.href;
+            state.flag = true;
+            state.linkto = str;
+        }
+
+
     }
 }
