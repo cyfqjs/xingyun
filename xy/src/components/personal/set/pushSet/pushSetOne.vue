@@ -1,20 +1,27 @@
 <template>
-  <div class="topHui">
-    <div class="topHui1"></div>
-    <div class="topHui2">
-      <a href="personal#/personal">
-        <img src="../../../assets/set/back@2x.png">
-      </a>
-      <div>设置</div>
+  <div class="pushSet">
+    <div class="pushSet1"></div>
+    <div class="pushSet2">
+      <span >
+        <img src="@/assets/set/back@2x.png" @click="handleSet">
+      </span>
+      <div>推送设置</div>
     </div>
+    
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    handleSet(){
+      this.$router.go(-1);
+    }
+  }
+};
 </script>
 <style lang="scss">
-.topHui {
+    .pushSet {
   width: 100%;
   height: 1.29rem;
   background: rgba(47, 40, 75, 1);
@@ -22,12 +29,12 @@ export default {};
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  .topHui2 {
+  .pushSet2 {
     width: 100%;
     height: 0.98rem;
     display: flex;
     align-items: center;
-    a {
+    span {
       margin-left: 0.2rem;
       
     }
@@ -37,17 +44,16 @@ export default {};
     }
     div {
       display: flex;
-      width: 0.83rem;
-      height: 0.34rem;
+      width: 1.6rem;
+      height: 0.35rem;
       font-size: 0.38rem;
       font-family: PingFang-SC-Regular;
       font-weight: 400;
       color: rgba(255, 255, 255, 1);
-      margin-left: 3rem;
+      margin-left: 2.7rem;
       margin-top: -0.18rem;
+      flex-shrink: 0;
     }
   }
 }
 </style>
-
-

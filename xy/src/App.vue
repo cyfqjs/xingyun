@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-  	<Footer-com  v-if="this.$router.flag"/>
+  	<Footer-com v-show="this.$route.meta.flag"/>
     <router-view/>
   </div>
 </template>
