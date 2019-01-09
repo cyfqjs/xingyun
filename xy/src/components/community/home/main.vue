@@ -1,26 +1,31 @@
 <template>
     <div id="main">
-        <ul>
-            <li v-for="(item,index) in Moments_zjy">
-            <p class="photo_zjy"><img :src="item.photo" alt=""></p>
-            <p class="name_zjy">{{item.name}}<span>{{item.time}}</span></p>
-            <p class=" Concern_zjy"><router-link to="">+关注</router-link></p>
-            <p class="content_zjy">
-                {{item.content}}
-            </p>
-            <p class="pic_zjy">
-                <img v-for="(ccc,index) in item.pic" :src="ccc"  alt="">
-            </p>
-            <p class="fdp_zjy">
-                <router-link to=""><img src="@/assets/community/img/fx_zjy.png" alt=""><span>{{item.share}}</span></router-link>
-                <router-link to=""><img src="@/assets/community/img/pl_zjy.png" alt=""><span>{{item.comment}}</span></router-link>
-                <router-link to=""><img src="@/assets/community/img/dz_zjy.png" alt=""><span>{{item.heart}}</span></router-link>
-            </p>
-            </li>
-        </ul>
+        <div class="wrapper homeWrapper" ref="homeWrapper">
+            <ul class="content">
+                <router-link to="/details">
+                    <li v-for="(item,index) in Moments_zjy">
+                        <p class="photo_zjy"><img :src="item.photo" alt=""></p>
+                        <p class="name_zjy">{{item.name}}<span>{{item.time}}</span></p>
+                        <p class=" Concern_zjy"><router-link to="">+关注</router-link></p>
+                        <p class="content_zjy">
+                            {{item.content}}
+                        </p>
+                        <p class="pic_zjy">
+                            <img v-for="(ccc,index) in item.pic" :src="ccc"  alt="">
+                        </p>
+                        <p class="fdp_zjy">
+                            <router-link to=""><img src="@/assets/community/img/fx_zjy.png" alt=""><span>{{item.share}}</span></router-link>
+                            <router-link to=""><img src="@/assets/community/img/pl_zjy.png" alt=""><span>{{item.comment}}</span></router-link>
+                            <router-link to=""><img src="@/assets/community/img/dz_zjy.png" alt=""><span>{{item.heart}}</span></router-link>
+                        </p>
+                    </li>
+                </router-link>
+            </ul>
+        </div>
     </div>
 </template>
 <script>
+import BScroll from "better-scroll";
 import Vuex from "vuex";
 export default {
     data(){
@@ -29,6 +34,11 @@ export default {
     },
     created(){
         this.handleMoments_zjy();
+    },
+    mounted() {
+        this.scroll=new BScroll(this.$refs.homeWrapper,{
+            click:true
+        })
     },
     computed:{
         ...Vuex.mapState({
@@ -42,6 +52,11 @@ export default {
         ...Vuex.mapActions({
             handleMoments_zjy:"Community/handleMoments_zjy",
         }),
+    },
+    watch:{
+         Moments_zjy(newVal,oldVal){
+             this.scroll.refresh();
+         }
     }
 }
 </script>
@@ -53,11 +68,17 @@ export default {
         color:#fff;
         padding:.88rem .2rem 1rem ;
     }
-    #main>Ul{
+    #main>.homeWrapper{
         width:100%;
         height:100%;
     }
-    #main>Ul>li{
+    #main>.homeWrapper>Ul>a{
+        display: block;
+        width:100%;
+        height:auto;
+        color:#fff;
+    }
+    #main>.homeWrapper>Ul>a>li{
         width:100%;
         height:auto;
         display: flex;
@@ -66,11 +87,11 @@ export default {
         align-items: center;
         padding-top:.3rem;
     }
-     #main>Ul>li>.photo_zjy{
+     #main>.homeWrapper>Ul>a>li>.photo_zjy{
          width:1.08rem;
          height:1.08rem;
      }
-     #main>Ul>li>.photo_zjy>img{
+     #main>.homeWrapper>Ul>a>li>.photo_zjy>img{
          width:100%;
          height:100%;
          border-radius:50%;
@@ -79,7 +100,7 @@ export default {
      #main .name_zjy{
          width:2.08rem;
          height:.5rem;
-         font-size:.25rem;
+         font-size:.3rem;
          line-height: .32rem;
          margin-left:-2.2rem;
      }
@@ -87,6 +108,8 @@ export default {
          font-size:.22rem;
          color:#ccc;
          display: block;
+        font-family: PingFang-SC-Regular;
+         
      }
      #main .Concern_zjy{
          width:.9rem;
@@ -107,6 +130,7 @@ export default {
          height:auto;
          font-size:.24rem;
          margin:.3rem 0 .3rem ;
+         font-family:PingFangSC-Light;
      }
       #main .fdp_zjy{
           width:100%;

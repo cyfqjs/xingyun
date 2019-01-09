@@ -1,11 +1,7 @@
 <template>
 	<div id="home">
 		<Header-com></Header-com>
-		<div class="wrapper" ref="homeWrapper">
-			<div class="content">
-				<Main-com></Main-com>	
-			</div>
-		</div>
+		<Main-com></Main-com>	
 	</div>
 </template>
 
@@ -18,12 +14,7 @@ import BScroll from "better-scroll";
 			"Header-com":Header,
 			"Main-com":Main
 
-		},
-		mounted() {
-			this.scroll=new BScroll(this.$refs.homeWrapper,{
-				tap:true
-			});
-		},
+		}
 	}
 </script>
 
@@ -32,9 +23,5 @@ import BScroll from "better-scroll";
 		width:100%;
 		height:100%;
 		background:#221D3B;
-	}
-	#home>.wrapper{
-		width:100%;
-		height:100%;
 	}
 </style>

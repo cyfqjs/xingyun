@@ -21,11 +21,8 @@ export default {
         .then(data=>{
             commit("handleTalklist_zjy",data);
         })
-    },
-    handleMessage_zjy({commit,state}){
-        // axios({
-        //     method:"get",
-        // })
-        alert(1)
+    }, 
+    handlePush_zjy({commit}){
+        commit("handlePush_zjy")
     }
 }
