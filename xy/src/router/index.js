@@ -5,7 +5,7 @@ import Footer from "../components/footer/index.vue";
 import Err from "../components/error/error.vue";
 
 import Login from "../components/login/login.vue";
-import Register from "../components/register"
+import Register from "../components/register";
 
 import Recommend from "../components/recommend";
 
@@ -13,9 +13,9 @@ import Spot from "../components/spot";
 import Topiccontent from "@/components/spot/components/topiccontent";
 
 import Plus from "../components/plus";
-import Pushpic from "../components/plus/pic"
-import Pushbook from "../components/plus/book"
-import Pushlanguge from "../components/plus/languge"
+import Pushpic from "../components/plus/pic";
+import Pushbook from "../components/plus/book";
+import Pushlanguge from "../components/plus/languge";
 
 import Community from "../components/community";
 
@@ -23,7 +23,12 @@ import Personal from "../components/personal/main/index";
 import pushSet from "../components/personal/set/pushSet/index.vue";
 import BindP from "../components/personal/bindPhone/index.vue";
 import BindOne from "../components/personal/bindPhone/bindPhoneOne/index.vue";
-import Seth from "../components/personal/set/index.vue"
+import Seth from "../components/personal/set/index.vue";
+import Fans from "../components/personal/main/fans";
+import Fansindex from "../components/personal/main/fansindex";
+import Foucson from "../components/personal/main/foucson";
+import Redact from "../components/personal/main/redact";
+import Proberbs from "../components/personal/main/proberbs";
 
 
 Vue.use(Router);
@@ -62,13 +67,15 @@ const router = new Router({
       children: [
         {
           path: "/topiccontent/:topicid/:backimg",
-          component: Topiccontent,         
+          component: Topiccontent,
         },
         {
           path: "",
           name: "topiccontent",
           component: Topiccontent,
-        }
+          path: "/",
+          redirect: "/recommend"
+        },
       ]
     },
     {
@@ -102,7 +109,7 @@ const router = new Router({
       meta: {
         flag: false,
       }
-    }, 
+    },
     {
       path: "/community",
       name: "community",
@@ -156,7 +163,46 @@ const router = new Router({
         flag: false
       }
     },
-
+    {  //粉丝列表
+      path: "/fans",
+      name: "fans",
+      component: Fans,
+      meta: {
+        falg: false
+      }
+    },
+    {  //粉丝主页
+      path: "fansindex",
+      name: "fansindex",
+      component: Fansindex,
+      meta: {
+        flag: false
+      }
+    },
+    {  //我关注的
+      path: "foucson",
+      name: "foucson",
+      component: Foucson,
+      meta: {
+        flag: false
+      }
+    },
+    { //资料编辑
+      path: "redact",
+      name: "redact",
+      component: Redact,
+      meta: {
+        flag: false
+      }
+    },
+    {  //个人箴言
+      path: "proberbs",
+      name: "proberbs",
+      component: Proberbs,
+      meta: {
+        flag: false
+      }
+    },
     {
       path: "/footer",
       name: "footer",
@@ -173,7 +219,10 @@ const router = new Router({
     },
     {
       path: "**",
-      component: Err
+      component: Err,
+      meta: {
+        flag: true,
+      }
     },
   ]
 })
