@@ -12,7 +12,7 @@
                 
             </li>
             <li>
-                <router-link :to="''">
+                <router-link :to="'spot/essaycontent'">
                 <div class="logo"></div>
                 <div class="logoright">
                     <span class="title">dshshyr</span>

@@ -10,6 +10,7 @@ import Spot from "../components/spot";
 import Err from "../components/error/error.vue";
 import Login from "../components/login/login.vue";
 import Topiccontent from "@/components/spot/components/topiccontent";
+import Essaycontent from "@/components/spot/components/essaycontent";
 Vue.use(Router)
 
 const router = new Router({
@@ -56,24 +57,21 @@ const router = new Router({
       meta:{
         footeradd:true,
         flog:true,
-      },
-      children:[
-        {
-          path:"/topiccontent/:topicid/:backimg",
-          component:Topiccontent,
-          meta:{
-            footeradd:false,
-            flog:false
-          }
-        },
-        {
-          path:"",
-          name:"topiccontent",
-          component:Topiccontent,
-        }
-      ]
+      }  
     },
-    
+    {
+      path:"/spot/topiccontent/:topicid/:backimg",
+      component:Topiccontent,
+      meta:{
+        footeradd:false,
+        flog:false
+      }
+    },
+    {
+      path:"/spot/essaycontent/",
+      name:"essaycontent",
+      component:Essaycontent,
+    },
     {
       path:"/login",
       name:"login",

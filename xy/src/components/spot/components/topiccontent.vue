@@ -1,17 +1,13 @@
 <template>
-    <div class="add">
-        
-        话题详情页
+    <div class="topiccontent">
+         热门话题内容
     </div>
 </template>
 <script>
 export default {
-    created(){
-        console.log(this);
-    }
 }
+
 </script>
 
 <style scoped>
-
 </style>

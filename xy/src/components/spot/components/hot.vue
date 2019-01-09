@@ -3,7 +3,8 @@
         <keep-alive>
         <ul>
             <li v-for="(item,index) in topic">
-                <router-link :to="'spot/topiccontent'+item.topicid+'/'+item.backimg">
+                <router-link :to="'spot/topiccontent'">
+                <!-- +item.topicid+'/'+item.backimg -->
                     <div class="topic" >{{item.title}}</div>
                     <div class="praisecount">
                         <span>{{item.praisepeoplehead[0]}}</span>
