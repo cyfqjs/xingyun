@@ -1,11 +1,8 @@
 <template>
-  <div class="bindP">
-    <div class="bindP1"></div>
-    <div class="bindP2">
-      <span>
-        <router-link :to="{name:'set'}">
-        <img src="../../../assets/set/back@2x.png">
-        </router-link>
+  <div class="bindoko">
+    <div class="bindoko2">
+      <span >
+        <img src="@/assets/set/back@2x.png" @click="handleP">
       </span>
       <div>账号绑定</div>
     </div>
@@ -15,10 +12,15 @@
 
 <script>
 export default {
-}
+  methods: {
+    handleP(){
+      this.$router.go(-1);
+    }
+  }
+};
 </script>
 <style lang="scss">
-    .bindP {
+    .bindoko {
   width: 100%;
   height: 1.29rem;
   background: rgba(47, 40, 75, 1);
@@ -26,7 +28,7 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  .bindP2 {
+  .bindoko2 {
     width: 100%;
     height: 0.98rem;
     display: flex;

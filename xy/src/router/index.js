@@ -35,6 +35,10 @@ import Proberbs from "../components/personal/main/proberbs";
 import Idea from "../components/personal/set/idea/index.vue"
 //关于我们
 import About from "../components/personal/set/aboutMe/index.vue"
+//绑定成功
+import Bindok from "../components/personal/bindPhone/bindOk/index.vue"
+//切换账号
+import BindChange from "../components/personal/bindPhone/bindChange/index.vue"
 
 
 
@@ -184,6 +188,24 @@ const router = new Router({
         component:About,
         meta:{
           flag:false
+        }
+      },
+      //绑定成功
+      {
+        path:"/bindPhone/bindPhoneOne/bindOk",
+        name:"bindok",
+        component:Bindok,
+        meta:{
+            flag:false
+        }
+      },
+      //切换账号
+      {
+        path:"/bindPhone/bindPhoneOne/bindChange",
+        name:"bindCh",
+        component:BindChange,
+        meta:{
+            flag:false
         }
       },
         { //粉丝列表

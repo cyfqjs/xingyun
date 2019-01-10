@@ -1,8 +1,10 @@
 <template>
   <div class="bPhone">
-    <div class="back" @click="handleB">
-      <img src="../../../../assets/set/back@2x.png">
-    </div>
+    <router-link :to="{name:'indexPhone'}">
+      <div class="back">
+        <img src="@/assets/set/back@2x.png">
+      </div>
+    </router-link>
     <ul>
       <p class="phone1">绑定手机</p>
       <li class="phone2">
@@ -17,7 +19,9 @@
         </div>
       </li>
       <li>
-        <button class="que" @click="handleQue">确定</button>
+        <router-link :to="{name:'bindok'}">
+          <mt-button type="default" class="que" @click="handleQue">确定</mt-button>
+        </router-link>
       </li>
     </ul>
     <router-view></router-view>
@@ -25,12 +29,9 @@
 </template>
 
 <script>
-import { Toast } from "mint-ui";
+import { Toast, MessageBox, Button } from "mint-ui";
 export default {
   methods: {
-    handleB() {
-      this.$router.go(-1);
-    },
     handleGet() {
       Toast({
         message: "验证码发送成功！",
@@ -38,6 +39,13 @@ export default {
         duration: 3000
       });
     },
+    handleQue() {
+      MessageBox({
+        title: "手机绑定成功！",
+        message: "跳转页面",
+        showCancelButton: true
+      });
+    }
   }
 };
 </script>

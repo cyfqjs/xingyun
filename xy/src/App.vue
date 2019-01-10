@@ -6,21 +6,12 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-    import Footer from "./components/footer/index.vue";
-    export default {
-        components: {
-            "Footer-com": Footer,
-        }
-    }
-=======
 import Footer from "./components/footer/index.vue";
 export default {
 	  components: {
     "Footer-com":Footer,
   }
 }
->>>>>>> lei
 </script>
 
 <style>

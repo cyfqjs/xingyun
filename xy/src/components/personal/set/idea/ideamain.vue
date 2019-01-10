@@ -6,11 +6,17 @@
     <div class="telH">
       <input type="text" placeholder="联系方式：QQ/邮箱/电话">
     </div>
-    <button class="bthH">提交</button>
+    <button class="bthH" @click="handleSubmit">提交</button>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  methods: {
+    handleSubmit(){
+      this.$router.go(-1)
+    }
+  }
+};
 </script>
 <style lang="scss">
 .ideaM {

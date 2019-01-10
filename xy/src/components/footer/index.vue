@@ -1,7 +1,7 @@
 <template>
 	<div id="footer">
 		<ul>
-			<li v-for="(item,index) in navs" >
+			<li v-for="(item,index) in navs">
                <router-link :to="{name:item.name}">
                		<span @click="open(index)">{{item.title}}</span>
                </router-link>
