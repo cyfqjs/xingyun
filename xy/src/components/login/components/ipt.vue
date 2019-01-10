@@ -9,7 +9,7 @@
 		</form>
 		<div class="aBtn clear">
 			<!--<a class="jump" href="#">立即注册</a>-->
-			<router-link :to="{name:'register'}">
+			<router-link :to="{name:'regone'}">
 				<span class="jump">立即注册</span>
 			</router-link>
 		</div>
@@ -44,7 +44,7 @@
 					position: absolute;
 					top: -0.1rem;
 					left: .39rem;
-					background: url(../../../assets/login/icon_zh.png) no-repeat center;
+					background: url(../../../assets/login/icon_zh@2x.png) no-repeat center;
 				}
 				.iconCode{
 					display: block;
@@ -53,7 +53,7 @@
 					position: absolute;
 					top: -0.1rem;
 					left: .39rem;
-					background: url(../../../assets/login/icon_mm.png) no-repeat center;
+					background: url(../../../assets/login/icon_mm@2x.png) no-repeat center;
 				}
 				.iconEye{
 					display: block;
@@ -62,7 +62,7 @@
 					position: absolute;
 					top: -0.1rem;
 					right: .4rem;
-					background: url(../../../assets/login/icon_mmkj.png) no-repeat center;
+					background: url(../../../assets/login/icon_mmkj@2x.png) no-repeat center;
 				}
 				#uname {
 					width: 6.24rem;
@@ -75,6 +75,7 @@
 					padding-left:1rem ;
 					padding-right: 1rem;
 					outline: medium;
+					font-size: .32rem;
 				}
 				#pwd {
 					width: 6.24rem;
@@ -87,6 +88,7 @@
 					outline: medium;
 					padding-left:1rem ;
 					padding-right: 1rem;
+					font-size: .32rem;
 				}
 				
 			}

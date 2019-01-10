@@ -1,7 +1,7 @@
 <template>
 	<div id="rLogo">
 		<div class="imgwrap">
-			<img src="../../../assets/login/logo@2x.png" alt="星圈" />
+			<img src="../../../../assets/login/logo@2x.png" alt="星圈" />
 		</div>
 	</div>
 </template>
