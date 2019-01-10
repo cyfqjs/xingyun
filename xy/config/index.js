@@ -6,13 +6,13 @@ const path = require('path')
 
 module.exports = {
   dev: {
-
+// https://www.easy-mock.com/mock/5c373fe95394183730861ee2/lei/fans
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
     	"/api":{
-        target:"https://mapi.eyee.com",
+        target:"https://www.easy-mock.com",
         changeOrigin:true,
         pathRewrite:{
           "^/api":""
