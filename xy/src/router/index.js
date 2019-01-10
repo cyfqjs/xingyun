@@ -5,6 +5,8 @@ import Community from "../components/community/home/index.vue";
 import TalkList from "../components/community/talklist/index.vue"
 import Chatbox from "../components/community/chatbox/index.vue"
 import Details from "../components/community/details/index.vue"
+import Reply from "../components/community/reply/index.vue"
+
 import Footer from "../components/footer/index.vue";
 import Personal from "../components/personal/main/index";
 import Plus from "../components/plus";
@@ -51,7 +53,14 @@ const router = new Router({
     {//评论详情
       path:"/details",
       name:"details",
-      component:Details
+      component:Details,
+      props:true,
+    },
+    {
+      //评论列表
+      path:"/reply",
+      name:"reply",
+      component:Reply
     },
    { //个人中心
       path:"/personal",

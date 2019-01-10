@@ -39,7 +39,7 @@
         <ul class="plDatails">
             <li>
                 <p><img src="@/assets/community/img/tx.jpeg" alt=""><b>一只小虎牙<span>感谢各位耐性爆棚的看官把文字看完了，下面，上图啦......Orz</span></b></p>
-                <p>两只小虎牙等人 <span>共75条回复></span></p>
+                <p>两只小虎牙等人 <span><router-link to="/reply">共75条回复></router-link></span></p>
                 <p><span>12-24 09:24</span><b><img src="@/assets/community/img/pl_zjy.png" alt=""><img src="@/assets/community/img/zh.png" alt=""><span>2011</span></b></p>             
             </li>
             <li>
@@ -66,14 +66,30 @@
 </template>
 <script>
 import BScroll from "better-scroll";
+import Vuex from "vuex";
 export default {
     mounted(){
         this.scroll=new BScroll(this.$refs.mainWrapper,{
             click:true
             
         })
-        console.log(this.scroll)
-    }
+    },
+    // computed:{
+        // ...Vuex.mapState({
+        //     Details_zjy:(state)=>{
+        //         var details=state.Community.Moments_zjy;
+        //         Moments_zjy.map((item,index)=>{
+        //             console.log(item,index);
+        //         })
+        //         console.log(state.Community.Moments_zjy)
+        //     }
+        // })
+    // },
+    // methods:{
+    //     ...Vuex.mapActions({
+    //        handleMoments_zjy:"Community/handleMoments_zjy",
+    //     })
+    // }
 }
 </script>
 <style lang="scss" scoped>
@@ -81,8 +97,7 @@ export default {
         width:100%;
         height:100%;
         background: #221D3B;
-        color:#fff;
-        
+        color:#fff;      
         .details{
             width:100%;
             height:auto;
@@ -226,7 +241,9 @@ export default {
                             font-size:.18rem;
                             font-family:PingFangSC-Regular;
                             span{
-                                color:#C78FFF;
+                                a{
+                                    color:#C78FFF;  
+                                }
                             }
                         }
                         p:nth-child(3){

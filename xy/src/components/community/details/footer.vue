@@ -1,13 +1,17 @@
 <template>
     <div id="footer">
-        <p><img src="@/assets/community/img/fx_zjy.png" alt="">分享</p>
+        <p @click="handlePush_zjy"><img src="@/assets/community/img/fx_zjy.png" alt="">分享</p>
         <p><img src="@/assets/community/img/pl_zjy.png" alt="">评论</p>
         <p><img src="@/assets/community/img/dz_zjy.png" alt="">喜欢</p>
     </div>
 </template>
 <script>
 export default {
-    
+   methods:{
+        handlePush_zjy(){
+            this.$store.dispatch("Community/handlePush_zjy");
+        }
+   } 
 }
 </script>
 <style lang="scss" scoped>
@@ -37,6 +41,9 @@ export default {
                 height:.28rem;
                 margin-right:.1rem;
             }
+        }
+        p:nth-child(3){
+            border-right:none;
         }
     }
 </style>

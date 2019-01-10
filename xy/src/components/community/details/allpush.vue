@@ -37,6 +37,7 @@ export default {
         position: fixed;
         left:0;
         bottom:0;
+        // transform: translateY(0rem);
         .title{
             width:100%;
             margin:.35rem 0;

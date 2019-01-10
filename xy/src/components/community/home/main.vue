@@ -2,8 +2,8 @@
     <div id="main">
         <div class="wrapper homeWrapper" ref="homeWrapper">
             <ul class="content">
-                <router-link to="/details">
-                    <li v-for="(item,index) in Moments_zjy">
+                <router-link to="/details"  v-for="(item,index) in Moments_zjy">
+                    <li>
                         <p class="photo_zjy"><img :src="item.photo" alt=""></p>
                         <p class="name_zjy">{{item.name}}<span>{{item.time}}</span></p>
                         <p class=" Concern_zjy"><router-link to="">+关注</router-link></p>
@@ -14,7 +14,7 @@
                             <img v-for="(ccc,index) in item.pic" :src="ccc"  alt="">
                         </p>
                         <p class="fdp_zjy">
-                            <router-link to=""><img src="@/assets/community/img/fx_zjy.png" alt=""><span>{{item.share}}</span></router-link>
+                            <router-link to="/details" @click="handlePush_zjy"><img src="@/assets/community/img/fx_zjy.png" alt=""><span>{{item.share}}</span></router-link>
                             <router-link to=""><img src="@/assets/community/img/pl_zjy.png" alt=""><span>{{item.comment}}</span></router-link>
                             <router-link to=""><img src="@/assets/community/img/dz_zjy.png" alt=""><span>{{item.heart}}</span></router-link>
                         </p>
@@ -22,6 +22,12 @@
                 </router-link>
             </ul>
         </div>
+        <div class="loading" v-show="flagLoading">
+            <i class="fa fa-spinner fa-pulse"></i>
+       </div>
+       <div class="loading" v-show="flagLoadingY">
+            <p>亲，这回真没了^_^</p>
+       </div>
     </div>
 </template>
 <script>
@@ -30,6 +36,9 @@ import Vuex from "vuex";
 export default {
     data(){
         return {
+            flagLoading:false,
+            flagLoadingY:false,
+            listIndex:0
         }
     },
     created(){
@@ -37,8 +46,18 @@ export default {
     },
     mounted() {
         this.scroll=new BScroll(this.$refs.homeWrapper,{
-            click:true
+            click:true,
+            pullUpLoad:true,
+            probeType:2
         })
+        this.scroll.on("pullingUp",()=>{
+            this.handleMoments_zjy();
+        })
+        // this.scroll.on("scroll",({x,y})=>{
+        //     if(y<-1970){
+        //         this.flagLoading=!flagLoading;
+        //     }
+        // })
     },
     computed:{
         ...Vuex.mapState({
@@ -56,6 +75,13 @@ export default {
     watch:{
          Moments_zjy(newVal,oldVal){
              this.scroll.refresh();
+             this.scroll.finishPullUp();
+         },
+         listIndex(newVal,oldVal){
+             var index=this.Moments_zjy.length;
+            if(index>40){
+                this.flagLoadingY=true;
+            }
          }
     }
 }
@@ -66,17 +92,21 @@ export default {
         height:100%;
         background: #221D3B;
         color:#fff;
-        padding:.88rem .2rem 1rem ;
+        padding:.58rem .2rem 1rem ;
     }
     #main>.homeWrapper{
         width:100%;
         height:100%;
+    }
+    #main>.homeWrapper>Ul{
+        overflow: hidden;
     }
     #main>.homeWrapper>Ul>a{
         display: block;
         width:100%;
         height:auto;
         color:#fff;
+        margin-top:.5rem;
     }
     #main>.homeWrapper>Ul>a>li{
         width:100%;
@@ -85,7 +115,7 @@ export default {
         flex-wrap: wrap;
         justify-content: space-between;
         align-items: center;
-        padding-top:.3rem;
+        padding-top:.15rem;
     }
      #main>.homeWrapper>Ul>a>li>.photo_zjy{
          width:1.08rem;
@@ -98,11 +128,11 @@ export default {
 
      }
      #main .name_zjy{
-         width:2.08rem;
+         width:40%;
          height:.5rem;
          font-size:.3rem;
          line-height: .32rem;
-         margin-left:-2.2rem;
+         margin-left:-2rem;
      }
      #main .name_zjy>span{
          font-size:.22rem;
@@ -164,4 +194,15 @@ export default {
           height:50%;
           margin:0 .05rem;
       }
+      .loading{
+         width: 100%;
+         height: .3rem;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         margin-top:.2rem;
+     }
+    .loading>i{
+        font-size: .34rem;
+    }
 </style>

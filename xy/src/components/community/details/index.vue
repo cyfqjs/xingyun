@@ -3,7 +3,9 @@
        <Header-com></Header-com> 
        <Main-com></Main-com>
        <Footer-com v-show="flagHide_zjy"></Footer-com>
-       <Allpush-com v-show="flagPush_zjy"></Allpush-com>
+       <transition name="pushBox">    
+            <Allpush-com v-show="flagPush_zjy"></Allpush-com>    
+       </transition>
     </div>
 </template>
 <script>
@@ -39,4 +41,10 @@ export default {
         height:100%;
         background: #221D3B;
     }
+    // .pushBox-enter,.pushBox-leave-to{
+    //      transform: translateY(-5.89rem);
+    // }
+    // .pushBox-enter-active,.pushBox-leave-active{
+    //     transition:all 2s;
+    // }
 </style>

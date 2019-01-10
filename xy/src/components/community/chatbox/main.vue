@@ -76,10 +76,10 @@ export default {
         width:100%;
         height:100%;
     }
-    /* #main>.mainWrapper>.chat{
+    #main>.mainWrapper>.chat{
         width:100%;
-        padding-bottom:1rem; 
-    } */
+        padding-bottom:2rem; 
+    }
      #main>.mainWrapper>ul>li{ 
          margin:.48rem 0;
      }

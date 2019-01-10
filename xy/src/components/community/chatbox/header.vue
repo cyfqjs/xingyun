@@ -36,6 +36,8 @@ export default {
          font-size:.4rem;
      }
      #header>span{
-         margin-left:2.23rem;
+         display: block;
+         width:100%;
+         text-align: center;
      }
 </style>
