@@ -5,6 +5,7 @@ import Footer from "../components/footer/index.vue";
 import Err from "../components/error/error.vue";
 
 import Login from "../components/login/login.vue";
+
 import Register from "../components/register";
 
 import Recommend from "../components/recommend";
@@ -29,6 +30,12 @@ import Fansindex from "../components/personal/main/fansindex";
 import Foucson from "../components/personal/main/foucson";
 import Redact from "../components/personal/main/redact";
 import Proberbs from "../components/personal/main/proberbs";
+
+//意见反馈
+import Idea from "../components/personal/set/idea/index.vue"
+//关于我们
+import About from "../components/personal/set/aboutMe/index.vue"
+
 
 
 Vue.use(Router);
@@ -161,6 +168,24 @@ const router = new Router({
                 flag: false
             }
         },
+        //意见反馈
+    {
+        path:"/set/idea/index",
+        name:"idea",
+        component:Idea,
+        meta:{
+          flag:false
+        }
+      },
+      //关于我们
+      {
+        path:"/set/aboutMe/index",
+        name:"about",
+        component:About,
+        meta:{
+          flag:false
+        }
+      },
         { //粉丝列表
             path: "/fans",
             name: "fans",
