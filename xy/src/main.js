@@ -11,12 +11,15 @@ import MintUI from "mint-ui";
 Vue.use(MintUI);
 
 Vue.config.productionTip = false
-
-/* eslint-disable no-new */
+import { AlertPlugin, ToastPlugin, ConfirmPlugin } from 'vux'
+Vue.use(AlertPlugin)
+Vue.use(ToastPlugin)
+Vue.use(ConfirmPlugin)
+    /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  store,
-  router,
-  components: { App },
-  template: '<App/>'
+    el: '#app',
+    store,
+    router,
+    components: { App },
+    template: '<App/>'
 })
