@@ -12,7 +12,7 @@
 		</ul>
 		<div class="bot">
 			<div class="reg" v-show="flag">
-				<form class="form2"  action="">
+				<form class="form2" @submit="toTwo" action="">
 					<label><span>{{phone}}:</span><i class="pIcon"></i><input v-model="phoneNumber" class="pNumber" type="text" /></label>
 					<br />
 					<label><span>密码:</span><i class="mIcon"></i><input class="pwd1" type="password" /><i class="eye1"></i></label>
@@ -25,7 +25,7 @@
 				</form>
 			</div>
 			<div class="reg" v-show="!flag">
-				<form class="form2"  action="">
+				<form class="form2" @submit="toTwo" action="">
 					<label><span>{{email}}:</span><i class="eIcon"></i><input type="text" /></label>
 					<br />
 					<label><span>密码:</span><i class="mIcon"></i><input type="password" /><i class="eye1"></i></label>
@@ -66,7 +66,12 @@
 						this.flag = false;
 					}
 				}
-            }   
+            },
+			toTwo(){
+				this.$router.push("../../regtwo");
+				return false;
+			}
+		
         }
 	}
 </script>
@@ -108,12 +113,12 @@
 							position: absolute;
 							left: 1.7rem;
 							top: .25rem;
-							background: url(../../../assets/login/icon_dx.png) no-repeat center;
+							background: url(../../../../assets/login/icon_dx@2x.png) no-repeat center;
 						}
 						.eIcon{
 							width: .41rem;
 							left:1.6rem;
-							background: url(../../../assets/login/icon_yx.png) no-repeat center;
+							background: url(../../../../assets/login/icon_yx@2x.png) no-repeat center;
 							
 						}
 						.mIcon{
@@ -123,7 +128,7 @@
 							position: absolute;
 							left: 1.7rem;
 							top: .25rem;
-							background: url(../../../assets/login/icon_mm.png) no-repeat center;
+							background: url(../../../../assets/login/icon_mm@2x.png) no-repeat center;
 						}
 						.eye1{
 							display: block;
@@ -133,7 +138,7 @@
 							right: 1rem;
 							top: .25rem;
 							cursor: pointer;
-							background: url(../../../assets/login/icon_mmkj.png) no-repeat center;
+							background: url(../../../../assets/login/icon_mmkj@2x.png) no-repeat center;
 						}
 						.cIcon{
 							width: 1.6rem;

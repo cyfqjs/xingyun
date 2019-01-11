@@ -5,8 +5,10 @@ import Footer from "../components/footer/index.vue";
 import Err from "../components/error/error.vue";
 
 import Login from "../components/login/login.vue";
+import Regone from "../components/register/pageone";
+import Regtwo from "../components/register/pagetwo";
+import Regthree from "../components/register/pagethree";
 
-import Register from "../components/register";
 
 import Recommend from "../components/recommend";
 
@@ -55,9 +57,19 @@ const router = new Router({
             component: Login
         },
         {
-            path: './register',
-            name: "register",
-            component: Register
+            path: '/regone',
+            name: "regone",
+            component: Regone
+        },
+        {
+            path: '/regtwo',
+            name: "regtwo",
+            component: Regtwo
+        },
+        {
+            path: '/regthree',
+            name: "regthree",
+            component: Regthree
         },
         {
             path: "/recommend",

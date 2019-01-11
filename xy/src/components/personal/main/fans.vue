@@ -1,11 +1,11 @@
 <template>
-    <div id="fans">
+    <div id="fans">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ">
         <div id="fansTop">
            <router-link :to="{name:'personal'}"><img src="@/assets/personImg/left.png"></router-link>
            <span>我的粉丝</span>
         </div>
-        <div id="fansContent">
-            <ul>
+        <div id="fansContent" class="wrapper" ref="fansWrapper">
+            <ul class="content">
                 <li>
                     <div id="left">
                         <router-link :to="{name:'fansindex'}">
@@ -25,8 +25,32 @@
 
 
 <script>
+import BScroll from "better-scroll";
+import axios from "axios";
 export default {
-    
+    mounted() {
+        if(!this.scroll){
+            this.scroll=new BScroll(this.$refs.fansWrapper,{
+                scrollY:true
+            })
+        }
+       // console.log(this.scroll)
+        
+    },
+    methods: {
+        handle(){
+            axios({
+                method:"post",
+                url:"/api/mock/5c373fe95394183730861ee2/lei/fans",
+            })
+            .then((data)=>{
+                  console.log(data);
+            })
+        },
+    },
+    created() {
+        this.handle()
+    },
 }
 </script>
 
@@ -62,9 +86,10 @@ export default {
         width:7.5rem;
         height:12.06rem;
         background:rgba(34,29,59,1);
+        overflow: hidden;
         ul{
             padding:.19rem;
-            height:100%;
+            height:80rem;
         }
         li{
             height:1.5rem;

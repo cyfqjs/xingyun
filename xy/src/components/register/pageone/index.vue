@@ -1,5 +1,6 @@
 <template>
 	<div id="register">
+		<rtop-com></rtop-com>
 		<rlogo-com></rlogo-com>
 		<two-com></two-com>	
 	</div>
@@ -8,10 +9,12 @@
 <script>
 	import Twom from './components/twoMethods'
 	import Rlogo from './components/rLogo'
+	import Rtop from './components/rTop'
 	export default{
 		components:{
 			"two-com":Twom,
-			"rlogo-com":Rlogo
+			"rlogo-com":Rlogo,
+			"rtop-com":Rtop
 		}
 	}
 </script>
@@ -20,6 +23,6 @@
 	#register{
 		width: 100%;
 		height: 100%;
-		background: #000;
+		background:url(../../../assets/login/dlbj.jpeg) no-repeat center;
 	}
 </style>
