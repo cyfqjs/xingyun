@@ -88,7 +88,7 @@ const router = new Router({
             name: "plus",
             component: Plus,
             meta: {
-                flag: true,
+                flag: false,
             }
         },
         {
@@ -169,23 +169,23 @@ const router = new Router({
             }
         },
         //意见反馈
-    {
-        path:"/set/idea/index",
-        name:"idea",
-        component:Idea,
-        meta:{
-          flag:false
-        }
-      },
-      //关于我们
-      {
-        path:"/set/aboutMe/index",
-        name:"about",
-        component:About,
-        meta:{
-          flag:false
-        }
-      },
+        {
+            path: "/set/idea/index",
+            name: "idea",
+            component: Idea,
+            meta: {
+                flag: false
+            }
+        },
+        //关于我们
+        {
+            path: "/set/aboutMe/index",
+            name: "about",
+            component: About,
+            meta: {
+                flag: false
+            }
+        },
         { //粉丝列表
             path: "/fans",
             name: "fans",
