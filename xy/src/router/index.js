@@ -9,8 +9,8 @@ import Recommend from "../components/recommend";
 import Spot from "../components/spot";
 import Err from "../components/error/error.vue";
 import Login from "../components/login/login.vue";
-import Topiccontent from "@/components/spot/components/topiccontent";
-import Essaycontent from "@/components/spot/components/essaycontent";
+import Topiccontent from "@/components/spot/components/topiccontent.vue";
+import Essaycontent from "@/components/spot/components/essaycontent.vue";
 Vue.use(Router)
 
 const router = new Router({
@@ -55,22 +55,24 @@ const router = new Router({
       name:"spot",
       component:Spot,
       meta:{
-        footeradd:true,
-        flog:true,
+        flag:true,
       }  
     },
     {
-      path:"/spot/topiccontent/:topicid/:backimg",
+      path:"/topiccontent/",
+      name:"topiccontent",
       component:Topiccontent,
       meta:{
-        footeradd:false,
-        flog:false
+        flag:false
       }
     },
     {
       path:"/spot/essaycontent/",
       name:"essaycontent",
       component:Essaycontent,
+      meta:{
+        flag:false
+      }
     },
     {
       path:"/login",

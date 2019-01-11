@@ -43,7 +43,7 @@ export default {
 </script>
 <style scoped >
     .app .nav{
-        width: 90%;
+        width: 7.12rem;
         height: 44px;
         display: flex;
         justify-content: space-between;
@@ -70,6 +70,7 @@ export default {
        color: white;
         font-size: 14px;
         text-align: center;
+        font-family: 'PingFang-SC-Regular';
     }
     .app .nav ul .active{
          background: #3E326B;
