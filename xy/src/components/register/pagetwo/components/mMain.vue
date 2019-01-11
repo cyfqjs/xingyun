@@ -8,11 +8,18 @@
 		<br />
 		<label><span class="addr"></span><input type="text" placeholder="地址"/></label>
 		<br />
-		<button class="done">完成注册</button>
+		<button @click="toThree" class="done">完成注册</button>
 	</div>
 </template>
 
 <script>
+	export default{
+		methods:{
+			toThree(){
+				this.$router.push('../../regthree')
+			}
+		}
+	}
 </script>
 
 <style lang="scss">

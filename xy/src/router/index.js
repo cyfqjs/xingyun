@@ -7,6 +7,8 @@ import Err from "../components/error/error.vue";
 import Login from "../components/login/login.vue";
 import Regone from "../components/register/pageone";
 import Regtwo from "../components/register/pagetwo";
+import Regthree from "../components/register/pagethree";
+
 
 import Recommend from "../components/recommend";
 
@@ -59,6 +61,11 @@ const router = new Router({
             path: '/regtwo',
             name: "regtwo",
             component: Regtwo
+        },
+        {
+            path: '/regthree',
+            name: "regthree",
+            component: Regthree
         },
         {
             path: "/recommend",

@@ -12,7 +12,7 @@
 		</ul>
 		<div class="bot">
 			<div class="reg" v-show="flag">
-				<form class="form2"  action="">
+				<form class="form2" @submit="toTwo" action="">
 					<label><span>{{phone}}:</span><i class="pIcon"></i><input v-model="phoneNumber" class="pNumber" type="text" /></label>
 					<br />
 					<label><span>密码:</span><i class="mIcon"></i><input class="pwd1" type="password" /><i class="eye1"></i></label>
@@ -25,7 +25,7 @@
 				</form>
 			</div>
 			<div class="reg" v-show="!flag">
-				<form class="form2"  action="">
+				<form class="form2" @submit="toTwo" action="">
 					<label><span>{{email}}:</span><i class="eIcon"></i><input type="text" /></label>
 					<br />
 					<label><span>密码:</span><i class="mIcon"></i><input type="password" /><i class="eye1"></i></label>
@@ -66,7 +66,12 @@
 						this.flag = false;
 					}
 				}
-            }   
+            },
+			toTwo(){
+				this.$router.push("../../regtwo");
+				return false;
+			}
+		
         }
 	}
 </script>
