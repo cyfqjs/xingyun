@@ -1,4 +1,4 @@
-<<template>
+<template>
     <div class="wrapper personWrapper" id="personBottom" ref="personWrapper">
 			<ul class="content" id="content">
 				<div id="zhou">

@@ -9,13 +9,6 @@
             </div>
             <div id="qiebac">
                 <img src="@/assets/personImg/prophoto.png"  @click="handle">
-                   <mt-actionsheet  
-                    :actions="actions"
-                    v-model="sheetVisible"
-                    cancelText="取消"
-                    class="actionBott"
-                >
-                 </mt-actionsheet>
             </div>
             <div id="qietx">
                 <img src="@/assets/personImg/bi.png" @click="handle">
@@ -25,6 +18,7 @@
                     cancelText="取消"
                     class="actionBott"
                 >
+                <input type="file" >
                  </mt-actionsheet>
             </div>
             <div id="tx">
@@ -73,7 +67,6 @@ export default {
             actions:[
                         {
                             name:"拍照",
-                          //methods:this.handlepai
                         },
                         {
                             name:"从相册中选择"
@@ -84,9 +77,13 @@ export default {
     },
     methods: {
         handle(){
-            this.sheetVisible=true
+            this.sheetVisible=true;
+            this.closeOnClickModal=false;
+        },
+        xiangce(){
+            alert(1);
         }
-    },
+    }
 }
 </script>
 
