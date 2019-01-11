@@ -8,7 +8,7 @@
 
     }
 </script>
-<style scopred lang="scss">
+<style scopred lang="scss" scoped>
     #title {
         width: 100%;
         height: .91rem;

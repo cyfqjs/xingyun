@@ -1,6 +1,7 @@
 <template>
         <div id="bookmain">
-         
+         <input type="text" id="booktitle" placeholder="请输入您要发表的文章标题！！！">
+         <textarea  id="booktxt" placeholder="请输入您要发表的文章内容"></textarea>
         </div>
     </template>
 <script>
@@ -8,6 +9,43 @@
 
     }
 </script>
-<style lang="scss">
-
+<style lang="scss" scoped>
+    input,
+    button,
+    select,
+    textarea {
+        outline: none
+    }
+    
+    #bookmain {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+    
+    #booktitle {
+        width: 100%;
+        padding: 0 10px;
+        height: .9rem;
+        border: 1px solid #ccc;
+        font-size: 20px;
+        font-family: PingFang-SC-Regular;
+        font-weight: 400;
+        color: rgba(184, 184, 184, 1);
+        text-align: center;
+        border: 0;
+        border-bottom: 1px solid #ccc;
+    }
+    
+    #booktxt {
+        width: 100%;
+        flex: 1;
+        font-size: 16px !important;
+        font-family: PingFang-SC-Regular;
+        font-weight: 400;
+        color: rgba(184, 184, 184, 1);
+        padding: 21px;
+        border: 0;
+        resize: none;
+    }
 </style>

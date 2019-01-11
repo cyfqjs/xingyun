@@ -6,6 +6,7 @@ import router from './router';
 import store from './store';
 import "./common/css/reset.css";
 import "./common/js/flexble";
+import "./common/css/animate.css"
 import MintUI from "mint-ui";
 import "mint-ui/lib/style.css";
 import "../node_modules/swiper/dist/css/swiper.min.css";
