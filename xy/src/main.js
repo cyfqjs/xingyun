@@ -7,7 +7,8 @@ import store from './store';
 import "./common/css/reset.css";
 import "./common/js/flexble";
 import MintUI from "mint-ui";
-
+import "mint-ui/lib/style.css";
+import "../node_modules/swiper/dist/css/swiper.min.css";
 Vue.use(MintUI);
 
 Vue.config.productionTip = false

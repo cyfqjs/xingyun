@@ -4,8 +4,8 @@
            <router-link :to="{name:'personal'}"><img src="@/assets/personImg/left.png"></router-link>
            <span>我关注的</span>
         </div>
-        <div id="fansContent">
-            <ul>
+        <div id="fansContent" class="wrapper" ref="foucsonWrapper">
+            <ul class="content">
                 <li>
                     <div id="left">
                         <router-link :to="{name:'fansindex'}">
@@ -25,8 +25,15 @@
 
 
 <script>
+import BScroll from "better-scroll";
 export default {
-    
+    mounted() {
+        if(!this.scroll){
+          this.scroll=new BScroll(this.$refs.foucsonWrapper,{
+              scrollY:true
+          })
+       }    
+    },
 }
 </script>
 
@@ -62,9 +69,10 @@ export default {
         width:7.5rem;
         height:12.06rem;
         background:rgba(34,29,59,1);
+        overflow: hidden;
         ul{
             padding:.19rem;
-            height:100%;
+            height:80rem;
         }
         li{
             height:1.5rem;

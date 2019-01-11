@@ -1,13 +1,31 @@
 <template>
     <div id="redact">
         <div id="redactTop">
-            <router-link :to="{name:'personal'}"><img src="@/assets/personImg/left.png"></router-link>  
-            <router-link :to="{name:'personal'}">保存</router-link>>
+            <div id="left">
+                <router-link :to="{name:'personal'}"><img src="@/assets/personImg/left.png"></router-link>  
+            </div>
+            <div id="right">
+               <router-link :to="{name:'personal'}">保存</router-link>>
+            </div>
             <div id="qiebac">
-                <img src="@/assets/personImg/prophoto.png">
+                <img src="@/assets/personImg/prophoto.png"  @click="handle">
+                   <mt-actionsheet  
+                    :actions="actions"
+                    v-model="sheetVisible"
+                    cancelText="取消"
+                    class="actionBott"
+                >
+                 </mt-actionsheet>
             </div>
             <div id="qietx">
-                <img src="@/assets/personImg/bi.png" @click="handle()">
+                <img src="@/assets/personImg/bi.png" @click="handle">
+                <mt-actionsheet  
+                    :actions="actions"
+                    v-model="sheetVisible"
+                    cancelText="取消"
+                    class="actionBott"
+                >
+                 </mt-actionsheet>
             </div>
             <div id="tx">
                 <!-- <img src="@/assets/personImg/fansImg.png"> -->
@@ -46,12 +64,29 @@
 </template>
 
 <script>
+import Vue from "vue";
+import {Actionsheet} from "mint-ui";
+Vue.component(Actionsheet.name, Actionsheet);
 export default {
-    methods:{
-        handle(){
-            alert(1);
+    data() {
+        return {
+            actions:[
+                        {
+                            name:"拍照",
+                          //methods:this.handlepai
+                        },
+                        {
+                            name:"从相册中选择"
+                        }
+                 ],
+            sheetVisible:false,
         }
-    }
+    },
+    methods: {
+        handle(){
+            this.sheetVisible=true
+        }
+    },
 }
 </script>
 
@@ -61,7 +96,7 @@ export default {
             width:7.5rem;
             height:5rem;
             background:url("../../../assets/personImg/proberbsback.png");
-            a:nth-child(1){
+            #left>a{
                 width:.5rem;
                 height:.5rem;
                 display:block;
@@ -73,7 +108,7 @@ export default {
                     height:100%;
                 }
             }
-            a:nth-child(2){
+            #right>a{
                 display:block;
                 width:.6rem;
                 height:.6rem;
@@ -106,6 +141,9 @@ export default {
                 img{
                     width:100%;
                     height:100%;
+                }
+                .actionBott>ul>li{
+                    font-size:.3rem;
                 }
             }
             #tx{
@@ -149,7 +187,6 @@ export default {
                         color:#fff;
                     }
                     img{
-                        display: inline-block;
                         width:.2rem;
                         height:.28rem;
                         float:right;
