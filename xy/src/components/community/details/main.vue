@@ -3,28 +3,19 @@
     <ul class="content details">
       <li>
         <p class="photo_zjy">
-          <img src="@/assets/community/img/tx.jpeg" alt>
+          <img :src="details_zjy.photo_path" alt>
         </p>
-        <p class="name_zjy">行走的CD
-          <span>09-19 08:00</span>
+        <p class="name_zjy">{{details_zjy.name}}
+          <span>{{details_zjy.createdate}}</span>
         </p>
         <p class="Concern_zjy">
           <router-link to>+关注</router-link>
         </p>
         <p class="content_zjy">
-          【环球时报-环球网报道记者范凌志】18日上午，庆祝改革开放40周年大
-          会在人民大会堂举行，阿兰梅里埃等10名国际友人获颁中国改革友谊奖
-          章，习近平等领导同志为获奖人员颁奖。
-          【环球时报-环球网报道记者范凌志】18日上午，庆祝改革开放40周年大
-          会在人民大会堂举行，阿兰梅里埃等10名国际友人获颁中国改革友谊奖
-          章，习近平等领导同志为获奖人员颁奖。
-          【环球时报-环球网报道记者范凌志】18日上午，庆祝改革开放40周年大
-          会在人民大会堂举行，阿兰梅里埃等10名国际友人获颁中国改革友谊奖
-          章，习近平等领导同志为获奖人员颁奖。
+          {{details_zjy.content}}
         </p>
         <p class="pic_zjy">
-          <img src="@/assets/community/img/tx.jpeg" alt="">
-          <img src="@/assets/community/img/test.png" alt="">
+          <img v-for="(img,index) in details_zjy.img_paths" :src="img" alt="">
         </p>
         <div class="zwhere">
             分享<p><img src="@/assets/community/img/wechat.png" alt=""></p>
@@ -33,29 +24,14 @@
                 <p><img src="@/assets/community/img/zone.png" alt=""></p>
         </div>
         <div class="count">
-            <p>评论<span>1254</span></p>
-            <p>喜欢<span>2352</span></p>
+            <p>评论<span> {{details_zjy.replys}}</span></p>
+            <p>喜欢<span> {{details_zjy.complimer}}</span></p>
         </div>
         <ul class="plDatails">
-            <li>
-                <p><img src="@/assets/community/img/tx.jpeg" alt=""><b>一只小虎牙<span>感谢各位耐性爆棚的看官把文字看完了，下面，上图啦......Orz</span></b></p>
+            <li v-for="(item,index) in details_zjy.replies">
+                <p><img :src="item.img_path" alt=""><b>{{item.name}}<span>{{item.opinion}}</span></b></p>
                 <p>两只小虎牙等人 <span><router-link to="/reply">共75条回复></router-link></span></p>
-                <p><span>12-24 09:24</span><b><img src="@/assets/community/img/pl_zjy.png" alt=""><img src="@/assets/community/img/zh.png" alt=""><span>2011</span></b></p>             
-            </li>
-            <li>
-                <p><img src="@/assets/community/img/tx.jpeg" alt=""><b>一只小虎牙<span>感谢各位耐性爆棚的看官把文字看完了，下面，上图啦......Orz</span></b></p>
-                <p>两只小虎牙等人 <span>共75条回复></span></p>
-                <p><span>12-24 09:24</span><b><img src="@/assets/community/img/pl_zjy.png" alt=""><img src="@/assets/community/img/zh.png" alt=""><span>2011</span></b></p>             
-            </li>
-            <li>
-                <p><img src="@/assets/community/img/tx.jpeg" alt=""><b>一只小虎牙<span>感谢各位耐性爆棚的看官把文字看完了，下面，上图啦......Orz</span></b></p>
-                <p>两只小虎牙等人 <span>共75条回复></span></p>
-                <p><span>12-24 09:24</span><b><img src="@/assets/community/img/pl_zjy.png" alt=""><img src="@/assets/community/img/zh.png" alt=""><span>2011</span></b></p>             
-            </li>
-            <li>
-                <p><img src="@/assets/community/img/tx.jpeg" alt=""><b>一只小虎牙<span>感谢各位耐性爆棚的看官把文字看完了，下面，上图啦......Orz</span></b></p>
-                <p>两只小虎牙等人 <span>共75条回复></span></p>
-                <p><span>12-24 09:24</span><b><img src="@/assets/community/img/pl_zjy.png" alt=""><img src="@/assets/community/img/zh.png" alt=""><span>2011</span></b></p>             
+                <p><span>{{item.createtime}}</span><b><img src="@/assets/community/img/pl_zjy.png" alt=""><img src="@/assets/community/img/zh.png" alt=""><span>{{item.complimer}}</span></b></p>             
             </li>
             
         </ul>
@@ -68,11 +44,25 @@
 import BScroll from "better-scroll";
 import Vuex from "vuex";
 export default {
+    created(){
+        this.details_zjy=this.$route.params.dc;
+    },
+    data(){
+        return {
+            details_zjy:"",
+        }
+        
+    },
     mounted(){
         this.scroll=new BScroll(this.$refs.mainWrapper,{
             click:true
             
         })
+    },
+    computed: {
+        // ...Vuex.mapState({
+        //     Moments_zjy:state=>
+        // })
     },
     // computed:{
         // ...Vuex.mapState({
@@ -221,7 +211,7 @@ export default {
                                 }
                             b{
                                 float:left;
-                                width:5.43rem;
+                                width:90%;
                                 span{
                                     display: block;
                                     width:100%;
@@ -234,11 +224,10 @@ export default {
                             width:6.46rem;
                             height:.57rem;
                             background: #2C254B;
-                            font-size:.18rem;
+                            font-size:.2rem;
                             padding-left:.2rem ;
                             margin:.2rem 0 .2rem .65rem;
                             line-height:.57rem;
-                            font-size:.18rem;
                             font-family:PingFangSC-Regular;
                             span{
                                 a{

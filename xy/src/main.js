@@ -2,6 +2,8 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
+import Observer from "./observer"
+Vue.prototype.Observer=Observer
 import router from './router'
 import store from './store'
 import Mint from 'mint-ui';

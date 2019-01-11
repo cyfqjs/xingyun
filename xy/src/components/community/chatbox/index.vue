@@ -22,5 +22,7 @@ export default {
     #home{
         width:100%;
         height:100%;
+        background: url("../../../assets/community/img/sxbg.jpg");
+        background-size:cover; 
     }
 </style>

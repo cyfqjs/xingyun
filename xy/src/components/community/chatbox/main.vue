@@ -57,7 +57,6 @@ export default {
         this.scroll=new BScroll(this.$refs.mainWrapper,{
             
         })
-        console.log(this.scroll)
     },
     methods:{
         
@@ -68,7 +67,7 @@ export default {
     #main{
         width:100%;
         height:100%;
-        background:url("../../../assets/community/img/chat.jpeg");
+        /* background:url("../../../assets/community/img/chat.jpeg"); */
         overflow: hidden;
         /* padding-bottom:1rem; */
     }

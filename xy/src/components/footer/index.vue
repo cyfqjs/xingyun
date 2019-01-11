@@ -46,12 +46,12 @@
 <style>
 	#footer{
         width: 100%;
-        height: 49px;
+        height: .98rem;
         background: #000;
         position: fixed;
         left: 0;
         bottom: 0;
-        z-index:5;
+        z-index:3;
     }
 
     #footer>ul{
@@ -79,7 +79,7 @@
     }
     
     #footer>ul>li>a>span{
-    	font-size: 14px;
+    	font-size: .3rem;
     }
 
     #footer>ul>li>.router-link-active{

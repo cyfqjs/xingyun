@@ -2,21 +2,21 @@
     <div id="main">
         <div class="wrapper homeWrapper" ref="homeWrapper">
             <ul class="content">
-                <router-link to="/details"  v-for="(item,index) in Moments_zjy">
-                    <li>
-                        <p class="photo_zjy"><img :src="item.photo" alt=""></p>
-                        <p class="name_zjy">{{item.name}}<span>{{item.time}}</span></p>
+                <router-link :to="{name:'details',params:{dc:item}}"  v-for="(item,index) in Moments_zjy">
+                    <li @click="handleMoments_zjy">
+                        <p class="photo_zjy"><img :src="item.photo_path" alt=""></p>
+                        <p class="name_zjy">{{item.name}}<span>{{item.createdate}}</span></p>
                         <p class=" Concern_zjy"><router-link to="">+关注</router-link></p>
                         <p class="content_zjy">
                             {{item.content}}
                         </p>
                         <p class="pic_zjy">
-                            <img v-for="(ccc,index) in item.pic" :src="ccc"  alt="">
+                            <img v-for="(item,index) in item.img_paths" :src="item"  alt="">
                         </p>
                         <p class="fdp_zjy">
-                            <router-link to="/details" @click="handlePush_zjy"><img src="@/assets/community/img/fx_zjy.png" alt=""><span>{{item.share}}</span></router-link>
-                            <router-link to=""><img src="@/assets/community/img/pl_zjy.png" alt=""><span>{{item.comment}}</span></router-link>
-                            <router-link to=""><img src="@/assets/community/img/dz_zjy.png" alt=""><span>{{item.heart}}</span></router-link>
+                            <router-link to="" ><img @click="handlePush_zjy" src="@/assets/community/img/fx_zjy.png" alt=""><span>{{item.talk}}</span></router-link>
+                            <router-link to=""><img src="@/assets/community/img/pl_zjy.png" alt=""><span>{{item.replys}}</span></router-link>
+                            <router-link to=""><img src="@/assets/community/img/dz_zjy.png" alt=""><span>{{item.complimer}}</span></router-link>
                         </p>
                     </li>
                 </router-link>
@@ -38,7 +38,8 @@ export default {
         return {
             flagLoading:false,
             flagLoadingY:false,
-            listIndex:0
+            listIndex:0,
+            flagPush_zjy:false,
         }
     },
     created(){
@@ -71,6 +72,10 @@ export default {
         ...Vuex.mapActions({
             handleMoments_zjy:"Community/handleMoments_zjy",
         }),
+        handlePush_zjy(){
+            this.flagPush_zjy=!this.flagPush_zjy;
+            this.$emit("push_zjy",this.flagPush_zjy)
+        }
     },
     watch:{
          Moments_zjy(newVal,oldVal){

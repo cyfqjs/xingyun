@@ -18,7 +18,7 @@ import Vuex from "vuex";
 import BScroll from "better-scroll";
 export default {
     created(){
-        this. handleTalklist_zjy();
+        this. handleMoments_zjy();
     },
     mounted() {
         this.scroll=new BScroll(this.$refs.mainWrapper,{
@@ -32,7 +32,7 @@ export default {
     },
     methods:{
         ...Vuex.mapActions({
-            handleTalklist_zjy:"Community/handleTalklist_zjy",
+            handleMoments_zjy:"Community/handleMoments_zjy",
         })
     },
     watch:{

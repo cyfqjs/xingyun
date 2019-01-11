@@ -37,59 +37,92 @@ const router = new Router({
     {  //社区
       path:"/community",
       name:"community",
-      component:Community
+      component:Community,
+      meta:{
+        flag:true,
+      }
     },
  
     {//私信列表
       path:"/talklist",
       name:"talklist",
-      component:TalkList
+      component:TalkList,
+      meta:{
+        flag:false,
+      }
     },
     {//聊天框
       path:"/chat",
       name:"chat",
-      component:Chatbox
+      component:Chatbox,
+      meta:{
+        flag:false,
+      }
     },
     {//评论详情
-      path:"/details",
+      path:"/details/:dc",
       name:"details",
       component:Details,
       props:true,
+      meta:{
+        flag:false,
+      }
     },
     {
       //评论列表
       path:"/reply",
       name:"reply",
-      component:Reply
+      component:Reply,
+      meta:{
+        flag:false,
+      }
     },
    { //个人中心
       path:"/personal",
       name:"personal",
-      component:Personal
+      component:Personal,
+      meta:{
+        flag:true,
+      }
     },
     { // +
       path:"/plus",
       name:"plus",
-      component:Plus
+      component:Plus,
+      meta:{
+        flag:true,
+      }
     },
     { //推荐
       path:"/recommend",
       name:"recommend",
-      component:Recommend
+      component:Recommend,
+      meta:{
+        flag:true,
+      }
     },
     { //看点
       path:"/spot",
       name:"spot",
-      component:Spot
+      component:Spot,
+      meta:{
+        flag:true,
+      }
     },
     {
       path:"/login",
       name:"login",
-      component:Login
+      component:Login,
+      meta:{
+        flag:false,
+      }
     },
     {
       path:"**",
-      component:Err
+      component:Err,
+      meta:{
+        flag:true,
+      }
     }
   ]
 })
