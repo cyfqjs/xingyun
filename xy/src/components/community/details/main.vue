@@ -30,7 +30,7 @@
         <ul class="plDatails">
             <li v-for="(item,index) in details_zjy.replies">
                 <p><img :src="item.img_path" alt=""><b>{{item.name}}<span>{{item.opinion}}</span></b></p>
-                <p>两只小虎牙等人 <span><router-link to="/reply">共75条回复></router-link></span></p>
+                <p @click="hanldeHide_zjy">两只小虎牙等人 <span><router-link to="/details/reply">共75条回复></router-link></span></p>
                 <p><span>{{item.createtime}}</span><b><img src="@/assets/community/img/pl_zjy.png" alt=""><img src="@/assets/community/img/zh.png" alt=""><span>{{item.complimer}}</span></b></p>             
             </li>
             
@@ -38,6 +38,7 @@
       </li>
       
     </ul>
+ 
   </div>
 </template>
 <script>
@@ -45,11 +46,11 @@ import BScroll from "better-scroll";
 import Vuex from "vuex";
 export default {
     created(){
-        this.details_zjy=this.$route.params.dc;
+        this.details_zjy=this.$route.query.dc;
     },
     data(){
         return {
-            details_zjy:"",
+            hide_zjy:null,
         }
         
     },
@@ -75,11 +76,12 @@ export default {
         //     }
         // })
     // },
-    // methods:{
-    //     ...Vuex.mapActions({
-    //        handleMoments_zjy:"Community/handleMoments_zjy",
-    //     })
-    // }
+    methods:{
+        hanldeHide_zjy(){
+            this.hide_zjy=false;
+            this.$emit("hide_zjy",this.hide_zjy)
+        }
+    }
 }
 </script>
 <style lang="scss" scoped>

@@ -3,7 +3,11 @@
         <div class="wrapper mainWrapper" ref="mainWrapper">
             <ul class="content list_zjy">
                 <li v-for="(item,index) in Talklist_zjy">
-                    <router-link to="/chat">
+                    <router-link to="">
+                        <!-- <frameset rows="50, *" border="none">
+                         <frame src="../chatbox/index.vue">
+
+                        </frameset> -->
                         <p class="photo_zjy"><img :src="item.photo" alt=""></p>
                         <p class="message_zjy">{{item.username}}<span>{{item.newMessage}}</span></p>
                         <p class="time_zjy">{{item.messageTime}}<img src="@/assets/community/img/msg.png" alt=""></p>

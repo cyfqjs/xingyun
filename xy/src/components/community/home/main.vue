@@ -2,7 +2,7 @@
     <div id="main">
         <div class="wrapper homeWrapper" ref="homeWrapper">
             <ul class="content">
-                <router-link :to="{name:'details',params:{dc:item}}"  v-for="(item,index) in Moments_zjy">
+                <router-link :to="{name:'details',query:{dc:item}}"  v-for="(item,index) in Moments_zjy">
                     <li @click="handleMoments_zjy">
                         <p class="photo_zjy"><img :src="item.photo_path" alt=""></p>
                         <p class="name_zjy">{{item.name}}<span>{{item.createdate}}</span></p>
@@ -73,7 +73,7 @@ export default {
             handleMoments_zjy:"Community/handleMoments_zjy",
         }),
         handlePush_zjy(){
-            this.flagPush_zjy=!this.flagPush_zjy;
+            this.flagPush_zjy=true;
             this.$emit("push_zjy",this.flagPush_zjy)
         }
     },

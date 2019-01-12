@@ -60,23 +60,26 @@ const router = new Router({
       }
     },
     {//评论详情
-      path:"/details/:dc",
+      path:"/details",
       name:"details",
       component:Details,
       props:true,
       meta:{
         flag:false,
-      }
-    },
-    {
+      },
+      children:[
+        {
       //评论列表
-      path:"/reply",
-      name:"reply",
-      component:Reply,
-      meta:{
-        flag:false,
-      }
+          path:"/details/reply",
+          name:"reply",
+          component:Reply,
+          meta:{
+            flag:false,
+          }
     },
+      ]
+    },
+    
    { //个人中心
       path:"/personal",
       name:"personal",

@@ -8,9 +8,16 @@
 </template>
 <script>
 export default {
+    data(){
+        return {
+            hide_zjy:false,
+        }
+    },
     methods:{
         handleBack_zjy(){
             this.$router.back();
+            this.hide_zjy=true;
+            this.Observer.$emit("hideShow_zjy",this.hide_zjy)
         }
     }
 }

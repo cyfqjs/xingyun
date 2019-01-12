@@ -9,6 +9,5 @@ export default {
     handlePush_zjy(state){
         state.flagPush_zjy=!state.flagPush_zjy;
         state.flagHide_zjy=!state.flagHide_zjy;
-        console.log(state.flagPush_zjy)
     }
 }

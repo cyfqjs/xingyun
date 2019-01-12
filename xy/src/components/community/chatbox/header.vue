@@ -1,9 +1,8 @@
 <template>
     <div id="header">
         <div class="back" @click="handleTalklist_zjy">
-            <!-- <img src="@/assets/community/img/back.png" alt="">
-             -->
-             &lt;
+            <img src="@/assets/community/img/zjj.png" alt="">
+            
         </div>
         <span>最美天蝎小姐姐</span>
     </div>
@@ -34,6 +33,11 @@ export default {
          color:#fff;
          font-weight:bold;
          font-size:.4rem;
+     }
+
+     #header>.back>img{
+         width:100%;
+         height:100%;
      }
      #header>span{
          display: block;

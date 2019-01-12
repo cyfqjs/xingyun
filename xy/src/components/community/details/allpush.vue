@@ -13,7 +13,7 @@
             <li><p><img src="@/assets/community/img/complaint.png" alt=""></p><span>投诉</span></li>
             <li><p><img src="@/assets/community/img/home.png" alt=""></p><span>主页</span></li>
         </ul>
-            <p class="cancel" :hide_zjy="flagHide_zjy" @click="handlePush_zjy()">取消</p>
+            <p class="cancel"  @click="handlePush_zjy">取消</p>
     </div>
 </template>
 <script>
@@ -21,13 +21,18 @@ import Vuex from "vuex"
 export default {
     data(){
         return {
-            flagHide_zjy:false
+            flagHide_zjy:true,
         }
     },
     methods:{
-        ...Vuex.mapActions({
-            handlePush_zjy:"Community/handlePush_zjy",
-        }),
+        // ...Vuex.mapActions({
+        //     handlePush_zjy:"Community/handlePush_zjy",
+        // }),
+            handlePush_zjy(){
+                this.$store.dispatch("Community/handlePush_zjy")
+                this.flagHide_zjy=false;
+                this.$emit("pushChange_zjy",this.flagHide_zjy)
+            }
 }
 }
 </script>
