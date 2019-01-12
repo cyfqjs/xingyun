@@ -1,25 +1,25 @@
 <template>
-    <div id="fans">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ">
+    <div id="fans">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
         <div id="fansTop">
            <router-link :to="{name:'personal'}"><img src="@/assets/personImg/left.png"></router-link>
            <span>我的粉丝</span>
         </div>
         <div id="fansContent" class="wrapper" ref="fansWrapper">
             <ul class="content">
-                <li>
+                <li v-for="(item,index) in fansdata">
                     <div id="left">
                         <router-link :to="{name:'fansindex'}">
-                            <img src="@/assets/personImg/fansImg.png">
+                            <img :src="item.fansImg">
                         </router-link>
                         <div id="message">
-                            <div id="fansName">雷雷雷雷雷</div>
-                            <div id="fansSign">说不过你，但喜欢你</div>
+                            <div id="fansName">{{item.fansName}}</div>
+                            <div id="fansSign">{{item.fansSign}}</div>
                         </div>
                     </div>
                     <div id="focusOn">+关注</div>
                 </li>
             </ul>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -27,29 +27,30 @@
 <script>
 import BScroll from "better-scroll";
 import axios from "axios";
+import vuex from "vuex";
 export default {
     mounted() {
         if(!this.scroll){
             this.scroll=new BScroll(this.$refs.fansWrapper,{
-                scrollY:true
+                scrollY:true,
+                click:true
             })
         }
        // console.log(this.scroll)
         
     },
     methods: {
-        handle(){
-            axios({
-                method:"post",
-                url:"/api/mock/5c373fe95394183730861ee2/lei/fans",
-            })
-            .then((data)=>{
-                  console.log(data);
-            })
-        },
+        ...vuex.mapActions({
+            handleGet:"Main/handleGet"
+        })
     },
     created() {
-        this.handle()
+        this.handleGet();
+    },
+    computed: {
+        ...vuex.mapState({
+            fansdata:state=>state.Main.fansData,
+        })
     },
 }
 </script>

@@ -6,14 +6,14 @@
         </div>
         <div id="fansContent" class="wrapper" ref="foucsonWrapper">
             <ul class="content">
-                <li>
+                <li v-for="(item,index) in foucson">
                     <div id="left">
                         <router-link :to="{name:'fansindex'}">
-                            <img src="@/assets/personImg/fansImg.png">
+                            <img :src="item.fousonImg">
                         </router-link>
                         <div id="message">
-                            <div id="fansName">雷雷雷雷雷</div>
-                            <div id="fansSign">说不过你，但喜欢你</div>
+                            <div id="fansName">{{item.foucsonName}}</div>
+                            <div id="fansSign">{{item.foucsonSign}}</div>
                         </div>
                     </div>
                     <div id="focusOn">已关注</div>
@@ -26,6 +26,7 @@
 
 <script>
 import BScroll from "better-scroll";
+import vuex from "vuex";
 export default {
     mounted() {
         if(!this.scroll){
@@ -33,6 +34,24 @@ export default {
               scrollY:true
           })
        }    
+    },
+    // computed: {
+    //     ...vuex.mapStates({
+                   
+    //     })
+    // }
+    methods: {
+        ...vuex.mapActions({
+            handleGet:"Main/handleGetFoucson"
+        })
+    },
+    created() {
+        this.handleGet()
+    },
+    computed: {
+        ...vuex.mapState({
+            foucson:state=>state.Main.foucsonData
+        })
     },
 }
 </script>
