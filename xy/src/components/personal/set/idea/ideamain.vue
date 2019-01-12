@@ -14,7 +14,7 @@ export default {
   methods: {
     handleSubmit(){
       this.$router.go(-1)
-    }
+    },
   }
 };
 </script>

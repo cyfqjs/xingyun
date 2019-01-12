@@ -14,7 +14,7 @@ export default {
   components: {
     "Ideah-com": Ideah,
     "Ideam-com": Ideam
-  }
+  },
 };
 </script>
 <style lang="scss">

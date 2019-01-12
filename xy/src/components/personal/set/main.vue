@@ -26,7 +26,9 @@
           </router-link></span>
       </li>
       <li class="listOut">
-        <a href="#">退出登录</a>
+        <router-link :to="{name:'login'}">
+        退出登录
+        </router-link>
       </li>
     </ul>
     <router-view></router-view>

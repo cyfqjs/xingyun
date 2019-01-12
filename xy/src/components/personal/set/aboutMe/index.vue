@@ -10,11 +10,25 @@
 import Amheader from "./aboutHeader";
 import Ammain from "./aboutMain";
 import Amfooter from "./aboutFooter";
+import axios from "axios";
 export default {
+  created () {
+    this.handleGet()
+  },
   components: {
       "Amheader-com": Amheader,
     "Ammain-com": Ammain,
     "Amfooter-com": Amfooter
+  },
+  methods: {
+    handleGet(){
+      axios({
+        url:"/api/mock/5c3465937db0f179db20292b/api/idea"
+      })
+      .then((data)=>{
+          console.log(data)
+      })
+    }
   }
 };
 </script>

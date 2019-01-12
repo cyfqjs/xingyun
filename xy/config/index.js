@@ -3,7 +3,7 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
-
+//https://www.easy-mock.com/mock/5c3465937db0f179db20292b/api/idea
 module.exports = {
     dev: {
 
@@ -12,7 +12,7 @@ module.exports = {
         assetsPublicPath: '/',
         proxyTable: {
             "/api": {
-                target: "https://mapi.eyee.com",
+                target: "https://www.easy-mock.com",
                 changeOrigin: true,
                 pathRewrite: {
                     "^/api": ""
@@ -51,7 +51,7 @@ module.exports = {
         // Paths
         assetsRoot: path.resolve(__dirname, '../dist'),
         assetsSubDirectory: 'static',
-        assetsPublicPath: '/',
+        assetsPublicPath: './',   
 
         /**
          * Source Maps

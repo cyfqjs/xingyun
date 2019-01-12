@@ -18,7 +18,13 @@
 import Vue from "vue";
 import { Switch } from "mint-ui";
 Vue.component(Switch.name, Switch);
-export default {};
+export default {
+  data () {
+    return {
+      value:""
+    }
+  }
+};
 </script>
 <style lang="scss">
 .pushSHui {

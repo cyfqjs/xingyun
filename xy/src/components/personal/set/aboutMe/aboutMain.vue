@@ -4,7 +4,7 @@
       <img src="@/assets/set/logo@2x.png">
       <p>版本号：1.0</p>
       <ul class="aboutList">
-        <li v-for="(item,index) in obj" :key="{item,index}">
+        <li v-for="(item,index) in obj" :key=(item,index)>
           <img :src="item.img">
           <span>{{item.list}}</span>
         </li>
