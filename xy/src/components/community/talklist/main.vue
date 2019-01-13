@@ -3,7 +3,7 @@
         <div class="wrapper mainWrapper" ref="mainWrapper">
             <ul class="content list_zjy">
                 <li v-for="(item,index) in Talklist_zjy">
-                    <router-link to="">
+                    <router-link to="/chat">
                         <!-- <frameset rows="50, *" border="none">
                          <frame src="../chatbox/index.vue">
 
