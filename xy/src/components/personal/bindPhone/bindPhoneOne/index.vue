@@ -77,6 +77,7 @@ export default {
     position: fixed;
     top: 3.04rem;
     left: 0.74rem;
+    justify-content: center;
   }
   .phone1 {
     width: 2.4rem;
@@ -101,9 +102,10 @@ export default {
       height: 0.9rem;
     }
     button {
-      margin-left: 0.3rem;
+      // margin-left: -0.1rem;
       border: none;
       background: rgba(255, 255, 255, 1);
+      flex-shrink: 0;
     }
   }
   .phone2 {

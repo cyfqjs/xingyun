@@ -2,7 +2,7 @@
   <div class="bindokt">
     <ul class="listHui">
       <li>
-        <p class="p1">
+        <p class="mp1">
           <img src="@/assets/set/icon_dx@2x.png">
           绑定手机 :
           <span>188888888</span>
@@ -33,7 +33,7 @@ export default {};
       margin-top: 0.2rem;
       display: flex;
       align-items: center;
-      .p1 {
+      .mp1 {
         display: flex;
         width: 5rem;
         height: 0.29rem;

@@ -8,13 +8,12 @@
         </p>
         <div class="boxHui">
           <router-link :to="{name:'bindCh'}">
-          <p class="p2"><span>13988888888</span></p>
+          <span class="p2">13988888888</span>
           <img src="@/assets/set/矢量智能对象@2x(1).png">
           </router-link>
         </div>
       </li>
     </ul>
-    <router-view></router-view>
   </div>
 </template>
 
@@ -28,7 +27,8 @@ export default {
   width: 100%;
   height: 12.25rem;
   .listHui {
-    display: flex;
+    width: 100%;
+    height: 12.25rem;
     li {
       width: 100%;
       height: 1rem;
@@ -38,7 +38,6 @@ export default {
       display: flex;
       align-items: center;
       .p1 {
-        display: flex;
         width: 1.6rem;
         height: 0.29rem;
         font-size: 0.3rem;
@@ -46,6 +45,8 @@ export default {
         font-weight: 400;
         color: rgba(255, 255, 255, 1);
         margin-left: 0.2rem;
+        flex-shrink: 0;
+        display: flex;
         img {
           width: 0.19rem;
           height: 0.27rem;
@@ -54,25 +55,19 @@ export default {
         }
       }
       .boxHui {
-        width: 2.9rem;
-        height: 100%;
-        margin-left: 1rem;
-        display: flex;
-        align-items: center;
-        img {
-          width: 0.16rem;
-          height: 0.28rem;
-          margin-top: -0.2rem;
-          margin-left: 2rem;
-        }
+        margin-left: 3.3rem;
         .p2 {
-          width: 1.5rem;
-          height: 0.28rem;
           font-size: 0.3rem;
           font-family: PingFang-SC-Regular;
           font-weight: 400;
           color:rgba(255,255,255,1);
-          margin-top: -0.1rem;
+          margin-top: 0.1rem;
+        }
+        img {
+          width: 0.16rem;
+          height: 0.28rem;
+          margin-top: -0.3rem;
+          margin-left: 2rem;
         }
       }
     }
