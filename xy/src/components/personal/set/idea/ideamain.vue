@@ -10,9 +10,15 @@
   </div>
 </template>
 <script>
+import {MessageBox} from "mint-ui";
 export default {
   methods: {
     handleSubmit(){
+      MessageBox({
+        title: "提交成功！",
+        message: "跳转页面",
+        showCancelButton: true
+      });
       this.$router.go(-1)
     },
   }
