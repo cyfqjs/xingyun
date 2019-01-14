@@ -5,21 +5,28 @@
 const path = require('path')
 
 module.exports = {
-  dev: {
-// https://www.easy-mock.com/mock/5c373fe95394183730861ee2/lei/fans
-    // Paths
-    assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
-    proxyTable: {
-    	"/api":{
-        target:"https://www.easy-mock.com",
-        changeOrigin:true,
-        pathRewrite:{
-          "^/api":""
-        }
-      }
-    },
+    dev: {
+        // https://www.easy-mock.com/mock/5c373fe95394183730861ee2/lei/fans
+        // Paths
+        assetsSubDirectory: 'static',
+        assetsPublicPath: '/',
+        proxyTable: {
+            "/api": {
+                target: "https://www.easy-mock.com",
+                changeOrigin: true,
+                pathRewrite: {
+                    "^/api": ""
+                }
+            }
+        },
 
+        // Various Dev Server settings
+        host: 'localhost', // can be overwritten by process.env.HOST
+        port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+        autoOpenBrowser: false,
+        errorOverlay: true,
+        notifyOnErrors: true,
+        poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
         /**
          * Source Maps
