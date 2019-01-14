@@ -77,6 +77,7 @@ export default {
         // })
     // },
     methods:{
+        // 转发框隐藏显示
         hanldeHide_zjy(){
             this.hide_zjy=false;
             this.$emit("hide_zjy",this.hide_zjy)

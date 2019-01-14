@@ -15,8 +15,8 @@
                         </p>
                         <p class="fdp_zjy">
                             <router-link to="" ><img @click="handlePush_zjy" src="@/assets/community/img/fx_zjy.png" alt=""><span>{{item.talk}}</span></router-link>
-                            <router-link to=""><img src="@/assets/community/img/pl_zjy.png" alt=""><span>{{item.replys}}</span></router-link>
-                            <router-link to=""><img src="@/assets/community/img/dz_zjy.png" alt=""><span>{{item.complimer}}</span></router-link>
+                            <router-link :to="{name:'details',query:{dc:item}}"><img src="@/assets/community/img/pl_zjy.png" alt=""><span>{{item.replys}}</span></router-link>
+                            <router-link to=""><img @click="handleAddDz_zjy(item)" :src='item.flag==0?"../../../static/dz_zjy.png":"../../../static/zh.png"' alt=""><span>{{item.complimer}}</span></router-link>
                         </p>
                     </li>
                 </router-link>
@@ -43,6 +43,7 @@ export default {
         }
     },
     created(){
+        // 页面加载获取动态列表
         this.handleMoments_zjy();
     },
     mounted() {
@@ -66,28 +67,32 @@ export default {
         }),
     },
     methods:{
-        ...Vuex.mapMutations({
-
-        }),
+        // ...Vuex.mapMutations({
+        // }),
         ...Vuex.mapActions({
+            // 获取动态列表
             handleMoments_zjy:"Community/handleMoments_zjy",
+            // 点赞
+            handleAddDz_zjy:"Community/handleAddDz_zjy"
         }),
+        // 转发
         handlePush_zjy(){
             this.flagPush_zjy=true;
             this.$emit("push_zjy",this.flagPush_zjy)
-        }
+        },
     },
     watch:{
+        // 监听动态列表
          Moments_zjy(newVal,oldVal){
              this.scroll.refresh();
              this.scroll.finishPullUp();
          },
-         listIndex(newVal,oldVal){
-             var index=this.Moments_zjy.length;
-            if(index>40){
-                this.flagLoadingY=true;
-            }
-         }
+        //  listIndex(newVal,oldVal){
+        //      var index=this.Moments_zjy.length;
+        //     if(index>40){
+        //         this.flagLoadingY=true;
+        //     }
+        //  }
     }
 }
 </script>

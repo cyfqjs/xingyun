@@ -12,10 +12,10 @@ Vue.config.productionTip = false
 Vue.use(Mint);
 /* eslint-disable no-new */
 import "./common/css/animate.css"
-import MintUI from "mint-ui";
+import Mint from "mint-ui";
 import "mint-ui/lib/style.css";
 import "../node_modules/swiper/dist/css/swiper.min.css";
-Vue.use(MintUI);
+Vue.use(Mint);
 
 Vue.config.productionTip = false
 import { AlertPlugin, ToastPlugin, ConfirmPlugin } from 'vux'

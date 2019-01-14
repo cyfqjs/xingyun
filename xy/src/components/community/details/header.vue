@@ -19,9 +19,11 @@ export default {
    
     methods:{
         ...Vuex.mapActions({
+            // 转发
             handlePush_zjy:"Community/handlePush_zjy"
         }),
         handleT(){
+            // 编程时导航。
             this.$router.back();
         }
     }

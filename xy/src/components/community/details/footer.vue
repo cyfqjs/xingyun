@@ -1,15 +1,25 @@
 <template>
     <div id="footer">
         <p @click="handlePush_zjy"><img src="@/assets/community/img/fx_zjy.png" alt="">分享</p>
-        <p><img src="@/assets/community/img/pl_zjy.png" alt="">评论</p>
+        <p><img src="@/assets/community/img/pl_zjy.png" alt="">评论<input type="text" @click="handlePl_zjy"></p>
         <p><img src="@/assets/community/img/dz_zjy.png" alt="">喜欢</p>
     </div>
 </template>
 <script>
 export default {
+    data(){
+        return {
+            // 评论框是否显示
+            flagPl_zjy:true,
+        }
+    },
    methods:{
         handlePush_zjy(){
+            // 转发
             this.$store.dispatch("Community/handlePush_zjy");
+        },
+        handlePl_zjy(){
+            this.$emit("handlePl",this.flagPl_zjy)
         }
    } 
 }
@@ -26,7 +36,7 @@ export default {
         left:0;
         bottom:0;
         z-index:5;
-        P{
+        p{
             width:33%;
             height:100%;
             border-right:1px solid #fff;
@@ -42,8 +52,17 @@ export default {
                 margin-right:.1rem;
             }
         }
+        p:nth-child(2){
+            input{
+                width:.1rem;
+                height:.1rem;
+                background:#2F284B; 
+                border:none;
+            }
+        }
         p:nth-child(3){
             border-right:none;
         }
+        
     }
 </style>

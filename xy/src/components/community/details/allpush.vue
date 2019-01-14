@@ -47,7 +47,7 @@ export default {
         position: fixed;
         left:0;
         bottom:0;
-        z-index:5;
+        z-index:10;
         // transform: translateY(0rem);
         .title{
             width:100%;
