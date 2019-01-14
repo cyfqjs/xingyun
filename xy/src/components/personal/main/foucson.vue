@@ -28,18 +28,12 @@
 import BScroll from "better-scroll";
 import vuex from "vuex";
 export default {
-    mounted() {
-        if(!this.scroll){
+    updated() {
           this.scroll=new BScroll(this.$refs.foucsonWrapper,{
               scrollY:true
           })
-       }    
+         
     },
-    // computed: {
-    //     ...vuex.mapStates({
-                   
-    //     })
-    // }
     methods: {
         ...vuex.mapActions({
             handleGet:"Main/handleGetFoucson"

@@ -9,7 +9,7 @@
                 <li v-for="(item,index) in fansdata">
                     <div id="left">
                         <router-link :to="{name:'fansindex'}">
-                            <img :src="item.fansImg">
+                            <img :src="item.fansImg" @click="handlefansIndex(item.id)">
                         </router-link>
                         <div id="message">
                             <div id="fansName">{{item.fansName}}</div>
@@ -19,7 +19,7 @@
                     <div id="focusOn">+关注</div>
                 </li>
             </ul>
-        </div> -->
+        </div> 
     </div>
 </template>
 
@@ -29,20 +29,23 @@ import BScroll from "better-scroll";
 import axios from "axios";
 import vuex from "vuex";
 export default {
-    mounted() {
-        if(!this.scroll){
+    updated() {
+        this.$nextTick(()=>{
             this.scroll=new BScroll(this.$refs.fansWrapper,{
                 scrollY:true,
                 click:true
             })
-        }
+      })
        // console.log(this.scroll)
         
     },
     methods: {
         ...vuex.mapActions({
             handleGet:"Main/handleGet"
-        })
+        }),
+        handlefansIndex(id){
+            this.$proto.$emit("handlefansIndex",id);  //发送点击的粉丝下标
+        }
     },
     created() {
         this.handleGet();

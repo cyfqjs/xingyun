@@ -1,8 +1,8 @@
 <template>
 	<div id="Person">
-		<div id="personTop">
+		<div id="personTop" >
           	    <router-link :to="{name:'fans'}"><img src="@/assets/personImg/left.png"></router-link>
-				<div id="name">星空下的友人</div>
+				<div id="name" >{{ooo}}</div>
 				<div id="photo">
 					<img src="@/assets/personImg/photo.png">
 				</div>
@@ -47,12 +47,32 @@
 <script>
 import Time from "./time.vue";
 import bScroll from "better-scroll";
+import Vuex from "vuex";
 export default{
 	components:{
 		"Time-com": Time
 	},
-	created() {
-		//console.log(this)
+	data() {
+		return {
+			ooo:-1,
+		}
+	},
+	mounted() {
+		this.$proto.$on("handlefansIndex",id=>{
+			console.log(id);
+
+		})
+		this.handleGet();
+	},
+	computed: {
+		...Vuex.mapState({
+			fansindex:state=>state.Main.fansData,
+		})
+	},
+	methods: {
+		...Vuex.mapActions({
+			handleGet:"Main/handleGet"
+		}),
 	},
 }
 </script>

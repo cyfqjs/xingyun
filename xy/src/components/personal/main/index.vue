@@ -104,10 +104,10 @@ export default{
 			font-weight:4rem;
 			color:rgba(255,255,255,1);
 			a{	
-				width:0.8rem;
-				height:0.2rem;
-				color:rgba(255,255,255,1);
-				font-size:0.014rem;
+				width:1rem;
+				height:1rem;
+				color:rgb(15, 10, 10);
+				font-size:.25rem;
 				font-family:PingFangSC-Regular;
 				font-weight:4rem;
 				color:rgba(255,255,255,1);
@@ -147,6 +147,7 @@ export default{
 				color:white;
 				float: left;
 				width: 2.5rem;
+				font-size:.25rem;
 				text-align: center;
 			}
 		}

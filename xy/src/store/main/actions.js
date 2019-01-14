@@ -17,7 +17,7 @@ export default{
             url:"/api/mock/5c373fe95394183730861ee2/lei/foucson",
         })
         .then((data)=>{
-            console.log(data);
+         //   console.log(data);
             commit("handleGetFoucson",data.data);
         })
     }

@@ -4,6 +4,7 @@ import plus from "./plus";
 import Main from "./main";
 Vue.use(Vuex);
 
+Vue.prototype.$proto=new Vue();
 const store = new Vuex.Store({
     modules: {
         plus,
