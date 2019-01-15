@@ -4,7 +4,6 @@
   	<Footer-com v-show="this.$route.meta.flag"/>
   </div>
 </template>
-
 <script>
     import Footer from "./components/footer/index.vue";
     export default {
@@ -14,9 +13,9 @@
     }
 </script>
 
-<style>
-    #app {
-        width: 100%;
-        height: 100%;
-    }
+<style scoped>
+  #app{
+    width:100%;
+    height:100%;
+  }
 </style>
