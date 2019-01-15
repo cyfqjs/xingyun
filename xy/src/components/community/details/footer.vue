@@ -10,7 +10,7 @@ export default {
     data(){
         return {
             // 评论框是否显示
-            flagPl_zjy:true,
+            flagPl_zjy:false,
         }
     },
    methods:{
@@ -19,6 +19,7 @@ export default {
             this.$store.dispatch("Community/handlePush_zjy");
         },
         handlePl_zjy(){
+            this.flagPl_zjy=!this.flagPl_zjy
             this.$emit("handlePl",this.flagPl_zjy)
         }
    } 

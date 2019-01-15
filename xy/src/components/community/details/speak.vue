@@ -1,6 +1,6 @@
 <template>
     <div id="speak">
-        <input type="text" placeholder="写评论...">
+        <textarea  placeholder="写评论..."></textarea>
         <p>发送</p>
     </div>
 </template>
@@ -22,12 +22,13 @@ export default {
         justify-content: space-between;
         align-items: center;
         padding: .2rem;
-        input{
+        textarea{
             display: block;
             width: 5.8rem;
             height:1.69rem;
             border:1px dashed #000;
             text-align: left;
+            font-size:.25rem;
         }
         p{
             width:.8rem;
