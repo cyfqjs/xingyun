@@ -7,8 +7,8 @@
           绑定手机
         </p>
         <div class="boxHui">
-          <router-link :to="{name:'bindCh'}">
-          <span class="p2">13988888888</span>
+          <router-link :to="{name:'bindCh',query:{id:tel}}">
+          <span class="p2">{{tel}}</span>
           <img src="@/assets/set/矢量智能对象@2x(1).png">
           </router-link>
         </div>
@@ -19,7 +19,10 @@
 
 <script>
 export default {
-  
+  created () {
+    let {tel} = this.$route.query;
+    this.tel = tel;
+  }
 };
 </script>
 <style lang="scss">

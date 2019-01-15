@@ -5,7 +5,7 @@
         <p class="mp1">
           <img src="@/assets/set/icon_dx@2x.png">
           绑定手机 :
-          <span>188888888</span>
+          <span>{{id}}</span>
         </p>
       </li>
     </ul>
@@ -17,7 +17,12 @@
 </template>
 
 <script>
-export default {};
+export default {
+  created () {
+    let {id} = this.$route.query;
+    this.id = id
+  }
+};
 </script>
 <style lang="scss">
 .bindokt {

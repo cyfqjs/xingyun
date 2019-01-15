@@ -9,7 +9,7 @@
       <p class="phone1">绑定手机</p>
       <li class="phone2">
         <div>
-          <input type="text" placeholder="手机号">
+          <input type="text" placeholder="手机号" v-model="message">
         </div>
       </li>
       <li class="phone3">
@@ -19,7 +19,7 @@
         </div>
       </li>
       <li>
-        <router-link :to="{name:'bindok'}">
+        <router-link :to="{name:'bindok',query:{tel:message}}">
           <mt-button type="default" class="que" @click="handleQue">确定</mt-button>
         </router-link>
       </li>
@@ -31,6 +31,11 @@
 <script>
 import { Toast, MessageBox, Button } from "mint-ui";
 export default {
+  data () {
+    return {
+      message:""
+    }
+  },
   methods: {
     handleGet() {
       Toast({
