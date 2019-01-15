@@ -4,11 +4,16 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import store from './store';
+
 import "./common/css/reset.css";
 import "./common/js/flexble";
+
+import axios from 'axios';
+
 import MintUI from "mint-ui";
 
 Vue.use(MintUI);
+Vue.prototype.axios = axios;
 
 Vue.config.productionTip = false
 import { AlertPlugin, ToastPlugin, ConfirmPlugin } from 'vux'
