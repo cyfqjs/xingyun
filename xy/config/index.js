@@ -8,6 +8,8 @@ module.exports = {
     dev: {
         // https://www.easy-mock.com/mock/5c373fe95394183730861ee2/lei/fans
         // Paths
+
+        // Paths    https://www.easy-mock.com/mock/5c384148422c0541bcaa485c/example/login#!method=get
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
         proxyTable: {
