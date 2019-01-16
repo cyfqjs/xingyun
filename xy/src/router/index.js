@@ -6,6 +6,11 @@ import TalkList from "../components/community/talklist/index.vue"
 import Chatbox from "../components/community/chatbox/index.vue"
 import Details from "../components/community/details/index.vue"
 import Reply from "../components/community/reply/index.vue"
+
+
+import TalkChat from "../components/community/chat.vue"
+
+
 import Footer from "../components/footer/index.vue";
 import Err from "../components/error/error.vue";
 import Login from "../components/login/login.vue";
@@ -139,19 +144,19 @@ const router = new Router({
           {//私信列表
             path:"/talklist",
             name:"talklist",
-            component:TalkList,
+            component:TalkChat,
             meta:{
               flag:false,
             }
           },
-          {//聊天框
-            path:"/chat",
-            name:"chat",
-            component:Chatbox,
-            meta:{
-              flag:false,
-            }
-          },
+        //   {//聊天框
+        //     path:"/chat",
+        //     name:"chat",
+        //     component:Chatbox,
+        //     meta:{
+        //       flag:false,
+        //     }
+        //   },
           {//评论详情
             path:"/details",
             name:"details",

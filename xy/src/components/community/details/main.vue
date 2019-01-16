@@ -38,7 +38,10 @@
       </li>
       
     </ul>
- 
+    <div class="speak" v-show="flagPl_zjy">
+        <textarea  v-model="main_zjy" placeholder="写评论..."></textarea>
+        <p @click="handleSendT_zjy({...details_zjy,main_zjy})">发送</p>
+    </div>
   </div>
 </template>
 <script>
@@ -46,11 +49,22 @@ import BScroll from "better-scroll";
 import Vuex from "vuex";
 export default {
     created(){
+        //获取具体显示的动态
         this.details_zjy=this.$route.query.dc;
+        // 控制评论框的显示
+        this.Observer.$on("handlePl_zjy",(val)=>{
+            this.flagPl_zjy=val;
+        })
     },
     data(){
         return {
+            // 动态详情
+            details_zjy:{},
             hide_zjy:null,
+             // 评论框是否显示
+            flagPl_zjy:false,
+             // 发送内容
+            main_zjy:"",
         }
         
     },
@@ -61,27 +75,18 @@ export default {
         })
     },
     computed: {
-        // ...Vuex.mapState({
-        //     Moments_zjy:state=>
-        // })
+        
     },
-    // computed:{
-        // ...Vuex.mapState({
-        //     Details_zjy:(state)=>{
-        //         var details=state.Community.Moments_zjy;
-        //         Moments_zjy.map((item,index)=>{
-        //             console.log(item,index);
-        //         })
-        //         console.log(state.Community.Moments_zjy)
-        //     }
-        // })
-    // },
     methods:{
         // 转发框隐藏显示
         hanldeHide_zjy(){
             this.hide_zjy=false;
             this.$emit("hide_zjy",this.hide_zjy)
-        }
+        },
+        // 评论功能
+        ...Vuex.mapActions({
+            handleSendT_zjy:"Community/handleSendT_zjy",
+        })
     }
 }
 </script>
@@ -261,5 +266,32 @@ export default {
                 }
             }
         }
+         .speak{
+        width:100%;
+        height:2.09rem;
+        background:#CACACA;
+        position: fixed;
+        left:0;
+        bottom:5.79rem;
+        z-index:3;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: .2rem;
+        textarea{
+            display: block;
+            width: 5.8rem;
+            height:1.69rem;
+            border:1px dashed #000;
+            text-align: left;
+            font-size:.25rem;
+            font-family:PingFang-SC-Regular;
+        }
+        p{
+            width:.8rem;
+            font-size:.3rem;
+            font-family:PingFang-SC-Regular;
+        }
+    }
     }
 </style>

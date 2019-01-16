@@ -4,11 +4,17 @@ export default {
     handleMoments_zjy({commit,state}){
         axios({
             method:"post",
-            url:"/api/mock/5c36ed7596e17359c184e353/community/getShares ",
+            url:"/api/StarOfSea/community/getShares",
+            headers:{"Content-type":"application/json"},
+            baseURL:"http://39.96.91.169:8080",
+            data:{
+                "uid":1
+            },
         })
         .then(data=>{
-            commit("handleMoments_zjy",data.shares);
-            commit("handleTalklist_zjy",data.Talktlist);
+            // commit("handleMoments_zjy",data.shares);
+            // commit("handleTalklist_zjy",data.Talktlist);
+            console.log(data)
 
         })
     },
@@ -17,7 +23,8 @@ export default {
         commit("handlePush_zjy")
     },
     // 点赞
-    // handleAddpl_zjy({commit,state,dispatch},params){
+    // handleAddDz_zjy({commit,state,dispatch},params){
+        // console.log(params)
     //     let flagStatu=null;
     //     params.flag==0?flagStatu=1:flagStatu=0;
     //     axios({
@@ -34,6 +41,25 @@ export default {
     //     .then((data)=>{
     //         if(data.code==1){
     //         dispatch("handleMoments_zjy");
+    //         }
+    //     })
+    // },
+    //评论
+    // handleSendT_zjy({commit},params){
+    //     console.log(params);
+    //     axios({
+    //         method:"post",
+    //         url:"/api/mock/5c36ed7596e17359c184e353/action/addReply",
+    //         data:{
+    //             uid:"",
+    //             aid:params.id,
+    //             type:params.type,
+    //             content:params.main_zjy,
+    //         }
+
+    //     }).then(data=>{
+    //         if(data.code==1){
+
     //         }
     //     })
     // }

@@ -3,7 +3,7 @@
         <div class="wrapper homeWrapper" ref="homeWrapper">
             <ul class="content">
                 <router-link :to="{name:'details',query:{dc:item}}"  v-for="(item,index) in Moments_zjy">
-                    <li @click="handleMoments_zjy">
+                    <li @click="handleDetails_zjy(item)">
                         <p class="photo_zjy"><img :src="item.photo_path" alt=""></p>
                         <p class="name_zjy">{{item.name}}<span>{{item.createdate}}</span></p>
                         <p class=" Concern_zjy"><router-link to="">+关注</router-link></p>
@@ -80,6 +80,10 @@ export default {
             this.flagPush_zjy=true;
             this.$emit("push_zjy",this.flagPush_zjy)
         },
+        //将某一条动态的具体数据传递给footer功能栏，实现点赞和评论等。
+        handleDetails_zjy(val){
+            this.Observer.$emit("handleDetails_zjy",val);
+        }
     },
     watch:{
         // 监听动态列表
@@ -87,12 +91,6 @@ export default {
              this.scroll.refresh();
              this.scroll.finishPullUp();
          },
-        //  listIndex(newVal,oldVal){
-        //      var index=this.Moments_zjy.length;
-        //     if(index>40){
-        //         this.flagLoadingY=true;
-        //     }
-        //  }
     }
 }
 </script>

@@ -6,11 +6,21 @@
     </div>
 </template>
 <script>
+import Vuex from "vuex";
 export default {
+    created(){
+        // 接受到的某条动态的具体数据
+        // this.Observer.$on("handleDetails_zjy",val=>{
+        //     // this.details_zjy=val;
+        //     console.log(val)
+        // })
+    },
     data(){
         return {
             // 评论框是否显示
             flagPl_zjy:false,
+            // 接受到的某条动态的具体数据
+            details_zjy:"",
         }
     },
    methods:{
@@ -18,10 +28,25 @@ export default {
             // 转发
             this.$store.dispatch("Community/handlePush_zjy");
         },
+        //评论
         handlePl_zjy(){
             this.flagPl_zjy=!this.flagPl_zjy
-            this.$emit("handlePl",this.flagPl_zjy)
-        }
+            this.Observer.$emit("handlePl_zjy",this.flagPl_zjy)
+        },
+        //点赞
+        // ...Vuex.mapActions({
+        //     handleAddDz_zjy:"Community/handleAddDz_zjy",
+        // })
+        // 将接收到的某条动态的具体数据传递出去
+        // handleAddDz_zjy(){
+        //     console.log(this.details_zjy)
+           
+        // }
+   },
+   watch:{
+       details_zjy(newVal,oldVal){
+           console.log(newVal,oldVal,22222)
+       }
    } 
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
     <div id="main">
-        <div class="wrapper mainWrapper" ref="mainWrapper">
+        <div class="wrapper mainWrapper" ref="ainWrapper">
             <ul class="content chat">
                 <li class="friend">
                     <span>12-29 8:00</span>
@@ -53,9 +53,9 @@ export default {
     created(){
         
     },
-    mounted(){
-        this.scroll=new BScroll(this.$refs.mainWrapper,{
-            
+    activated(){
+        this.scroll=new BScroll(this.$refs.ainWrapper,{
+            click:true,
         })
     },
     methods:{
@@ -67,9 +67,7 @@ export default {
     #main{
         width:100%;
         height:100%;
-        /* background:url("../../../assets/community/img/chat.jpeg"); */
         overflow: hidden;
-        /* padding-bottom:1rem; */
     }
     #main>.mainWrapper{
         width:100%;
