@@ -1,7 +1,7 @@
 <template>
 	<div id="footer">
-		<ul>
-			<li v-for="(item,index) in navs"  @click="handletog(index)">
+		<ul >
+			<li v-for="(item,index) in navs"  @click="handletog(index)" ref="footbs">
                <router-link :to="{name:item.name}">
                     <div class="icon"><img :src="item.img" alt=""></div>
                		<span @click="open(index)">{{item.title}}</span>
@@ -16,6 +16,9 @@
     import Vuex from "vuex"
 
     export default {
+        created() {
+            this.handletog(0);
+        },
         data() {
             return {
                 navs: [{
@@ -36,7 +39,7 @@
                         img: require("@/assets/footer/icon_+_sq@2x.png"),
                         imgto: require("@/assets/footer/icon_tj_sq@2x.png"),
                         imgsrc: require("@/assets/footer/icon_+_sq@2x.png"),
-                        title: "  "
+                        title: " "
                     }, {
                         name: "community",
                         img: require("@/assets/footer/icon_sq_sq@2x.png"),
@@ -59,10 +62,12 @@
                 open: "plus/handleopen"
             }),
             handletog(index) {
-                for (var i = 0; i < 5; i++) {
-                    this.navs[i].img = this.navs[i].imgsrc;
+                if (index != 2) {
+                    for (var i = 0; i < 5; i++) {
+                        this.navs[i].img = this.navs[i].imgsrc;
+                    }
+                    this.navs[index].img = this.navs[index].imgto;
                 }
-                this.navs[index].img = this.navs[index].imgto;
             }
         },
     }
