@@ -95,14 +95,13 @@ export default {
     handleChenge(e) {
      var str=this.$refs.takephoto.querySelectorAll("input[type=file]")[0].files[0];
     
-     var reader=new FileReader();
-     reader.readAsDataURL(str);
-     reader.onloadend = function (e) {
-         this.imgSrc=e.target.result;
-const imgURL = window.URL.createObjectURL(str) ;
-console.log(e.target.result,imgURL)
-             
-     }
+            var reader=new FileReader();
+            reader.readAsDataURL(str);
+            reader.onloadend = function (e) {
+                 this.imgSrc=e.target.result;
+              const imgURL = window.URL.createObjectURL(str) ;
+              //console.log(e.target.result,imgURL)    
+            }
   }}
 };
 </script>

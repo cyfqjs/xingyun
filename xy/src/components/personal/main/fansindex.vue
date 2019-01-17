@@ -2,14 +2,14 @@
 	<div id="Person">
 		<div id="personTop" >
           	    <router-link :to="{name:'fans'}"><img src="@/assets/personImg/left.png"></router-link>
-				<div id="name" >{{ooo}}</div>
+				<div id="name" >{{fansIndexName}}</div>
 				<div id="photo">
-					<img src="@/assets/personImg/photo.png">
+					<img :src="fansIndexImg">
 				</div>
 		</div>
 		<div id="personContent">
 			<div id="signatrue">
-				<span>梦想着东西想想就可以了</span>
+				<span id="fansSign">{{fansIndexSign}}</span>
 			</div>
 			<div id="data">
 				<div id="agreen">已获得认同<span>1.3k</span></div>
@@ -54,25 +54,18 @@ export default{
 	},
 	data() {
 		return {
-			ooo:-1,
+			fansIndexId:-1,
+			fansIndexName:'',
+			fansIndexSign:'',
+			fansIndexImg:''
 		}
 	},
-	mounted() {
-		this.$proto.$on("handlefansIndex",id=>{
-			console.log(id);
-
-		})
-		this.handleGet();
-	},
-	computed: {
-		...Vuex.mapState({
-			fansindex:state=>state.Main.fansData,
-		})
-	},
-	methods: {
-		...Vuex.mapActions({
-			handleGet:"Main/handleGet"
-		}),
+	created() {
+		let{id,name,sign,img}=this.$route.params;
+		this.fansIndexId=id;
+		this.fansIndexName=name;
+		this.fansIndexSign=sign;
+		this.fansIndexImg=img;
 	},
 }
 </script>
@@ -112,8 +105,9 @@ export default{
 			background:black;
 			z-index: 2;
 			img{
-				width:1.24rem;
-				height:1.24rem;
+				width:100%;
+				height:100%;
+				border-radius:50%;	
 			}
 		}
 	}

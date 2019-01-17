@@ -10,6 +10,7 @@ import "./common/css/animate.css"
 import MintUI from "mint-ui";
 import "mint-ui/lib/style.css";
 import "../node_modules/swiper/dist/css/swiper.min.css";
+import "./mock";
 Vue.use(MintUI);
 
 Vue.config.productionTip = false

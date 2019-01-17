@@ -8,8 +8,10 @@
             <ul class="content">
                 <li v-for="(item,index) in fansdata">
                     <div id="left">
-                        <router-link :to="{name:'fansindex'}">
-                            <img :src="item.fansImg" @click="handlefansIndex(item.id)">
+                        <router-link 
+                        :to="{name:'fansindex',params:{id:item.id,name:item.fansName,img:item.fansImg,sign:item.fansSign}}"
+                        >
+                            <img :src="item.fansImg">
                         </router-link>
                         <div id="message">
                             <div id="fansName">{{item.fansName}}</div>
@@ -42,10 +44,7 @@ export default {
     methods: {
         ...vuex.mapActions({
             handleGet:"Main/handleGet"
-        }),
-        handlefansIndex(id){
-            this.$proto.$emit("handlefansIndex",id);  //发送点击的粉丝下标
-        }
+        })
     },
     created() {
         this.handleGet();
