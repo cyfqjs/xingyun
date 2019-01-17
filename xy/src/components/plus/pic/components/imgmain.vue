@@ -74,7 +74,7 @@
                 lrz(file[0], {
                     width: 480
                 }).then(function(rst) {
-                    vm.imgUrls.push(rst.base64);
+                       
                     return rst;
                 }).always(function() {
                     // 清空文件上传控件的值

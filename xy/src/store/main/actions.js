@@ -4,10 +4,10 @@ export default{
     handleGet({commit}){
         axios({
             method:"post",
-            url:"/api/mock/5c373fe95394183730861ee2/lei/fans",
+            url:"/getFans",
         })
         .then((data)=>{
-           // console.log(data);
+            // console.log(data);
             commit("handleGetData",data.data);
         })
     },
@@ -17,7 +17,7 @@ export default{
             url:"/api/mock/5c373fe95394183730861ee2/lei/foucson",
         })
         .then((data)=>{
-            console.log(data);
+         //   console.log(data);
             commit("handleGetFoucson",data.data);
         })
     }

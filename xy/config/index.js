@@ -5,25 +5,22 @@
 const path = require('path')
 // https://www.easy-mock.com/mock/5c36ed7596e17359c184e353/community
 module.exports = {
-    dev: {
-        // https://www.easy-mock.com/mock/5c373fe95394183730861ee2/lei/fans
-        // Paths
-
-        // Paths    https://www.easy-mock.com/mock/5c384148422c0541bcaa485c/example/login#!method=get
-        assetsSubDirectory: 'static',
-        assetsPublicPath: '/',
-        proxyTable: {
-            "/api": {
-                target: "https://www.easy-mock.com",
-                changeOrigin: true,
-                pathRewrite: {
-                    "^/api": ""
-                }
-            }
-        },
-
+  dev: {
+// https://www.easy-mock.com/mock/5c373fe95394183730861ee2/lei/fans
+    // Paths
+    assetsSubDirectory: 'static',
+    assetsPublicPath: '/',
+    proxyTable: {
+    	"/api":{
+        target:"https://www.easy-mock.com",
+        changeOrigin:true,
+        pathRewrite:{
+          "^/api":""
+        }
+      }
+    },
         // Various Dev Server settings
-        host: "localhost", // can be overwritten by process.env.HOST
+        host: 'localhost', // can be overwritten by process.env.HOST
         port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
         autoOpenBrowser: false,
         errorOverlay: true,

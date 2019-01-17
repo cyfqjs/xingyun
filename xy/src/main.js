@@ -17,6 +17,8 @@ import "../node_modules/swiper/dist/css/swiper.min.css";
 import "mint-ui/lib/style.css";
 import axios from "axios"
 Vue.prototype.axios = axios;
+import "./mock";
+Vue.use(MintUI);
 
 import { AlertPlugin, ToastPlugin, ConfirmPlugin } from 'vux'
 Vue.use(AlertPlugin)

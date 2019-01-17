@@ -8,7 +8,9 @@
             <ul class="content">
                 <li v-for="(item,index) in fansdata">
                     <div id="left">
-                        <router-link :to="{name:'fansindex'}">
+                        <router-link 
+                        :to="{name:'fansindex',params:{id:item.id,name:item.fansName,img:item.fansImg,sign:item.fansSign}}"
+                        >
                             <img :src="item.fansImg">
                         </router-link>
                         <div id="message">
@@ -19,7 +21,7 @@
                     <div id="focusOn">+关注</div>
                 </li>
             </ul>
-        </div> -->
+        </div> 
     </div>
 </template>
 
@@ -29,13 +31,13 @@ import BScroll from "better-scroll";
 import axios from "axios";
 import vuex from "vuex";
 export default {
-    mounted() {
-        if(!this.scroll){
+    updated() {
+        this.$nextTick(()=>{
             this.scroll=new BScroll(this.$refs.fansWrapper,{
                 scrollY:true,
                 click:true
             })
-        }
+      })
        // console.log(this.scroll)
         
     },
