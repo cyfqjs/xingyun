@@ -3,12 +3,12 @@
     <form id="form1" @submit.prevent="handle()" method="post">
       <label>
         <span class="iconUser"></span>
-        <input type="text" v-model="username" @blur="handleName" id="uname" placeholder="请输入手机号或邮箱">
+        <input type="text" :value="username" @blur="handleName($event) ,handleName1()" id="uname" >
       </label>
       <br>
       <label>
         <span class="iconCode"></span>
-        <input type="password" id="pwd" @blur="handlePwd" v-model="password" placeholder="********">
+        <input type="password" :value="password" id="pwd"  @blur="handlePwd($event),handlePwd1()"  placeholder="********">
         <span class="iconEye"></span>
       </label>
       <br>
@@ -24,18 +24,30 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import Vuex from "vuex";
 import axios from "axios";
 export default {
   data() {
     return {
-      username: "",
-      password: "",
       flagName: "",
-      falgPwd: ""
+      flagPwd: ""
     };
   },
+  computed:{
+    ...Vuex.mapState({
+      username: state=>state.loginBlock.username,
+      password: state=>state.loginBlock.password
+    })
+  },
   methods: {
-    handleName() {
+
+      ...Vuex.mapMutations({
+          handleName:"loginBlock/handleName",
+          handlePwd:"loginBlock/handlePwd"
+      }),
+
+    handleName1() {
       var regp = /1(3|5|7|8)[0-9]{9}/;
       var rege = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g;
       if (regp.test(this.username) || rege.test(this.username)) {
@@ -50,10 +62,10 @@ export default {
         console.log("err");
       }
     },
-    handlePwd(){
+    handlePwd1(){
       var reg = /^[0-9A-Za-z]{6}$/;
       if(reg.test(this.password)){
-        this.falgPwd = true;
+        this.flagPwd = true;
         // alert(1);
         
       }else{
@@ -68,17 +80,17 @@ export default {
         alert("用户名或密码不能为空");
       } else {
         // console.log(this.username,this.password);这个地方是访问不到空的用户名和密码的。
-        let data = { username: this.username, password: this.password };
+        // let data = { username: this.username, password: this.password };
         axios({
-          methods: "post",
-          url: "/api/mock/5c384148422c0541bcaa485c/example/login",
-          params: data,
-          headers: {
-            "content-type": "application/x-www-form-urlencoded"
-          }
-        })
+      url:"http://39.96.91.169:8080/StarOfSea/login/userLogin",
+      method:"post",
+      data:{
+        username: this.username, password: this.password
+      }
+    })
           .then(data => {
-            console.log(data.data.data[0].username, data.data.data[0].password);
+            console.log(data);
+            // console.log(data.data.data[0].username, data.data.data[0].password);
             // if(this.username == data.data.data[0].username &&this.password == data.data.data[0].password){
             //   alert("登陆成功");
             //   this.$router.push("../../recommend");
@@ -101,14 +113,14 @@ export default {
           })
           .catch(err => {
             console.log(err);
-          });
+          })
       }
 
       //
       // return false;
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

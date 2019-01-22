@@ -6,20 +6,17 @@ const path = require('path')
 // https://www.easy-mock.com/mock/5c36ed7596e17359c184e353/community
 module.exports = {
     dev: {
-        // https://www.easy-mock.com/mock/5c373fe95394183730861ee2/lei/fans
-        // Paths
-
         // Paths    https://www.easy-mock.com/mock/5c384148422c0541bcaa485c/example/login#!method=get
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
         proxyTable: {
-            "/api": {
-                target: "https://www.easy-mock.com",
-                changeOrigin: true,
-                pathRewrite: {
-                    "^/api": ""
-                }
-            }
+            // "/api": {
+            //     target: "http://39.96.91.169:8080",
+            //     changeOrigin: true,
+            //     pathRewrite: {
+            //         "^/api": ""
+            //     }
+            // }
         },
 
         // Various Dev Server settings
