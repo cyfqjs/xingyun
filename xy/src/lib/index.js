@@ -3,9 +3,13 @@ import qs from "qs";
 
 //请求拦截
 axios.interceptors.request.use((config)=>{
-    // if(config.method == "post"){
-    //     config.data = qs.stringify(config.data);
-    // }
+    if(config.method == "post"){
+        // config.data = qs.stringify(config.data);
+    }else{
+        config.params={...config.params}
+    }
+    // headers:{"Content-type":"application/json"};
+    // config.headers["Content-type"] = "application/json";
     return config;
 })
 //响应拦截

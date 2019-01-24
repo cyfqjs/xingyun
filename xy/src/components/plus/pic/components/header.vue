@@ -1,7 +1,7 @@
 <template>
         <div id="header">
-        <div>取消</div>
-        <div class="title">相机胶卷</div>
+       <router-link :to="{name:'plus'}"><div>取消</div></router-link> 
+        <div class="title">星图发表</div>
         <div>发表</div>
         </div>
     </template>
@@ -24,21 +24,28 @@
             width: 1.6rem;
             height: .38rem;
             font-size: .38rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             font-family: PingFangSC-Regular;
             color: rgba(255, 255, 255, 1);
         }
-        div:nth-of-type(1) {
+        a>div {
             width: .6rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             height: .29rem;
             font-size: .29rem;
             font-family: PingFang-SC-Regular;
             color: rgba(255, 255, 255, 1);
         }
-        div:nth-of-type(3) {
-            width: .7rem;
+        div:nth-of-type(2) {
+            width: .8rem;
             height: .35rem;
-            text-align: center;
-            line-height: .35rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             border: 1px solid #ddd;
             padding: 2px;
             font-size: .29rem;
