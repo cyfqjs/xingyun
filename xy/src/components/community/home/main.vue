@@ -7,7 +7,7 @@
                     <li @click="handleDetails_zjy(item)">
                         <p class="photo_zjy"><img :src="item.photo_path" alt=""></p>
                         <p class="name_zjy">{{item.name}}<span>{{item.createdate}}</span></p>
-                        <p class=" Concern_zjy" @click="handleGz_zjy(item)"><router-link to="">{{gzName}}</router-link></p>
+                        <p class=" Concern_zjy" @click="handleGz_zjy(item)"><router-link to="" v-text="item.statu==1?'已关注':'+ 关注'" :class="item.statu==0?'ever':''"></router-link></p>
                         <p class="content_zjy">
                             {{item.content}}
                         </p>
@@ -42,8 +42,9 @@ export default {
             // listIndex:0,
             // 转发
             flagPush_zjy:false,
-            // 关注
-            gzName:"+关注"
+            // 点赞
+            flagXin:null,
+
         }
     },
     created(){
@@ -76,9 +77,19 @@ export default {
         ...Vuex.mapActions({
             // 获取动态列表
             handleMoments_zjy:"Community/handleMoments_zjy",
-            // 点赞
-            handleAddDz_zjy:"Community/handleAddDz_zjy",
+            // 关注
+            handleGz_zjy:"Community/handleGz_zjy"
         }),
+        // 点赞
+        handleAddDz_zjy(item){
+            if(item.flag==1){
+                item.flag=0
+            }else{
+                item.flag=1    
+            }
+            console.log(item.flag)
+            this.$store.dispatch("Community/handleAddDz_zjy",item)
+        },
         // 转发
         handlePush_zjy(){
             this.flagPush_zjy=true;
@@ -90,13 +101,7 @@ export default {
             //将某一条动态的具体数据传递给footer功能栏，实现点赞和评论等。
             this.Observer.$emit("handleDetails_zjy",val);
         },
-         // 关注
-        //  handleGz_zjy(){
-        //     // this.gzName="已关注"
-        //     if(this.gzName="已关注"){
-        //         this.gzName="+guanzhu"
-        //     }
-        // }
+         
     },
     watch:{
         // 监听动态列表
@@ -178,6 +183,10 @@ export default {
          font-size:.22rem;
          border:.01rem dashed 
      }
+     /* #main .Concern_zjy>.ever{
+         background:url("../../../assets/community/img/gz_zjy.png");
+         color:#fff
+     } */
      #main .content_zjy{
          width:100%;
          height:auto;

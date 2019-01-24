@@ -19,7 +19,6 @@ export default {
                 this.comName="Chat-com";
             }else{
                 this.comName="Talk-com";
-                
             }
         })
     },
