@@ -34,12 +34,6 @@ import BScroll from "better-scroll";
 				this.flagPush_zjy=val;
 			}
 		},
-		// computed:{
-		// 	...Vuex.mapState({
-		// 		flagPush_zjy:state=>state.Community.flagPush_zjy
-				
-		// 	})
-		// }
 	}
 </script>
 

@@ -25,9 +25,7 @@ export default {
         }
     },
     methods:{
-        // ...Vuex.mapActions({
-        //     handlePush_zjy:"Community/handlePush_zjy",
-        // }),
+            
             handlePush_zjy(){
                 this.$store.dispatch("Community/handlePush_zjy")
                 this.flagHide_zjy=false;

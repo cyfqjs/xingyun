@@ -6,5 +6,7 @@ export default {
     Talklist_zjy:[],
     // 控制转发框的隐藏和显示
     flagPush_zjy:false,
-    flagHide_zjy:true
+    flagHide_zjy:true,
+    // 某条具体的动态
+    detailsOne:{},
 }

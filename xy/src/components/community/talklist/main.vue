@@ -19,7 +19,7 @@ import BScroll from "better-scroll";
 export default {
     created(){
         // 获取私信列表信息
-        this. handleMoments_zjy();
+        this. handleTalklist_zjy();
     },
     mounted() {
         this.scroll=new BScroll(this.$refs.mainWrapper,{
@@ -34,7 +34,7 @@ export default {
     methods:{
         ...Vuex.mapActions({
             // 获取私信列表信息
-            handleMoments_zjy:"Community/handleMoments_zjy",
+            handleTalklist_zjy:"Community/handleTalklist_zjy",
         }),
 
 

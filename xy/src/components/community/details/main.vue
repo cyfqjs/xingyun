@@ -50,7 +50,7 @@ import Vuex from "vuex";
 export default {
     created(){
         //获取具体显示的动态
-        this.details_zjy=this.$route.query.dc;
+        // this.details_zjy=this.$route.query.dc;
         // 控制评论框的显示
         this.Observer.$on("handlePl_zjy",(val)=>{
             this.flagPl_zjy=val;
@@ -58,8 +58,8 @@ export default {
     },
     data(){
         return {
-            // 动态详情
-            details_zjy:{},
+            
+            
             hide_zjy:null,
              // 评论框是否显示
             flagPl_zjy:false,
@@ -75,7 +75,10 @@ export default {
         })
     },
     computed: {
-        
+        ...Vuex.mapState({
+            // 动态详情
+            details_zjy:state=>state.Community.detailsOne
+        })
     },
     methods:{
         // 转发框隐藏显示

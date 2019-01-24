@@ -12,4 +12,8 @@ export default {
         state.flagPush_zjy=!state.flagPush_zjy;
         state.flagHide_zjy=!state.flagHide_zjy;
     },
+    // 获取某条具体的动态
+    handleOne_zjy(state,params){
+        state.detailsOne=params;
+    }
 }

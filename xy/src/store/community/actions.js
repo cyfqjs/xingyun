@@ -4,20 +4,30 @@ export default {
     handleMoments_zjy({commit,state}){
         axios({
             method:"post",
-            url:"/api/StarOfSea/community/getShares",
+            url:"http://39.96.91.169:8080/StarOfSea/community/getShares",
             headers:{"Content-type":"application/json"},
-            baseURL:"http://39.96.91.169:8080",
             data:{
-                "uid":1
+                uid:1
             },
         })
         .then(data=>{
-            // commit("handleMoments_zjy",data.shares);
+            commit("handleMoments_zjy",data.shares);
             // commit("handleTalklist_zjy",data.Talktlist);
-            console.log(data)
-
         })
     },
+    // 私信列表
+    // handleTalklist_zjy({commit,state}){
+    //     axios({
+    //         method:"post",
+    //         url:"/api/mock/5c36ed7596e17359c184e353/community/getShares",
+    //         // data:{
+    //         //     uid:1
+    //         // },
+    //     })
+    //     .then(data=>{
+    //         commit("handleTalklist_zjy",data.Talktlist);
+    //     })
+    // },
     // 转发
     handlePush_zjy({commit}){
         commit("handlePush_zjy")
@@ -62,5 +72,20 @@ export default {
 
     //         }
     //     })
-    // }
+    // },
+    //获取某条具体动态
+    handleOne_zjy({commit},params){
+        axios({
+            method:"post",
+            url:"http://39.96.91.169:8080/StarOfSea/community/findShare",
+            data:{
+                aid:params.id,
+                uid:params.uid
+            }
+        })
+        .then(data=>{
+            if(data.code==1)
+            commit("handleOne_zjy",data.share)
+        })
+    }
 }

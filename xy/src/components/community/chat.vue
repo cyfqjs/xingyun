@@ -12,6 +12,7 @@ import Chat from "./chatbox/index.vue"
 export default {
    
     created(){
+        // 显示列表还是聊天框
         this.Observer.$on("handleChat_zjy",(val)=>{
             this.numChat=val;
             if(this.numChat==1){
