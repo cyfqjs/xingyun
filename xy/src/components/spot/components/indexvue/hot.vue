@@ -1,109 +1,139 @@
 <template>
-    <div class="hot">
-        <keep-alive>
+  <div class="hot">
+    <div class="wrapper" ref="homeWrapper">
+      <div class="content">
         <ul>
-            <li v-for="(item,index) in topic">
-                <router-link :to="'topiccontent'">
-                <!-- +item.topicid+'/'+item.backimg -->
-                    <div class="topic" >{{item.title}}</div>
-                    <div class="praisecount">
-                        <span>{{item.praisepeoplehead[0]}}</span>
-                        <span>{{item.praisepeoplehead[1]}}</span>
-                        <span>{{item.praisepeoplehead[2]}}</span>
-                        <span>{{item.praisecount}}</span>
-                    </div>
-                </router-link>
-            </li>
+          <li v-for="(item,index) in hotlist">
+            <router-link :to="'topiccontent/'+item.id">
+              <!-- +item.topicid+'/'+item.backimg -->
+              <div class="topic">{{item.content}}</div>
+              <div class="praisecount">
+                <span></span>
+                <span></span>
+                <span></span>
+                <!-- <span>{{item.praisepeoplehead[0]}}</span>
+              <span>{{item.praisepeoplehead[1]}}</span>
+                <span>{{item.praisepeoplehead[2]}}</span>-->
+                <span class="praise">{{item.score}}</span>
+              </div>
+            </router-link>
+          </li>
         </ul>
-        </keep-alive>
+      </div>
     </div>
+  </div>
 </template>
+// http://39.96.91.169:8080/StarOfSea-1.0-SNAPSHOT/focus/getArtilces
+// http://39.96.91.169:8080/StarOfSea-1.0-SNAPSHOT/focus/getArticleDetails
+// 折柳  下午 14:33:01
+// http://39.96.91.169:8080/StarOfSea-1.0-SNAPSHOT/focus/getCurlycues
+// http://39.96.91.169:8080/StarOfSea-1.0-SNAPSHOT/focus/getCurlycueDetails
 
 <script>
+import BScroll from "better-scroll";
+import Axios from "axios";
+import qs from "qs";
 export default {
-    data(){
-        return{
-            topic:[
-                {
-                    topicid:"1",
-                    title:"分手可以体面吗",
-                    praisecount:"",
-                    praisepeoplehead:[],
-                    backimg:"",
-                },
-                {
-                    topicid:"2",
-                    title:"分手可以体面吗",
-                    praisecount:"",
-                    praisepeoplehead:[],
-                    backimg:"",
-                },
-                {
-                    topicid:"3",
-                    title:"分手可以体面吗",
-                    praisecount:"",
-                    praisepeoplehead:[],
-                    backimg:"",
-                },
-                {
-                    topicid:"4",
-                    title:"分手可以体面吗",
-                    praisecount:"",
-                    praisepeoplehead:[],
-                    backimg:"",
-                }
-            ]
-        }
-    },
-    created(){
-        
-    }
-}
+  data() {
+    return {
+      // content: "话题内容"
+      // id: "话题id"
+      // pid: "话题详情表id"[]
+      // score: "评分"
+      // times: "浏览次数"
+      hotlist: [
+        // {
+        //   content: "分手可以体面吗",
+        //   id: "1",
+        //   times: 4536
+        // },
+      ]
+    };
+  },
+  mounted() {
+    let wrapper = document.querySelector(".wrapper");
+    this.scroll = new BScroll(this.$refs.homeWrapper, {
+      click: true,
+      pullUpLoad: true
+    });
+  },
+  created() {
+    Axios({
+      method: "post",
+      url: "api/StarOfSea/focus/getCurlycues"
+    }).then(data => {
+      this.hotlist = data.data.curlycues;
+      //console.log(data.data);
+    });
+  }
+};
 </script>
-<style scoped>
-.hot{
-    width: 100%;
+<style lang="scss" scoped>
+.hot {
+  width: 100%;
+  height: 100%;
+  .wrapper {
+    height: 100%;
+    overflow: hidden;
+    .content {
+      ul {
+        width: 83.2%;
+        margin: 0 auto;
+        height: auto;
+        padding-bottom: 3.5rem;
+        li {
+          width: 100%;
+          height: 2.4rem;
+          color: white;
+          background: url("../../../../assets/spot/jiatu-kd@2x.png");
+          background-size: 100% 100%;
+          margin-top: .2rem;
+          font-family: "PingFang-SC-Regular";
+          .topic {
+            width: 100%;
+            height: .64rem;
+            text-align: center;
+            font-size: 0.26rem;
+            color: white;
+            line-height: 0.54rem;
+            background: rgba(48, 16, 112, 0.3);
+          }
+          .praisecount {
+            width: 100%;
+            height: 0.54rem;
+            line-height: 0.54rem;
+            margin-top: 1.23rem;
+            background: rgba(47, 14, 111, 0.3);
+            display: flex;
+            position: relative;
+            align-items: center;
+            span {
+              display: block;
+              width: 0.48rem;
+              height: 0.48rem;
+              background: #fff;
+              margin-left: 0.18rem;
+              border-radius: 50%;
+            }
+            .praise {
+              height: 0.48rem;
+              display: block;
+              position: absolute;
+              right: 0.5rem;
+              border-radius: 0;
+              background: none;
+              color: white;
+              font-size: 0.22rem;
+            }
+            a {
+              color: white;
+              margin-right: 0.15rem;
+            }
+          }
+        }
+      }
+    }
+  }
 }
-.hot ul{
-    width: 6.24rem;
-    margin: 0 auto;
-}
-  .hot ul li{
-      width: 6.24rem;
-      height: 2.04rem;
-      color: white;
-      background: url('../../../../assets/spot/jiatu-kd.png');
-      margin-top: .2rem;
-      font-family: 'PingFang-SC-Regular';
-   }
-   .hot ul li .topic{
-       width: 100%;
-       height: .54rem;
-       text-align: center;
-       font-size: .26rem;
-       color: white;
-       line-height: .54rem;
-      background: rgba(48, 16, 112, 0.3);
-   }
-   .hot ul li .praisecount{
-       width: 100%;
-       height: .54rem;
-       margin-top:.98rem ;
-       background: rgba(47, 14, 111, 0.3);
-       display: flex;
-       
-       align-items: center;
-   }
-   .hot ul li .praisecount span{
-       display: block;
-       width: .48rem;
-       height: .48rem;
-       background: #fff;
-       margin-left: .18rem;
-       border-radius:50%; 
-   }
-   .hot ul li .praisecount a{
-       color: white;
-       margin-right: .15rem;
-   }
+
 </style>

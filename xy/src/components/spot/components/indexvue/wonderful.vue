@@ -1,86 +1,131 @@
 <template>
-    <div class="wonderful">
-        <keep-alive>
+  <div class="wonderful">
+    <div class="wrapper" ref="homeWrapper">
+      <div class="content">
         <ul>
-            <li>
-                
-                <div class="logo"></div>
-                <div class="logoright">
-                    <span class="title">dshshyr</span>
-                    <span class="glanceover">1234人看过</span>
-                </div>
-                
-            </li>
-            <li>
-                <router-link :to="'spot/essaycontent'">
-                <div class="logo"></div>
-                <div class="logoright">
-                    <span class="title">dshshyr</span>
-                    <span class="glanceover">1234人看过</span>
-                </div>
-                </router-link>
-            </li>
+          <li v-for="(item,index) in articles">
+            <router-link :to="'essaycontent/'+item.id">
+              <div class="logo"></div>
+              <div class="logoright">
+                <span class="title">{{item.title}}</span>
+                <span class="glanceover">{{item.compliments}}人</span>
+              </div>
+            </router-link>
+          </li>
         </ul>
-        </keep-alive>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
-  import { Header } from 'mint-ui';
+import BScroll from "better-scroll";
+import Axios from "axios";
+import { Header } from "mint-ui";
 export default {
-    
-}
+  data() {
+    return {
+      articles: [
+        // {
+        //   compliments: "点赞数",
+        //   id: "文章id",
+        //   img_paths: null,
+        //   name: "作者名字",
+        //   pid: "详情表id",
+        //   state: 0,
+        //   times: 0,
+        //   title: "文章标题"
+        // },
+        // {
+        //   compliments: "点赞数",
+        //   id: "文章id",
+        //   img_paths: null,
+        //   name: "作者名字",
+        //   pid: "详情表id",
+        //   state: 0,
+        //   times: 0,
+        //   title: "文章标题"
+        // }
+      ]
+
+      // articles: []
+    };
+  },
+  created() {
+    Axios({
+      method: "post",
+      url: "api/StarOfSea/focus/getArtilces"
+    }).then(data => {
+      this.articles = data.data.articles;
+      console.log(this.articles);
+    });
+  },
+  mounted() {
+    let wrapper = document.querySelector(".wrapper");
+    this.scroll = new BScroll(this.$refs.homeWrapper, {
+      click: true,
+      pullUpLoad: true
+    });
+  }
+};
 </script>
 <style lang="scss" scoped>
-  .wonderful{
-    width: 100%;
-    margin: 0 auto;
-    ul{
-        width: 6.24rem;
+.wonderful {
+  width: 100%;
+  margin: 0 auto;
+  .wrapper {
+    height: 10.3rem;
+    overflow: hidden;
+    .content {
+      ul {
+        width: 83.2%;
         margin: 0 auto;
-        li{
-            width: 6.24rem;
-            height: 1.6rem;
-            margin-top: .2rem;
-            border-radius: .1rem;
-            color: white;
+        li {
+          width: 100%;//6.24
+          height: 1.6rem;
+          margin-top: 0.2rem;
+          border-radius: 0.1rem;
+          color: white;
+          display: flex;
+          background: rgba(255, 255, 255, 0.19);
+          font-family: "PingFang-SC-Regular";
+          a {
+            display: block;
+            width: 100%;
+            height: 100%;
             display: flex;
-            background: rgba(255, 255, 255, 0.19);
-            font-family: 'PingFang-SC-Regular';
-            a{
-                display: block;
-                width: 100%;
-                height: 100%;
-                display: flex;
-                border-radius: .1rem;
-                color: white;
+            border-radius: 0.1rem;
+            color: white;
+          }
+          .logo {
+            width: 27.8%;
+            height: 1.58rem;
+            border-radius: 0.1rem;
+            background: url("../../../../assets/spot/hotjiatu-kd@2x.png");
+            background-size: 100% 100%;
+          }
+          .logoright {
+            width: 72.4%;//4.52
+            height: 1.58rem;
+            .title {
+              display: block;
+              width: 68.5%;
+              height: 0.28rem;
+              font-size: 0.28rem;
+              margin-left: 0.56rem;
+              margin-top: 0.18rem;
             }
-            .logo{
-                width: 1.74rem;
-                height: 1.58rem;
-                border-radius: .1rem;
-                background: url('../../../../assets/spot/hotjiatu-kd.png');
+            .glanceover {
+              display: block;
+              height: 0.24rem;
+              margin-left: 2.6rem;
+              margin-top: 0.58rem;
+              font-size: 0.24rem;
             }
-            .logoright{
-                width: 4.52rem;
-                height: 1.58rem;
-                .title{
-                    display: block;
-                    width: 3.1rem;
-                    height: .28rem;
-                    font-size: .28rem;
-                    margin-left: .56rem;
-                    margin-top: .18rem;
-                }
-                .glanceover{
-                    display: block;
-                    height: .24rem;
-                    margin-left: 2.6rem;
-                    margin-top: .58rem;
-                    font-size: .24rem
-                }
-            }
+          }
         }
+      }
     }
+  }
 }
 </style>
