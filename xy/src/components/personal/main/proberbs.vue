@@ -10,7 +10,6 @@
             </router-link>
         </div>
         <div id="proberbsBottom">
-            <!-- <mt-field label="自我介绍" placeholder="自我介绍" type="textarea" rows="4" v-modal="introduction"></mt-field> -->
             <textarea cols="102" rows="10"></textarea>
             <p>请输入不超过14字的个人箴言</p>
         </div>
@@ -18,6 +17,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
     
 }

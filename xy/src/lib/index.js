@@ -3,9 +3,9 @@ import qs from "qs";
 
 //请求拦截
 axios.interceptors.request.use((config)=>{
-    if(config.method == "post"){
-        config.data = qs.stringify(config.data);
-    }
+    // if(config.method == "post"){
+    //     config.data = qs.stringify(config.data);
+    // }
     return config;
 })
 //响应拦截

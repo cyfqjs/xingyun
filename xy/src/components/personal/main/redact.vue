@@ -9,12 +9,13 @@
       <div id="right">
         <router-link :to="{name:'personal'}">保存</router-link>>
       </div>
-      <div id="qiebac">
+      <div id="qiebac" @click="handle()" >
         <img src="@/assets/personImg/prophoto.png">
       </div>
       <div id="tx" @click="handle()">
         <img :src="imgSrc">
       </div>
+      <!-- 点击选取头像的动画 -->
       <transition
         appear
         enter-active-class="animated fadeInUp"
@@ -28,26 +29,28 @@
           <input type="file" @change="handleChenge()" style="display:none" accept="image/*" >
         </div>
       </transition>
+      <!-- 遮罩 -->
       <div id="mask" v-show="fade" @click.stop="hide()"></div>
     </div>
     <div id="redactBottom">
       <div id="form">
         <div class="name">
           <label>昵称</label>
-          <input type="text" placeholder="此处最多6字">
+          <input type="text" placeholder="此处最多6字" :value="personIndex.name">
         </div>
         <div class="sex">
           <label>性别</label>
-          <input type="radio" name="sex">男
-          <input type="radio" name="sex">女
+          <input type="radio" name="sex" :checked="personIndex.gender">男
+          <input type="radio" name="sex" :checked="personIndex.gender">女
         </div>
         <div class="address">
           <label>地址</label>
-          <input type="text">
+          <input type="text" :value="personIndex.address">
         </div>
         <div class="age">
           <label>年龄</label>
-          <input type="text">
+          <!-- 后端没有返回值 -->
+          <input type="text" value="22">
         </div>
         <div class="data">
           <label>出生日期</label>
@@ -71,8 +74,7 @@
 
 <script>
 import Vue from "vue";
-// import {Actionsheet} from "mint-ui";
-// Vue.component(Actionsheet.name, Actionsheet);
+import vuex from "vuex";
 export default {
   data() {
     return {
@@ -80,7 +82,13 @@ export default {
       imgSrc: require("@/assets/personImg/bi.png")
     };
   },
+  created() {
+     this.handleIndex();
+  },
   methods: {
+    ...vuex.mapActions({
+			handleIndex:"Main/handleIndex"
+		}),
     handle() {
       this.fade = true;
     },
@@ -94,15 +102,19 @@ export default {
     },
     handleChenge(e) {
      var str=this.$refs.takephoto.querySelectorAll("input[type=file]")[0].files[0];
-    
-            var reader=new FileReader();
-            reader.readAsDataURL(str);
-            reader.onloadend = function (e) {
-                 this.imgSrc=e.target.result;
-              const imgURL = window.URL.createObjectURL(str) ;
-              //console.log(e.target.result,imgURL)    
-            }
-  }}
+        var reader=new FileReader();
+        reader.readAsDataURL(str);
+        reader.onloadend = function (e) {
+             this.imgSrc=e.target.result;
+          const imgURL = window.URL.createObjectURL(str) ;
+          //console.log(e.target.result,imgURL)    
+        }
+  }},
+  computed: {
+		...vuex.mapState({
+  			personIndex:state=>state.Main.personIndex
+		})
+	},
 };
 </script>
 
@@ -165,12 +177,19 @@ export default {
       width: 7.5rem;
       height: 2rem;
       font-size: 0.24rem;
-      color: #ccc;
-      background: red;
+      color: #000;
+      background:#fff ;
       position: absolute;
       bottom: 0;
       left: 0;
       z-index: 10;
+      p{
+          height:1rem;
+          line-height: 1rem;
+          border-bottom: .01rem dashed #ccc;
+          font-size:.30rem;
+          text-align: center;
+      }
     }
     #tx {
       width: 1.24rem;

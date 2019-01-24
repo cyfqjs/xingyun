@@ -2,32 +2,31 @@
 	<div id="Person">
 		<div id="personTop">
 				<router-link :to="{name:'set'}"><img src="@/assets/personImg/shezhi.png"></router-link>
-				<div id="name">星空下的友人</div>
+				<div id="name">{{personIndex.name}}</div>
 				<div id="photo">
 					<img src="@/assets/personImg/photo.png">
 				</div>
 		</div>
 		<div id="personContent">
 			<div id="signatrue">
-				<span>梦想着东西想想就可以了</span>
+				<!-- 个人箴言？？？？ null -->
+				<span>{{personIndex.brief}}</span>
 				<router-link :to="{name:'redact'}">编辑资料</router-link>
 			</div>
 			<div id="data">
-				<div id="agreen">已获得认同<span>1.3k</span></div>
-				<!-- <div id="letter"><i>~</i>私信</div>
-				<div id="focusOn"><i>~</i>已关注</div>-->
+				<div id="agreen">已获得认同<span>{{personIndex.agree}}</span></div>
 			</div>
 		</div>
 		<div id="personFans">
 			<ul>
 				<li>
-					<a>发布<span>12</span></a>
+					<a>发布<span>{{personIndex.release}}</span></a>
 				</li>
 				<li>
 					<router-link :to="{name:'foucson'}">关注∞</router-link>	
 				</li>
 				<li>
-					<router-link :to="{name:'fans'}">粉丝<span>6.6k</span></router-link>
+					<router-link :to="{name:'fans'}">粉丝<span>{{personIndex.fans}}</span></router-link>
 				</li>
 			</ul>
 		</div>
@@ -38,12 +37,24 @@
 <script>
 import Time from "./time.vue";
 import bScroll from "better-scroll";
+import vuex from "vuex";
 export default{
 	components:{
 		"Time-com": Time
 	},
 	created() {
 		//console.log(this)
+		this.handleIndex();
+	},
+	computed: {
+		...vuex.mapState({
+			personIndex:state=>state.Main.personIndex
+		})
+	},
+	methods: {
+		...vuex.mapActions({
+			handleIndex:"Main/handleIndex"
+		})
 	},
 }
 </script>
