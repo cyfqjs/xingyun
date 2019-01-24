@@ -49,17 +49,13 @@ import BScroll from "better-scroll";
 import Vuex from "vuex";
 export default {
     created(){
-        //获取具体显示的动态
-        // this.details_zjy=this.$route.query.dc;
         // 控制评论框的显示
         this.Observer.$on("handlePl_zjy",(val)=>{
             this.flagPl_zjy=val;
         })
     },
     data(){
-        return {
-            
-            
+        return {     
             hide_zjy:null,
              // 评论框是否显示
             flagPl_zjy:false,
@@ -77,7 +73,15 @@ export default {
     computed: {
         ...Vuex.mapState({
             // 动态详情
-            details_zjy:state=>state.Community.detailsOne
+            details_zjy:state=>{
+                // let details=JSON.stringify(state.Community.detailsOne)
+                // sessionStorage.setItem("details",details)
+                // if(state.Community.detailsOne==""){
+                //     state.Community.detailsOne=JSON.parse(sessionStorage.getItem("details"))
+                // }
+                // this.data_zjy=state.Community.detailsOne
+                return state.Community.detailsOne
+            }
         })
     },
     methods:{
@@ -89,7 +93,7 @@ export default {
         // 评论功能
         ...Vuex.mapActions({
             handleSendT_zjy:"Community/handleSendT_zjy",
-        })
+        }),
     }
 }
 </script>

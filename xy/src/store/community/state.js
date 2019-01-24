@@ -8,5 +8,5 @@ export default {
     flagPush_zjy:false,
     flagHide_zjy:true,
     // 某条具体的动态
-    detailsOne:{},
+    detailsOne:""
 }
