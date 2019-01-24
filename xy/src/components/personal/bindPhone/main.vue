@@ -4,7 +4,7 @@
       <li>
         <p class="p1">
           <img src="../../../assets/set/icon_dx@2x.png">
-          绑定手机
+          绑定微博
         </p>
         <div class="boxHui">
           <router-link :to="{name:'bindPhoneOne'}">

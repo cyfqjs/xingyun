@@ -36,7 +36,7 @@ export default {
       width: 7.1rem;
       height: 4.3rem;
       background: rgba(68, 61, 108, 1);
-      opacity: 0.3;
+      opacity: 0.6;
       border-radius: 0.1rem;
       margin-top: 0.2rem;
       border: none;
@@ -54,7 +54,7 @@ export default {
       width: 7.1rem;
       height: 1rem;
       background: rgba(68, 61, 108, 1);
-      opacity: 0.3;
+      opacity: 0.6;
       border-radius: 0.1rem;
       border: none;
       margin-top: 0.3rem;

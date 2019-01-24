@@ -4,13 +4,13 @@
       <li>
         <p class="mp1">
           <img src="@/assets/set/icon_dx@2x.png">
-          绑定手机 :
+          绑定微博 :
           <span>{{id}}</span>
         </p>
       </li>
     </ul>
     <router-link :to="{name:'bindPhoneOne'}">
-    <button class="bindBtn">切换账号</button>
+    <button class="bindBtnHui">切换账号</button>
     </router-link>
     <router-view></router-view>
   </div>
@@ -30,6 +30,7 @@ export default {
   height: 12.25rem;
   .listHui {
     display: flex;
+    height: 1rem;
     li {
       width: 100%;
       height: 1rem;
@@ -56,7 +57,7 @@ export default {
       }
     }
   }
-  .bindBtn {
+  .bindBtnHui {
     width: 6.24rem;
     height: 0.9rem;
     background: rgba(68,61,108,1);

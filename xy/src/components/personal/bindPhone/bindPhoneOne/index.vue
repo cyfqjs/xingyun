@@ -6,16 +6,16 @@
       </div>
     </router-link>
     <ul>
-      <p class="phone1">绑定手机</p>
+      <p class="phone1">绑定微博</p>
       <li class="phone2">
         <div>
-          <input type="text" placeholder="手机号" v-model="message">
+          <input type="text" placeholder="微博号" v-model="message">
         </div>
       </li>
       <li class="phone3">
         <div>
-          <input type="text" placeholder="输入验证码">
-          <button @click="handleGet">| 获取验证码</button>
+          <input type="text" placeholder="输入密码">
+          <!-- <button @click="handleGet">| 获取验证码</button> -->
         </div>
       </li>
       <li>
