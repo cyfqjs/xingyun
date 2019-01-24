@@ -1,10 +1,8 @@
 <template>
 	<div id="footer">
-		<ul>
-			<li v-for="(item,index) in navs" >
+		<ul >
+			<li v-for="(item,index) in navs"  @click="handletog(index)" ref="footbs">
                <router-link :to="{name:item.name}">
-                    <transition id="push" appear enter-active-class="animated rollIn" leave-active-class="animated zoomInLeft" appear-active-class="animated zoomInUp">
-               </transition>
                     <div class="icon"><img :src="item.img" alt=""></div>
                		<span @click="open(index)">{{item.title}}</span>
                </router-link>
@@ -16,33 +14,43 @@
 
 <script>
     import Vuex from "vuex"
-    import con1 from "@/assets/footer/icon_tj_sq@2x.png"
-    import con2 from "@/assets/footer/icon_kd_sq@2x.png"
-    import con3 from "@/assets/footer/icon_+_sq@2x.png"
-    import con4 from "@/assets/footer/icon_sq_sq@2x.png"
-    import con5 from "@/assets/footer/icon_wd_sq@2x.png"
+
     export default {
+        created() {
+            this.handletog(0);
+        },
         data() {
             return {
                 navs: [{
                         name: "recommend",
-                        img: con1,
+                        img: require("@/assets/footer/icon_tj_sq@2x.png"),
+                        imgto: require("@/assets/footer/icon1-sy@2x.png"),
+                        imgsrc: require("@/assets/footer/icon_tj_sq@2x.png"),
+
                         title: "推荐"
                     }, {
                         name: "spot",
-                        img: con2,
+                        img: require("@/assets/footer/icon_kd_sq@2x.png"),
+                        imgto: require("@/assets/footer/icon2-kd@2x.png"),
+                        imgsrc: require("@/assets/footer/icon_kd_sq@2x.png"),
                         title: "看点"
                     }, {
                         name: "plus",
-                        img: con3,
-                        title: "  "
+                        img: require("@/assets/footer/icon_+_sq@2x.png"),
+                        imgto: require("@/assets/footer/icon_tj_sq@2x.png"),
+                        imgsrc: require("@/assets/footer/icon_+_sq@2x.png"),
+                        title: " "
                     }, {
                         name: "community",
-                        img: con4,
+                        img: require("@/assets/footer/icon_sq_sq@2x.png"),
+                        imgto: require("@/assets/footer/icon2_sq_sq@2x.png"),
+                        imgsrc: require("@/assets/footer/icon_sq_sq@2x.png"),
                         title: "社区"
                     }, {
                         name: "personal",
-                        img: con5,
+                        img: require("@/assets/footer/icon_wd_sq@2x.png"),
+                        imgto: require("@/assets/footer/icon_grzx@2x.png"),
+                        imgsrc: require("@/assets/footer/icon_wd_sq@2x.png"),
                         title: "个人中心"
                     }
 
@@ -52,8 +60,16 @@
         methods: {
             ...Vuex.mapMutations({
                 open: "plus/handleopen"
-            })
-        }
+            }),
+            handletog(index) {
+                if (index != 2) {
+                    for (var i = 0; i < 5; i++) {
+                        this.navs[i].img = this.navs[i].imgsrc;
+                    }
+                    this.navs[index].img = this.navs[index].imgto;
+                }
+            }
+        },
     }
 </script>
 
@@ -104,10 +120,6 @@
         height: 10px;
         line-height: 10px;
         margin-top: 5px;
-    }
-    
-    #footer>ul>li>.router-link-active>div {
-        background: orange;
     }
     
     #footer>ul>li>a>.icon {

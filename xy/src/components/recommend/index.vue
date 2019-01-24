@@ -1,14 +1,54 @@
 <template>
-  <div>
-    <h2>Recommend</h2>
+  <div id="recommend" class="wrapper" ref="mainWrapper">
+    <div class="content">
+      <top-com></top-com>
+      <tarot-com></tarot-com>
+      <fortune-com></fortune-com>
+      <calendar-com></calendar-com>
+      <topic-com></topic-com>
+      <article-com></article-com>
+    </div>
   </div>
 </template>
 
 <script>
+import Top from "./components/top";
+import Tarot from "./components/tarot";
+import Fortune from "./components/fortune";
+import Calendar from "./components/calendar";
+import Topic from "./components/topic";
+import Article from "./components/article";
+
+
+
+import BScroll from 'better-scroll';
+
+
 export default {
- 
-}
+  components: {
+    "top-com": Top,
+    "tarot-com": Tarot,
+    "fortune-com": Fortune,
+    "calendar-com": Calendar,
+    "topic-com": Topic,
+    "article-com": Article,
+
+  },
+  mounted() {
+    // let wrapper = document.querySelector('.wrapper');
+      this.$nextTick(() => {
+        this.scroll = new BScroll(this.$refs.mainWrapper, {});
+        // console.log(this.scroll);
+      })
+    }
+};
 </script>
 
-<style scoped>
+<style lang="scss">
+  .wrapper{
+    height: 100%;
+    .content{
+      margin-bottom: 600rem;
+    }
+  }
 </style>
