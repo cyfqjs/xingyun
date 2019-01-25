@@ -283,7 +283,7 @@ export default {
           if (this.pFlag && this.flagPwd1 && this.flagPwd2 && this.flagCode) {
             console.log(data);
             if (data.code == 1) {
-              this.$router.push("../../regtwo");
+              // this.$router.push("../../regtwo");
             } else {
               return false;
             }
