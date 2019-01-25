@@ -5,7 +5,7 @@
   "author": "qjs <592843552@qq.com>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --inline --open --progress --config build/webpack.dev.conf.js",
+    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "build": "node build/build.js"
   },
@@ -38,6 +38,7 @@
     "friendly-errors-webpack-plugin": "^1.6.1",
     "html-webpack-plugin": "^2.30.1",
     "mint-ui": "^2.2.13",
+    "mockjs": "^1.0.1-beta3",
     "node-notifier": "^5.1.2",
     "node-sass": "^4.11.0",
     "optimize-css-assets-webpack-plugin": "^3.2.0",

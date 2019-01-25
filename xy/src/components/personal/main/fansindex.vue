@@ -1,15 +1,15 @@
 <template>
 	<div id="Person">
-		<div id="personTop">
+		<div id="personTop" >
           	    <router-link :to="{name:'fans'}"><img src="@/assets/personImg/left.png"></router-link>
-				<div id="name">星空下的友人</div>
+				<div id="name" >{{fansIndexName}}</div>
 				<div id="photo">
-					<img src="@/assets/personImg/photo.png">
+					<img :src="fansIndexImg">
 				</div>
 		</div>
 		<div id="personContent">
 			<div id="signatrue">
-				<span>梦想着东西想想就可以了</span>
+				<span id="fansSign">{{fansIndexSign}}</span>
 			</div>
 			<div id="data">
 				<div id="agreen">已获得认同<span>1.3k</span></div>
@@ -47,12 +47,25 @@
 <script>
 import Time from "./time.vue";
 import bScroll from "better-scroll";
+import Vuex from "vuex";
 export default{
 	components:{
 		"Time-com": Time
 	},
+	data() {
+		return {
+			fansIndexId:-1,
+			fansIndexName:'',
+			fansIndexSign:'',
+			fansIndexImg:''
+		}
+	},
 	created() {
-		//console.log(this)
+		let{id,name,sign,img}=this.$route.params;
+		this.fansIndexId=id;
+		this.fansIndexName=name;
+		this.fansIndexSign=sign;
+		this.fansIndexImg=img;
 	},
 }
 </script>
@@ -92,8 +105,9 @@ export default{
 			background:black;
 			z-index: 2;
 			img{
-				width:1.24rem;
-				height:1.24rem;
+				width:100%;
+				height:100%;
+				border-radius:50%;	
 			}
 		}
 	}

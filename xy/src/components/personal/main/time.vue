@@ -1,25 +1,34 @@
 <template>
     <div class="wrapper personWrapper" id="personBottom" ref="personWrapper">
-			<ul class="content" id="content">
-				<div id="zhou">
-                    <p id="time">2019/1/1</p>
-                    <li>
-                        <div class="swiper-container" ref="swiperContainer">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">Slide 1</div>
-                                <div class="swiper-slide">Slide 2</div>
-                                <div class="swiper-slide">Slide 3</div>
+        <ul class="content" id="content" >
+            <div id="zhou">
+                <p id="time">2019/1/1</p>
+                <li>
+                    <!-- v-for="(item,index) in personTime.today.articles" -->
+                    <div class="swiper-container" ref="swiperContainer" >
+                        <div class="swiper-wrapper" >
+                            <div class="swiper-slide">
+                               222222
                             </div>
+                            <div class="swiper-slide">
+                              333333333      
+                            </div>
+                            <div class="swiper-slide">
+                               44444
+                            </div>
+                            
                         </div>
-                    </li>
-                </div>
-			</ul>
+                    </div>
+                </li>
+            </div>
+        </ul>
 	</div>
 </template>
 
 <script>
 import BScroll from 'better-scroll';
 import Swiper from 'swiper';
+import vuex from "vuex";
 export default {
     mounted() {
           if(!this.scroll){
@@ -42,10 +51,20 @@ export default {
 
     },
     methods: {
-        handle(){
-            alert(1)
-        }
+        ...vuex.mapActions({
+            handleTime:"Main/handleTime"
+        })
     },
+    created() {
+        this.handleTime();
+        console.log(this.personTime)
+    },
+    computed: {
+        ...vuex.mapState({
+            personTime:state=>state.Main.personTime
+        })
+    },
+
 }
 </script>
 

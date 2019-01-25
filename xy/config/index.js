@@ -7,6 +7,8 @@ const path = require('path')
 module.exports = {
   dev: {
 // https://www.easy-mock.com/mock/5c373fe95394183730861ee2/lei/fans
+// https://www.easy-mock.com/mock/5c373fe95394183730861ee2/lei/fans    easymock接口
+//后端接口 :http://39.96.91.169:8080/StarOfSea/user/userDetails
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
@@ -19,16 +21,9 @@ module.exports = {
         //   }
         // }
       },
-    // Various Dev Server settings
-host: 'localhost', // can be overwritten by process.env.HOST
-port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
-autoOpenBrowser: false,
-errorOverlay: true,
-notifyOnErrors: true,
-poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
         // Various Dev Server settings
-        host: "localhost", // can be overwritten by process.env.HOST
+        host: 'localhost', // can be overwritten by process.env.HOST
         port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
         autoOpenBrowser: false,
         errorOverlay: true,

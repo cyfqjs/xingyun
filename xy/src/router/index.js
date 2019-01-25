@@ -253,7 +253,7 @@ const router = new Router({
             }
         },
         { //粉丝列表
-            path: "/fans",
+            path: "/fans/:id/:name/:sign/:img",
             name: "fans",
             component: Fans,
             meta: {
