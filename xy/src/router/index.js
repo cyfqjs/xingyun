@@ -31,8 +31,6 @@ import Pushpic from "../components/plus/pic";
 import Pushbook from "../components/plus/book";
 import Pushlanguge from "../components/plus/languge";
 
-import Community from "../components/community";
-
 import Personal from "../components/personal/main/index";
 import pushSet from "../components/personal/set/pushSet/index.vue";
 import BindP from "../components/personal/bindPhone/index.vue";

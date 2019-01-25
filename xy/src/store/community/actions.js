@@ -85,7 +85,7 @@ export default {
             url:url_zjy,
             data:{
                 uid:params.uid,
-                fid:10
+                fid:100000
             }
         })
         .then(data=>{
