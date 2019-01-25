@@ -17,14 +17,7 @@ module.exports = {
           pathRewrite:{
             "^/api":""
           }
-          },
-    	"/zlnapi":{
-        target:"http://39.96.91.169:8080",
-        changeOrigin:true,
-        pathRewrite:{
-          "^/zlnapi":""
-        }
-      }
+          }
     },
     // Various Dev Server settings
 host: 'localhost', // can be overwritten by process.env.HOST
