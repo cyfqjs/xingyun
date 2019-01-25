@@ -6,20 +6,32 @@ import TalkList from "../components/community/talklist/index.vue"
 import Chatbox from "../components/community/chatbox/index.vue"
 import Details from "../components/community/details/index.vue"
 import Reply from "../components/community/reply/index.vue"
+
+
+import TalkChat from "../components/community/chat.vue"
+
+
 import Footer from "../components/footer/index.vue";
 import Err from "../components/error/error.vue";
+
 import Login from "../components/login/login.vue";
 import Regone from "../components/register/pageone";
 import Regtwo from "../components/register/pagetwo";
 import Regthree from "../components/register/pagethree";
+
+
 import Recommend from "../components/recommend";
+
 import Spot from "../components/spot";
 import Topiccontent from "@/components/spot/components/topiccontent";
+import Essaycontent from "@/components/spot/components/essaycontent"
 
 import Plus from "../components/plus";
 import Pushpic from "../components/plus/pic";
 import Pushbook from "../components/plus/book";
 import Pushlanguge from "../components/plus/languge";
+
+import Community from "../components/community";
 
 import Personal from "../components/personal/main/index";
 import pushSet from "../components/personal/set/pushSet/index.vue";
@@ -82,25 +94,30 @@ const router = new Router({
             meta: {
                 flag: true,
             },
-            children: [{
-                    path: "/topiccontent/:topicid/:backimg",
-                    component: Topiccontent,
-                },
-                {
-                    path: "",
-                    name: "topiccontent",
-                    component: Topiccontent,
-                    path: "/",
-                    redirect: "/recommend"
-                },
-            ]
+          
         },
+        {
+            path:"/topiccontent/:id",
+            name:"topiccontent",
+            component:Topiccontent,
+            meta:{
+              flag:false
+            }
+          },
+          {
+            path:"/essaycontent/:id",
+            name:"essaycontent",
+            component:Essaycontent,
+            meta:{
+              flag:false
+            }
+          },
         {
             path: "/plus",
             name: "plus",
             component: Plus,
             meta: {
-                flag: false,
+                flag: true,
             }
         },
         {
@@ -139,19 +156,19 @@ const router = new Router({
           {//私信列表
             path:"/talklist",
             name:"talklist",
-            component:TalkList,
+            component:TalkChat,
             meta:{
               flag:false,
             }
           },
-          {//聊天框
-            path:"/chat",
-            name:"chat",
-            component:Chatbox,
-            meta:{
-              flag:false,
-            }
-          },
+        //   {//聊天框
+        //     path:"/chat",
+        //     name:"chat",
+        //     component:Chatbox,
+        //     meta:{
+        //       flag:false,
+        //     }
+        //   },
           {//评论详情
             path:"/details",
             name:"details",
