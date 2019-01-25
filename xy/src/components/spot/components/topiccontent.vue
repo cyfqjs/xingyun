@@ -150,7 +150,7 @@ export default {
       // this.message="";
       Axios({
         method: "post",
-        url: "api/StarOfSea/action/addReply",
+        url: "zlnapi/StarOfSea/action/addReply",
         data: {
 	      aid:this.details.id,
 	      type:2,
@@ -163,7 +163,7 @@ export default {
         if(data.data.code==1){
          Axios({
       method: "post",
-      url: "api/StarOfSea/focus/getCurlycueDetails",
+      url: "zlnapi/StarOfSea/focus/getCurlycueDetails",
       data: {
         uid:1,
         aid: this.id,
@@ -198,7 +198,7 @@ export default {
      console.log(this.id);
     Axios({
       method: "post",
-      url: "api/StarOfSea/focus/getCurlycueDetails",
+      url: "zlnapi/StarOfSea/focus/getCurlycueDetails",
       data: {
         uid:1,
         aid: this.id,

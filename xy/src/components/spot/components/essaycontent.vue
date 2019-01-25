@@ -132,7 +132,7 @@ export default {
 
       Axios({
         method: "post",
-        url: "api/StarOfSea/action/compliment",
+        url: "zlnapi/StarOfSea/action/compliment",
         data: {
           uid: 1,
           aid: this.articledetails.id,
@@ -144,7 +144,7 @@ export default {
         if (data.data.code == 1) {
           Axios({
             method: "post",
-            url: "api/StarOfSea/focus/getArticleDetails",
+            url: "zlnapi/StarOfSea/focus/getArticleDetails",
             headers: { "Content-type": "application/json" },
             data: {
               uid: 1,
@@ -164,7 +164,7 @@ export default {
       if(this.flag==1){
         Axios({
         method:"post",
-        url:"api/StarOfSea/action/compliment",
+        url:"zlnapi/StarOfSea/action/compliment",
         data:{
           aid:this.aid,
 	        type:1,
@@ -182,7 +182,7 @@ export default {
       }else{
         Axios({
         method:"post",
-        url:"api/StarOfSea/action/compliment",
+        url:"zlnapi/StarOfSea/action/compliment",
         data:{
           aid:this.aid,
 	        type:1,
@@ -203,11 +203,11 @@ export default {
 
     //文章评论   用户评论
     send() {
-      this.flag = false;
+      this.show = false;
 
       Axios({
         method: "post",
-        url: "api/StarOfSea/action/addReply",
+        url: "zlnapi/StarOfSea/action/addReply",
         data: {
           uid: 1,
           aid: this.plid,
@@ -220,7 +220,7 @@ export default {
         if (data.data.code == 1) {
           Axios({
             method: "post",
-            url: "api/StarOfSea/focus/getArticleDetails",
+            url: "zlnapi/StarOfSea/focus/getArticleDetails",
             headers: { "Content-type": "application/json" },
             data: {
               uid: 1,
@@ -241,7 +241,7 @@ export default {
     // console.log(this.aid);
     Axios({
       method: "post",
-      url: "api/StarOfSea/focus/getArticleDetails",
+      url: "zlnapi/StarOfSea/focus/getArticleDetails",
       headers: { "Content-type": "application/json" },
       data: {
         uid: 1,
