@@ -22,8 +22,11 @@ export default {
             if(item.id==params.id){
                 if(item.flag==1){
                     item.flag=0
+                    params.compliments--;
                 }else{
                     item.flag=1
+                    params.compliments++;
+
                 }
             }
         })
@@ -31,7 +34,6 @@ export default {
     },
     // 关注
     handleGz_zjy(state,params){
-        console.log(params)
         for(var i=0;i<state.Moments_zjy.length;i++){
             if(state.Moments_zjy[i].id==params){
                if(state.Moments_zjy[i].statu==1){

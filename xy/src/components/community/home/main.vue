@@ -84,8 +84,12 @@ export default {
         handleAddDz_zjy(item){
             if(item.flag==1){
                 item.flag=0
+                item.compliments--;
+                
             }else{
-                item.flag=1    
+                item.flag=1 
+                item.compliments++;
+
             }
             console.log(item.flag)
             this.$store.dispatch("Community/handleAddDz_zjy",item)
