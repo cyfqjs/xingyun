@@ -10,8 +10,9 @@
 <script>
 export default {
     methods:{
+        // 点击返回私信列表
         handleTalklist_zjy(){
-            this.$router.back();
+            this.Observer.$emit("handleChat_zjy",0)
         }
     }
 }

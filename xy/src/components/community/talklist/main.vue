@@ -2,12 +2,8 @@
     <div id="main_zjy">
         <div class="wrapper mainWrapper" ref="mainWrapper">
             <ul class="content list_zjy">
-                <li v-for="(item,index) in Talklist_zjy">
-                    <router-link to="/chat">
-                        <!-- <frameset rows="50, *" border="none">
-                         <frame src="../chatbox/index.vue">
-
-                        </frameset> -->
+                <li v-for="(item,index) in Talklist_zjy" @click="handleChat_zjy">
+                    <router-link to="">
                         <p class="photo_zjy"><img :src="item.photo" alt=""></p>
                         <p class="message_zjy">{{item.username}}<span>{{item.newMessage}}</span></p>
                         <p class="time_zjy">{{item.messageTime}}<img src="@/assets/community/img/msg.png" alt=""></p>
@@ -22,7 +18,8 @@ import Vuex from "vuex";
 import BScroll from "better-scroll";
 export default {
     created(){
-        this. handleMoments_zjy();
+        // 获取私信列表信息
+        this. handleTalklist_zjy();
     },
     mounted() {
         this.scroll=new BScroll(this.$refs.mainWrapper,{
@@ -36,10 +33,18 @@ export default {
     },
     methods:{
         ...Vuex.mapActions({
-            handleMoments_zjy:"Community/handleMoments_zjy",
-        })
+            // 获取私信列表信息
+            handleTalklist_zjy:"Community/handleTalklist_zjy",
+        }),
+
+
+        handleChat_zjy(){
+            // 点击进入聊天框
+            this.Observer.$emit("handleChat_zjy",1)
+        }
     },
     watch:{
+        // 监听属性，一直处于可以滚动状态。
         Talklist_zjy(newVal,oldVal){
                 this.scroll.refresh();
         }
@@ -98,7 +103,7 @@ export default {
         font-family:PingFang-SC-Regular;
     }
     .time_zjy{
-        font-size:.18rem;
+        font-size:.23rem;
         display: flex;
         align-items: center;
         flex-direction:column;
