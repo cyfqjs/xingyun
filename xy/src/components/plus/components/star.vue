@@ -79,7 +79,7 @@
         }
     }
 </script>
-<style scoped lang="scss">
+<style scoped lang="scss" scoped>
     #star {
         height: 7.26rem;
         width: 100%;
@@ -106,11 +106,11 @@
             margin-top: 2.09rem;
             height: 1.43rem;
             text-align: center;
-            font-size: 24px;
+            font-size: .24rem;
             font-family: PingFangSC-Regular;
             font-weight: 400;
             color: rgba(254, 254, 254, 1);
-            line-height: 40px;
+            line-height: .4rem;
             text-shadow: 0px 4px 0px rgba(123, 14, 161, 0.49);
         }
     }

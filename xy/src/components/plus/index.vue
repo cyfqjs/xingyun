@@ -1,6 +1,6 @@
 <template>
 	<div id="index" v-show="flagshow">
-		<Title-com></Title-com>
+        <Title-com></Title-com>
 		<Star-com></Star-com>
 		<Push-com></Push-com>
 	</div>
@@ -25,7 +25,7 @@
     }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     #index {
         height: 100%;
         width: 100%;

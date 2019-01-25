@@ -1,20 +1,45 @@
 <template>
 	<div id="mMain">
-		<label><span class="nickName"></span><input type="text" placeholder="昵称"/></label>
+		<label><span class="nickName"></span><input type="text" :value="nickname" @blur="handleNickname($event)" placeholder="昵称"/></label>
 		<br />
-		<label><span class="sex"></span><input type="text" placeholder="性别"/></label>
+		<label><span class="sex"></span><input type="text" :value="sex" @blur="handleSex($event)" placeholder="性别"/></label>
 		<br />
-		<label><span class="birth"></span><input type="text" placeholder="生日"/></label>
+		<label><span class="birth"></span><input type="text" :value="birthday" @blur="handleBirthday($event)" placeholder="生日"/></label>
 		<br />
-		<label><span class="addr"></span><input type="text" placeholder="地址"/></label>
+		<label><span class="addr"></span><input type="text" :value="address" @blur="handleAddress($event)" placeholder="地址"/></label>
 		<br />
 		<button @click="toThree" class="done">完成注册</button>
 	</div>
 </template>
 
 <script>
+	import Vuex from "vuex";
 	export default{
+
+		computed:{
+			...Vuex.mapState({
+				address:state=>state.registerBlock.address,
+				sex:state=>state.registerBlock.sex,
+				birthday:state=>state.registerBlock.birthday,
+				nickname:state=>state.registerBlock.nickname
+
+			})
+		},
+
 		methods:{
+
+			...Vuex.mapMutations({
+				handleNickname:"registerBlock/handleNickname",
+				handleSex:"registerBlock/handleSex",
+				handleBirthday:"registerBlock/handleBirthday",
+				handleAddress:"registerBlock/handleAddress",
+
+			}),
+			
+			...Vuex.mapActions({
+				toThree:"registerBlock/toThree"
+			}),
+
 			toThree(){
 				this.$router.push('../../regthree')
 			}
