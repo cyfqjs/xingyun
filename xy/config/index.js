@@ -11,11 +11,11 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-    	"/api":{
+    	"/zlnapi":{
         target:"http://39.96.91.169:8080",
         changeOrigin:true,
         pathRewrite:{
-          "^/api":""
+          "^/zlnapi":""
         }
       }
     },

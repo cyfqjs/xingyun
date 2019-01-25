@@ -54,7 +54,7 @@ export default {
   created() {
     Axios({
       method: "post",
-      url: "api/StarOfSea/focus/getArtilces"
+      url: "zlnapi/StarOfSea/focus/getArtilces"
     }).then(data => {
       this.articles = data.data.articles;
       console.log(this.articles);

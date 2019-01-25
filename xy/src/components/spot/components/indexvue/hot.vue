@@ -60,7 +60,7 @@ export default {
   created() {
     Axios({
       method: "post",
-      url: "api/StarOfSea/focus/getCurlycues"
+      url: "zlnapi/StarOfSea/focus/getCurlycues"
     }).then(data => {
       this.hotlist = data.data.curlycues;
       //console.log(data.data);
