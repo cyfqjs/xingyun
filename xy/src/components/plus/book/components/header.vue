@@ -2,12 +2,44 @@
         <div id="header">
         <router-link :to="{name:'plus'}"><div>取消</div></router-link> 
             <div class="title">星书发表</div>
-            <div>发表</div>
+            <div @click="sendbook()">发表</div>
             </div>
     </template>
 <script>
+    import axios from "axios"
+    import vue from "vue"
+    import Vuex from "vuex";
     export default {
-
+        computed: {
+            ...Vuex.mapState({
+                bktitle: state => state.plus.bktitle,
+                bkmain: state => state.plus.bkmain,
+            })
+        },
+        methods: {
+            sendbook() {
+                axios({
+                        url: "http://39.96.91.169:8080/StarOfSea/community/addArticle",
+                        method: "post",
+                        data: {
+                            uid: "1",
+                            title: this.bktitle,
+                            content: this.bkmain
+                        }
+                    })
+                    .then(data => {
+                        if (data.code == 1) {
+                            alert("发表成功");
+                            this.$router.push("/community")
+                        } else if (data.code == 0) {
+                            alert("发表失败");
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+            }
+        },
     }
 </script>
 <style lang="scss" scoped>

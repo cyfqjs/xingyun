@@ -2,18 +2,23 @@
         <div id="header">
        <router-link :to="{name:'plus'}"><div>取消</div></router-link> 
         <div class="title">星图发表</div>
-        <div>发表</div>
+        <div @click="sendpic()">发表</div>
         </div>
     </template>
 <script>
+    import Vuex from "vuex"
     export default {
-
+        methods: {
+            sendpic() {
+                this.Observer.$emit("sendpic")
+            }
+        },
     }
 </script>
 <style lang="scss">
     #header {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-between; 
         align-items: center;
         width: 100%;
         height: .95rem;

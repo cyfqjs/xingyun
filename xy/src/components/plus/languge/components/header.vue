@@ -2,13 +2,45 @@
         <div id="header">
     <router-link :to="{name:'plus'}"><div>取消</div></router-link> 
         <div class="title">星语发表</div>
-        <div>发表</div>
+        <div @click="sendlang()">发表</div>
         </div>
       
     </template>
 <script>
+    import axios from "axios"
+    import vue from "vue"
+    import Vuex from "vuex";
     export default {
-
+        computed: {
+            ...Vuex.mapState({
+                langtxt: state => state.plus.langmain,
+            })
+        },
+        methods: {
+            sendlang() {
+                axios({
+                        url: "http://39.96.91.169:8080/StarOfSea/community/addShare",
+                        method: "post",
+                        data: {
+                            "uid": 1,
+                            "title": "",
+                            "content": this.langtxt,
+                            "img": ""
+                        }
+                    })
+                    .then(data => {
+                        if (data.code == 1) {
+                            alert("发表成功");
+                            this.$router.push("/community")
+                        } else if (data.code == 0) {
+                            alert("发表失败");
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+            }
+        },
     }
 </script>
 <style lang="scss" scoped>
