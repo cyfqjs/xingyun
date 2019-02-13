@@ -2,11 +2,12 @@
     <div id="main">
         <div class="wrapper homeWrapper" ref="homeWrapper">
             <ul class="content">
-                <router-link :to="{name:'details',query:{dc:item}}"  v-for="(item,index) in Moments_zjy">
-                    <li @click="handleMoments_zjy">
+                <!-- 点击到详情 -->
+                <router-link to="/details"  v-for="(item,index) in Moments_zjy">
+                    <li @click="handleDetails_zjy(item)">
                         <p class="photo_zjy"><img :src="item.photo_path" alt=""></p>
                         <p class="name_zjy">{{item.name}}<span>{{item.createdate}}</span></p>
-                        <p class=" Concern_zjy"><router-link to="">+关注</router-link></p>
+                        <p class=" Concern_zjy" @click="handleGz_zjy(item)"><router-link to="" v-text="item.statu==1?'已关注':'+ 关注'" :class="item.statu==0?'ever':''"></router-link></p>
                         <p class="content_zjy">
                             {{item.content}}
                         </p>
@@ -14,9 +15,9 @@
                             <img v-for="(item,index) in item.img_paths" :src="item"  alt="">
                         </p>
                         <p class="fdp_zjy">
-                            <router-link to="" ><img @click="handlePush_zjy" src="@/assets/community/img/fx_zjy.png" alt=""><span>{{item.talk}}</span></router-link>
-                            <router-link :to="{name:'details',query:{dc:item}}"><img src="@/assets/community/img/pl_zjy.png" alt=""><span>{{item.replys}}</span></router-link>
-                            <router-link to=""><img @click="handleAddDz_zjy(item)" :src='item.flag==0?"../../../static/dz_zjy.png":"../../../static/zh.png"' alt=""><span>{{item.complimer}}</span></router-link>
+                            <router-link to="" ><img @click="handlePush_zjy" src="@/assets/community/img/fx_zjy.png" alt=""><span>{{item.times}}</span></router-link>
+                            <router-link :to="{name:'details',query:{dc:item}}"><img src="@/assets/community/img/pl_zjy.png" alt=""><span>{{item.replies.length}}</span></router-link>
+                            <router-link to=""><img @click="handleAddDz_zjy(item)" :src='item.flag==0?"../../../static/dz_zjy.png":"../../../static/zh.png"' alt=""><span>{{item.compliments}}</span></router-link>
                         </p>
                     </li>
                 </router-link>
@@ -38,8 +39,12 @@ export default {
         return {
             flagLoading:false,
             flagLoadingY:false,
-            listIndex:0,
+            // listIndex:0,
+            // 转发
             flagPush_zjy:false,
+            // 点赞
+            flagXin:null,
+
         }
     },
     created(){
@@ -72,27 +77,40 @@ export default {
         ...Vuex.mapActions({
             // 获取动态列表
             handleMoments_zjy:"Community/handleMoments_zjy",
-            // 点赞
-            handleAddDz_zjy:"Community/handleAddDz_zjy"
+            // 关注
+            handleGz_zjy:"Community/handleGz_zjy"
         }),
+        // 点赞
+        handleAddDz_zjy(item){
+            if(item.flag==1){
+                item.flag=0
+            }else{
+                item.flag=1    
+            }
+            console.log(item.flag)
+            this.$store.dispatch("Community/handleAddDz_zjy",item)
+        },
         // 转发
         handlePush_zjy(){
             this.flagPush_zjy=true;
             this.$emit("push_zjy",this.flagPush_zjy)
         },
+        handleDetails_zjy(val){
+            // 点击时获取某条具体动态
+            this.$store.dispatch("Community/handleOne_zjy",val)
+            //将某一条动态的具体数据传递给footer功能栏，实现点赞和评论等。
+            this.Observer.$emit("handleDetails_zjy",val);
+        },
+         
     },
     watch:{
         // 监听动态列表
          Moments_zjy(newVal,oldVal){
+            // 数据更新后，保证滚动的效果
              this.scroll.refresh();
+             //上拉加载后，通知用户可以再次加载。
              this.scroll.finishPullUp();
          },
-        //  listIndex(newVal,oldVal){
-        //      var index=this.Moments_zjy.length;
-        //     if(index>40){
-        //         this.flagLoadingY=true;
-        //     }
-        //  }
     }
 }
 </script>
@@ -165,6 +183,10 @@ export default {
          font-size:.22rem;
          border:.01rem dashed 
      }
+     /* #main .Concern_zjy>.ever{
+         background:url("../../../assets/community/img/gz_zjy.png");
+         color:#fff
+     } */
      #main .content_zjy{
          width:100%;
          height:auto;

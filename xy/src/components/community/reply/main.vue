@@ -24,9 +24,9 @@
 import Vuex from "vuex";
 import BScroll from "better-scroll";
 export default {
-    // created(){
-    //     this. handleTalklist_zjy();
-    // },
+    created(){
+        this. handleTalklist_zjy();
+    },
     mounted() {
         this.scroll=new BScroll(this.$refs.mainWrapper,{
             click:true
@@ -37,11 +37,11 @@ export default {
             Talklist_zjy:state=>state.Community.Talklist_zjy
         })
     },
-    // methods:{
-    //     ...Vuex.mapActions({
-    //         handleTalklist_zjy:"Community/handleTalklist_zjy",
-    //     })
-    // },
+    methods:{
+        ...Vuex.mapActions({
+            handleTalklist_zjy:"Community/handleTalklist_zjy",
+        })
+    },
     watch:{
         Talklist_zjy(newVal,oldVal){
                 this.scroll.refresh();

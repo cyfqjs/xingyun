@@ -1,6 +1,7 @@
 export default {
     handleclose(state) {
         state.flag = false;
+        location.href = state.linkto;
     },
     handleopen(state, parms) {
         if (parms == 2) {

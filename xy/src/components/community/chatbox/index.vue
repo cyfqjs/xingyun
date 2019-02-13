@@ -9,13 +9,14 @@
 import Header from "./header"
 import Main from "./main"
 import Footer from "./footer"
-
+import Vuex from "vuex";
+import BScroll from "better-scroll";
 export default {
     components:{
         "Header-com":Header,
         "Main-com":Main,
         "Footer-com":Footer
-    }
+    },
 }
 </script>
 <style scoped>
@@ -24,5 +25,12 @@ export default {
         height:100%;
         background: url("../../../assets/community/img/ltbj.png");
         background-size:cover; 
+    }
+    .mainWrapper{
+        width:100%;
+        height:100%;
+    }
+    .chat{
+        height:100%;
     }
 </style>
