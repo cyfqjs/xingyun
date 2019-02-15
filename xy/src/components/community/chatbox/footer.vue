@@ -1,11 +1,27 @@
 <template>
     <div id="footer">
-        <div class="send"><input type="text"><p>发送</p></div>
+        <div class="send"><input type="text" v-model="chatCon"><p @click="handleChatSend()">发送</p></div>
     </div>
 </template>
 <script>
+import Vuex from "vuex"
 export default {
-    
+    methods:{
+       handleChatSend(){
+          
+          if(!this.chatCon==""){
+              this.$store.dispatch("Community/handleChatSend",this.chatCon)
+              this.chatCon=""
+          }else{
+              console.log(1)
+          }
+       }
+    },
+    data(){
+        return {
+            chatCon:""
+        }
+    }
 }
 </script>
 <style scoped>
@@ -17,6 +33,7 @@ export default {
         left:0;
         bottom:0;
         z-index:5;
+        
     }
     .send{
         width:100%;
@@ -30,6 +47,8 @@ export default {
         border-radius:.1rem;
         margin:.13rem .17rem;
         padding-right: .58rem;
+        font-size:.27rem;
+        color:#fff;
     }
     .send>p{
         width:.58rem;

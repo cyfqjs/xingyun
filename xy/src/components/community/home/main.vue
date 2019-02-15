@@ -3,7 +3,7 @@
         <div class="wrapper homeWrapper" ref="homeWrapper">
             <ul class="content">
                 <!-- 点击到详情 -->
-                <router-link to="/details"  v-for="(item,index) in Moments_zjy">
+                <router-link to="/details"  v-for="(item,index) in Moments_zjy" :key="index">
                     <li @click="handleDetails_zjy(item)">
                         <p class="photo_zjy"><img :src="item.photo_path" alt=""></p>
                         <p class="name_zjy">{{item.name}}<span>{{item.createdate}}</span></p>
@@ -32,6 +32,7 @@
     </div>
 </template>
 <script>
+import getMyDate from "../time.js";
 import BScroll from "better-scroll";
 import Vuex from "vuex";
 export default {
@@ -68,7 +69,12 @@ export default {
     },
     computed:{
         ...Vuex.mapState({
-            Moments_zjy:state=>state.Community.Moments_zjy
+            Moments_zjy:state=>{
+                state.Community.Moments_zjy.map((item,index)=>{
+                    item.createdate=getMyDate.getMyDate(item.createdate)
+                })
+                return state.Community.Moments_zjy
+            }
         }),
     },
     methods:{
@@ -162,12 +168,12 @@ export default {
      #main .name_zjy{
          width:40%;
          height:.5rem;
-         font-size:.3rem;
+         font-size:.28rem;
          line-height: .32rem;
          margin-left:-2rem;
      }
      #main .name_zjy>span{
-         font-size:.22rem;
+         font-size:.18rem;
          color:#ccc;
          display: block;
         font-family: PingFang-SC-Regular;

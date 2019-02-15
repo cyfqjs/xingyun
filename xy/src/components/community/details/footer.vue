@@ -31,7 +31,7 @@ export default {
         //评论
         handlePl_zjy(){
             this.flagPl_zjy=!this.flagPl_zjy
-            this.Observer.$emit("handlePl_zjy",this.flagPl_zjy)
+            this.Observer.$emit("handlePl_zjy",{flag:this.flagPl_zjy,con:3})
         },
         //点赞
         // ...Vuex.mapActions({

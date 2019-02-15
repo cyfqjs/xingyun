@@ -2,7 +2,7 @@
     <div id="home">
         <Header-com></Header-com>
         <Main-com></Main-com>
-        <Footer-com></Footer-com>
+        <!-- <Footer-com></Footer-com> -->
     </div>
 </template>
 <script>

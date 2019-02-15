@@ -1,3 +1,5 @@
+import qs from "qs"
+import getMyDate from "../../components/community/time"
 export default {
     // 获取动态列表
     handleMoments_zjy(state,params){
@@ -5,7 +7,43 @@ export default {
     },
     // 私信列表
     handleTalklist_zjy(state,params){
+        params.map((item,index)=>{
+            item.sendTime=getMyDate.getMyDate(item.sendTime)
+        })
         state.Talklist_zjy=params;
+    },
+    // 聊天记录
+    handleChat(state,obj){
+        if(obj.friend==1){
+            if(state.flagChatList){
+                let brr=[]
+                for(var i=obj.msg.length-1-state.limit;i>0;i--){
+                    if(brr.length<6){
+                        brr.push(obj.msg[i])
+                    }
+                }
+                state.chatList=[...brr.reverse(),...state.chatList];
+                state.friend=obj.friend
+                localStorage.setItem("friend",JSON.stringify(obj.friend))
+                state.limit+=6;
+            }else{
+                state.flagChatList=false;
+            }
+        }else{
+            let brr=[]
+                for(var i=obj.msg.length-1;i>obj.msg.length-7;i--){
+                    
+                        brr.push(obj.msg[i])
+                    
+                }
+                state.chatList=brr.reverse();
+                state.friend=obj.friend
+                localStorage.setItem("friend",JSON.stringify(obj.friend))
+        } 
+    },
+    // 实时聊天
+    handleChatSend(state,params){
+        state.chatList=params
     },
     // 转发
     handlePush_zjy(state){
@@ -15,6 +53,8 @@ export default {
     // 获取某条具体的动态
     handleOne_zjy(state,params){
         state.detailsOne=params;
+        console.log( params)
+        
     },
     // 点赞
     handleAddDz_zjy(state,params){
@@ -44,5 +84,12 @@ export default {
                
             }
         }
+    },
+    // 保存评论id
+    handlePid(state,params){
+        params.replies.map((item,index)=>{
+            item.createtime=getMyDate.getMyDay(item.createtime)
+        })
+        state.plList=params.replies
     }
 }

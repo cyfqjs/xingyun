@@ -1,4 +1,6 @@
 import axios from "../../lib"
+var  websocket = null;
+import getMyDate from "../../components/community/time"
 export default {
     // 获取动态列表
     handleMoments_zjy({commit,state}){
@@ -17,17 +19,77 @@ export default {
     },
     // 私信列表
     handleTalklist_zjy({commit,state}){
-        axios({
-            method:"post",
-            url:"/api/mock/5c36ed7596e17359c184e353/community/getShares",
-            // data:{
-            //     uid:1
-            // },
-        })
-        .then(data=>{
-            console.log(data)
-            commit("handleTalklist_zjy",data.Talktlist);
-        })
+            let websocket = null;
+            if ('WebSocket' in window) {
+                websocket = new WebSocket("ws://39.96.91.169:8080/StarOfSea/websocket/321");
+            } else {
+                alert('当前浏览器 Not support websocket');
+            }
+            websocket.onopen=function () {
+                // document.getElementById('message').innerHTML="WebSocket连接成功";
+            };
+            websocket.onmessage=function (event) {
+                setMessageInnerHTML(event.data);
+            };
+            window.onbeforeunload = function () {
+                closeWebSocket();
+            };
+            function setMessageInnerHTML(jsonString) {
+                let arr=jsonString;
+                var msgs = JSON.parse(arr);
+                // var string='';
+                // for (var i = 0; i < msgs.length; i++) {
+                // 	string += 
+                // 	"<li> <img style='border-radius: 20px; vertical-align: middle; width: 40px' src='"+msgs[i].imgpath+"' onclick='openView()'>"+msgs[i].name+"<span style='margin-left: 10px;'>"+msgs[i].content+"</span>未读数："+msgs[i].unread+"</li>"
+                // }
+                // document.getElementById('message').innerHTML=string;
+                
+                commit("handleTalklist_zjy",msgs)
+                
+            };
+            function closeWebSocket() {
+                websocket.close();
+            }
+
+        },
+    // 聊天室记录
+   
+    handleChat({commit},params){
+		if ('WebSocket' in window) {
+			websocket = new WebSocket("ws://39.96.91.169:8080/StarOfSea/websocket/321a123");
+		} else {
+			alert('当前浏览器 Not support websocket');
+		}
+		websocket.onopen = function() {
+			// document.getElementById('message').innerHTML = "WebSocket连接成功";
+		};
+		websocket.onmessage = function(event) {
+			setMessageInnerHTML(event.data);
+		};
+		window.onbeforeunload = function() {
+			closeWebSocket();
+		};
+
+		function setMessageInnerHTML(jsonString) {
+			var arr = jsonString;
+            var msgs = JSON.parse(arr);
+            commit("handleChat",{msg:msgs,friend:params})
+        }
+		function closeWebSocket() {
+			websocket.close();
+        }
+
+
+    },
+    // 实时聊天
+    handleChatSend({dispatch,commit},params){
+        var message={};
+        message.sid="123";
+        message.rid="321";
+        message.content=params
+        var send=JSON.stringify(message);
+        websocket.send(send);
+        dispatch("handleChat")
     },
     // 转发
     handlePush_zjy({commit}){
@@ -54,21 +116,38 @@ export default {
         })
     },
     // 评论
-    handleSendT_zjy({commit},params){
-        console.log(params);
+    handleSendT_zjy({commit,dispatch},params){
+        let num=null;
+        let id=null;
+        console.log(params.eid)
+        if(params.con==3){
+            num=3;
+            id=params.eid;
+        }else{
+            num=4;
+            params.replies.map((item,index)=>{
+                if(item.id==params.eid){
+                    id=item.id
+                }
+            })
+            console.log(id,num,params.main_zjy)
+            
+        }
         axios({
             method:"post",
-            url:"/api/mock/5c36ed7596e17359c184e353/action/addReply",
+            url:"http://39.96.91.169:8080/StarOfSea/action/addReply",
             data:{
-                uid:state.loginBlock.username,
-                aid:params.id,
-                type:params.type,
+                uid:1,
+                aid:id,
+                type:num,
+                opinion:"",
                 content:params.main_zjy,
             }
 
         }).then(data=>{
             if(data.code==1){
 
+                dispatch("handleOne_zjy",params)
             }
         })
     },
@@ -84,16 +163,16 @@ export default {
             method:"post",
             url:url_zjy,
             data:{
-                uid:params.uid,
-                fid:10
+                uid:"09090909090909",
+                fid:params.uid,
             }
         })
         .then(data=>{
+            console.log(data)
            if(data.code==1){
                commit("handleGz_zjy",params.id)
            }
         })
-        console.log(params.statu)
     },
     //获取某条具体动态
     handleOne_zjy({commit},params){
@@ -102,11 +181,16 @@ export default {
             url:"http://39.96.91.169:8080/StarOfSea/community/findShare",
             data:{
                 aid:params.id,
-                uid:params.uid
+                uid:1
             }
         })
         .then(data=>{
             if(data.code==1){
+                
+                data.share.createdate=getMyDate.getMyDate(data.share.createdate)
+                data.share.replies.map((item,index)=>{
+                    item.createtime=getMyDate.getMyDay(item.createtime)
+                })
                 commit("handleOne_zjy",data.share)
                 let details=JSON.stringify(data.share)
                 sessionStorage.setItem("details",details)

@@ -166,16 +166,17 @@ const router = new Router({
               flag:false,
             },
             children:[
-              {
+              
+            ]
+          },
+          {
             //评论列表
-                path:"/details/reply",
+                path:"/reply",
                 name:"reply",
                 component:Reply,
                 meta:{
                   flag:false,
                 }
-          },
-            ]
           },
         //个人中心
         {

@@ -2,76 +2,29 @@
   <div id="main">
     <div class="wrapper mainWrapper" ref="ainWrapper">
       <ul class="content chat">
-        <li class="friend">
-          <span>12-29 8:00</span>
+        <b @click="flagChatList==true ? handleJz(1):''"><span :style="flagChatList==true?'display:block':'display:none'">点击查看历史消息</span><span :style="flagChatList==true?'display:none':'display:block'">亲,全部加载完了~</span></b>
+        <li :class="item.sid==321?'friend':'me'" v-for="(item,index) in chatList"  ref="mainBottom">
+          <div :style="item.sid==321?'display:block':'display:none'">
+          <span>{{item.sendTime}}</span>
           <p class="you">
-            <img src="@/assets/community/img/test.png" alt>
+            <img :src="imgpath" alt>
             <span>
-              thanks for your attention~
-              thanks for your attention~thanks for your attention~
+              {{item.content}}
             </span>
           </p>
-        </li>
-        <li class="me">
-          <span>12-29 8:00</span>
+
+          </div>
+          <div :style="item.sid==321?'display:none':'display:block'">
+          <span>{{item.sendTime}}</span>
           <p class="my">
+           
             <span>
-              小姐姐请问你是天蝎座吗？
-              小姐姐请问你是天蝎座吗？小姐姐请问你是天蝎座吗？小小姐的萨达十大
+              {{item.content}}
             </span>
-            <img src="@/assets/community/img/tx.jpeg" alt>
+             <img :src="imgpath" alt>
           </p>
-        </li>
-        <li class="friend">
-          <span>12-29 8:00</span>
-          <p class="you">
-            <img src="@/assets/community/img/test.png" alt>
-            <span>thanks for your attention~</span>
-          </p>
-        </li>
-        <li class="me">
-          <span>12-29 8:00</span>
-          <p class="my">
-            <span>
-              小姐姐请问你是天蝎座吗？
-              小姐姐请问你是天蝎座吗？小姐姐请问你是天蝎座吗？
-            </span>
-            <img src="@/assets/community/img/tx.jpeg" alt>
-          </p>
-        </li>
-        <li class="friend">
-          <span>12-29 8:00</span>
-          <p class="you">
-            <img src="@/assets/community/img/test.png" alt>
-            <span>thanks for your attention~</span>
-          </p>
-        </li>
-        <li class="me">
-          <span>12-29 8:00</span>
-          <p class="my">
-            <span>
-              小姐姐请问你是天蝎座吗？
-              小姐姐请问你是天蝎座吗？小姐姐请问你是天蝎座吗？
-            </span>
-            <img src="@/assets/community/img/tx.jpeg" alt>
-          </p>
-        </li>
-        <li class="friend">
-          <span>12-29 8:00</span>
-          <p class="you">
-            <img src="@/assets/community/img/test.png" alt>
-            <span>thanks for your attention~</span>
-          </p>
-        </li>
-        <li class="me">
-          <span>12-29 8:00</span>
-          <p class="my">
-            <span>
-              小姐姐请问你是天蝎座吗？
-              小姐姐请问你是天蝎座吗？小姐姐请问你是天蝎座吗？
-            </span>
-            <img src="@/assets/community/img/tx.jpeg" alt>
-          </p>
+
+          </div>
         </li>
       </ul>
     </div>
@@ -80,41 +33,53 @@
 <script>
 import Vuex from "vuex";
 import BScroll from "better-scroll";
+import qs from "qs";
+import getMyDate from "../time.js"
 export default {
   created() {
-      this.handlejz_zjy()
+
+  },
+  data() {
+   return {
+     imgpath:""
+   }
   },
   activated() {
     this.scroll = new BScroll(this.$refs.ainWrapper, {
       click: true
     });
   },
+  computed:{
+    ...Vuex.mapState({
+            // 聊天记录
+            chatList:(state)=>{
+                state.Community.chatList.map((item,index)=>{
+                  item.sendTime=getMyDate.getMyDate(item.sendTime)
+               
+                })
+                
+                return state.Community.chatList
+            },
+            // 控制历史记录是否加载完毕
+            flagChatList:state=>state.Community.flagChatList
+    }),
+  },
   methods: {
-    handlejz_zjy() {
-      var websocket = null;
-      if ("WebSocket" in window) {
-        websocket = new WebSocket("ws://localhost:8080/websocket/321a123");
-        console.log(1)
-      } else {
-        alert("当前浏览器 Not support websocket");
-      }
-      websocket.onmessage=function (event) {
-        setMessageInnerHTML(event.data);
-        console.log(event.data)
-    };
-    },
-    setMessageInnerHTML(jsonString) {
-        var arr=jsonString;
-        var msgs = JSON.parse(arr);
-        var string='';
-        for (var i=0;i<msgs.length;i++){
-            string+=msgs[i].sid+":"+msgs[i].content+"</br>";
-        }
-        document.getElementById('message').innerHTML=string;
-        // for (var msg in jsonString){
-        //     s+=(msg.sid+msg.content+'<br/>')
-        // }
-    },
+     scrollToBottom() {
+        this.$nextTick(() => {
+        var container = this.$el.querySelector(" .content ");
+        this.$refs.mainBottom[this.$refs.mainBottom.length-1].scrollIntoView()
+     })},
+     ...Vuex.mapActions({
+       handleJz:"Community/handleChat"
+     })
+  },
+  watch:{
+    chatList(){
+      this.scrollToBottom();
+      let val=JSON.parse(localStorage.getItem("friend"))
+      this.imgpath=val.imgpath
+    }
   }
 };
 </script>
@@ -122,7 +87,7 @@ export default {
 #main {
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  overflow: hidden;;
 }
 #main > .mainWrapper {
   width: 100%;
@@ -130,16 +95,27 @@ export default {
 }
 #main > .mainWrapper > .chat {
   width: 100%;
-  padding-bottom: 2rem;
+  padding: 1rem .2rem;
+  height:auto;
 }
 #main > .mainWrapper > ul > li {
   margin: 0.48rem 0;
+  height:auto;
 }
-#main > .mainWrapper > ul > .friend {
-  margin-left: 0.2rem;
+#main > .mainWrapper > .chat >b{
+    width:100%;
+    height:.2rem;
+    display: block;
+    position: fixed;
+    left:0;
+    top:1.2rem;
+    z-index:2;
+    text-align:center;
+    font-size:.2rem;
+    color:gray;
 }
-#main > .mainWrapper > .chat > .friend > span,
-#main > .mainWrapper > .chat > .me > span {
+#main > .mainWrapper > .chat > .friend >div> span,
+#main > .mainWrapper > .chat > .me > div>span {
   display: block;
   height: 0.2rem;
   color: #fff;
@@ -147,30 +123,30 @@ export default {
   margin: 0 0 0.48rem 3rem;
 }
 #main > .mainWrapper > .chat > .me {
-  margin-left: 1.56rem;
+  margin-left: 1.36rem;
 }
-#main > .mainWrapper > .chat > .me > span {
+#main > .mainWrapper > .chat > .me > div>span {
   margin-left: 1.7rem;
 }
-#main > .mainWrapper > .chat > .friend > .you,
-#main > .mainWrapper > .chat > .me > .my {
+#main > .mainWrapper > .chat > .friend >div> .you,
+#main > .mainWrapper > .chat > .me > div>.my {
   width: 5.74rem;
   height: auto;
   display: flex;
   align-items: center;
 }
-#main > .mainWrapper > .chat > .friend > .you > img,
-#main > .mainWrapper > .chat > .me > .my > img {
+#main > .mainWrapper > .chat > .friend >div> .you > img,
+#main > .mainWrapper > .chat > .me >div> .my > img {
   width: 0.82rem;
   height: 0.82rem;
   border-radius: 50%;
+  float:left;
 }
-
-#main > .mainWrapper > .chat > .me > .my > img {
+#main > .mainWrapper > .chat > .me >div> .my > img {
   margin-left: 0.2rem;
 }
-#main > .mainWrapper > .chat > .friend > .you > span,
-#main > .mainWrapper > .chat > .me > .my > span {
+#main > .mainWrapper > .chat > .friend > div>.you > span,
+#main > .mainWrapper > .chat > .me > div>.my > span {
   width: 4.56rem;
   height: auto;
   background: #fff;
@@ -182,7 +158,7 @@ export default {
   word-wrap: break-word;
   word-break: break-all;
 }
-#main > .mainWrapper > .chat > .me > .my > span {
+#main > .mainWrapper > .chat > .me >div> .my > span {
   background: #c490bf;
   color: #fff;
 }

@@ -29,9 +29,9 @@
         </div>
         <ul class="plDatails">
             <li v-for="(item,index) in details_zjy.replies">
-                <p><img :src="item.img_path" alt=""><b>{{item.name}}<span>{{item.opinion}}</span></b></p>
-                <p @click="hanldeHide_zjy">两只小虎牙等人 <span><router-link to="/details/reply">共75条回复></router-link></span></p>
-                <p><span>{{item.createtime}}</span><b><img src="@/assets/community/img/pl_zjy.png" alt=""><img src="@/assets/community/img/zh.png" alt=""><span>{{item.complimer}}</span></b></p>             
+                <p><img :src="item.img_path" alt=""><b>{{item.name}}<span>{{item.content}}</span></b></p>
+                <p @click="hanldeHide_zjy"> <span @click="handlePid(item)"><router-link to="/reply">共{{item.replies.length}}条回复></router-link></span></p>
+                <p><span>{{item.createtime}}</span><b><img @click="handleSpeak({con:4,id:item.id})" src="@/assets/community/img/pl_zjy.png" alt=""><span>{{item.complimer}}</span></b></p>             
             </li>     
         </ul>
       </li>
@@ -39,22 +39,28 @@
     </ul>
     <div class="speak" v-show="flagPl_zjy">
         <textarea  v-model="main_zjy" placeholder="写评论..."></textarea>
-        <p @click="handleSendT_zjy({...details_zjy,main_zjy})">发送</p>
+        <p @click="handleSendT_zjy({...details_zjy,main_zjy,con,eid})">发送</p>
     </div>
   </div>
 </template>
 <script>
+import getMyData from "../time.js"
 import BScroll from "better-scroll";
 import Vuex from "vuex";
 export default {
     created(){
         // 控制评论框的显示
         this.Observer.$on("handlePl_zjy",(val)=>{
-            this.flagPl_zjy=val;
+            this.flagPl_zjy=val.flag;
+            this.con=val.con
         })
     },
     data(){
-        return {     
+        return {    
+            // 判断评论类型是动态还是评论 
+            con:-1,
+            // 评论id
+            eid:-1,
             hide_zjy:null,
              // 评论框是否显示
             flagPl_zjy:false,
@@ -76,6 +82,7 @@ export default {
                 if(state.Community.detailsOne==""){
                     state.Community.detailsOne=JSON.parse(sessionStorage.getItem("details"))
                 }
+                
                 return state.Community.detailsOne
             }
         })
@@ -87,11 +94,27 @@ export default {
             this.$emit("hide_zjy",this.hide_zjy)
         },
         // 评论功能
+         handleSendT_zjy(params){
+             console.log( this.main_zjy)
+             this.$store.dispatch("Community/handleSendT_zjy",params);
+             this.main_zjy="";
+             
+        
+         },
+        //  二次评论
+         handleSpeak(con){
+             this.con=con.con;
+             this.eid=con.id;
+             this.flagPl_zjy=!this.flagPl_zjy;
+            //  this.handleSendT_zjy({...this.details_zjy,content:this.main_zjy,con:this.con,eid:this.id})
+         },
+        //  保存评论的id
+         ...Vuex.mapMutations({
+                handlePid:"Community/handlePid"
+         }),
         ...Vuex.mapActions({
-            handleSendT_zjy:"Community/handleSendT_zjy",
-        }),
-        ...Vuex.mapActions({
-            handleGz_zjy:"Community/handleGz_zjy"
+            // 关注
+            handleGz_zjy:"Community/handleGz_zjy",
         })
     }
 }
