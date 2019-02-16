@@ -5,12 +5,10 @@ export default {
     // 获取动态列表
     handleMoments_zjy({commit,state}){
         axios({
-            method:"post",
-            url:"http://39.96.91.169:8080/StarOfSea/community/getShares",
-            headers:{"Content-type":"application/json"},
-            data:{
-                uid:1
-            },
+            method:"get",
+            url:"http://39.96.91.169/StarOfSea/community/getShares",
+            // headers:{"Content-type":"application/json"},
+            withCredentials:true
         })
         .then(data=>{
             commit("handleMoments_zjy",data.shares);
@@ -101,13 +99,13 @@ export default {
         params.flag==0?flagStatu=0:flagStatu=1;
         axios({
             method:"post",
-            url:"http://39.96.91.169:8080/StarOfSea/action/compliment",
+            url:"http://39.96.91.169/StarOfSea/action/compliment",
             data:{
                 aid:params.id,
                 type:"3",
-                uid:1,
                 state:flagStatu
             },
+            withCredentials:true
         })
         .then((data)=>{
             if(data.code==1){
@@ -135,14 +133,14 @@ export default {
         }
         axios({
             method:"post",
-            url:"http://39.96.91.169:8080/StarOfSea/action/addReply",
+            url:"http://39.96.91.169/StarOfSea/action/addReply",
             data:{
-                uid:1,
                 aid:id,
                 type:num,
                 opinion:"",
                 content:params.main_zjy,
-            }
+            },
+            withCredentials:true
 
         }).then(data=>{
             if(data.code==1){
@@ -155,17 +153,18 @@ export default {
     handleGz_zjy({commit,state},params){
         let url_zjy=null;
         if(params.statu==1){
-            url_zjy="http://39.96.91.169:8080/StarOfSea/user/unattention"
+            url_zjy="http://39.96.91.169/StarOfSea/user/unattention"
         }else{
-            url_zjy="http://39.96.91.169:8080/StarOfSea/user/attention"
+            url_zjy="http://39.96.91.169/StarOfSea/user/attention"
         }
         axios({
-            method:"post",
+            method:"get",
             url:url_zjy,
             data:{
-                uid:"09090909090909",
+                
                 fid:params.uid,
-            }
+            },
+            withCredentials:true
         })
         .then(data=>{
             console.log(data)
@@ -175,18 +174,17 @@ export default {
         })
     },
     //获取某条具体动态
-    handleOne_zjy({commit},params){
-        axios({
-            method:"post",
-            url:"http://39.96.91.169:8080/StarOfSea/community/findShare",
-            data:{
-                aid:params.id,
-                uid:1
-            }
+    handleOne_zjy({commit},val){
+        axios.get("http://39.96.91.169/StarOfSea/community/findShare",{
+
+            params:{
+                aid:val.id,
+            },
+            withCredentials:true
         })
         .then(data=>{
+            console.log(1)
             if(data.code==1){
-                
                 data.share.createdate=getMyDate.getMyDate(data.share.createdate)
                 data.share.replies.map((item,index)=>{
                     item.createtime=getMyDate.getMyDay(item.createtime)

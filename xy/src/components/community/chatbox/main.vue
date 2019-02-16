@@ -77,7 +77,7 @@ export default {
   watch:{
     chatList(){
       this.scrollToBottom();
-      let val=JSON.parse(localStorage.getItem("friend"))
+      let val=JSON.parse(sessionStorage.getItem("friend"))
       this.imgpath=val.imgpath
     }
   }

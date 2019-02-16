@@ -34,6 +34,7 @@
 <script>
 import getMyDate from "../time.js";
 import BScroll from "better-scroll";
+import axios from "axios"
 import Vuex from "vuex";
 export default {
     data(){
@@ -51,6 +52,12 @@ export default {
     created(){
         // 页面加载获取动态列表
         this.handleMoments_zjy();
+        axios({
+            method:"get",
+            url:"http://39.96.91.169/StarOfSea/login/getCookie",
+            // headers:{"Content-type":"application/json"},
+            withCredentials:true
+        })
     },
     mounted() {
         this.scroll=new BScroll(this.$refs.homeWrapper,{
@@ -156,8 +163,8 @@ export default {
         padding-top:.15rem;
     }
      #main>.homeWrapper>Ul>a>li>.photo_zjy{
-         width:1.08rem;
-         height:1.08rem;
+         width:.9rem;
+         height:.9rem;
      }
      #main>.homeWrapper>Ul>a>li>.photo_zjy>img{
          width:100%;

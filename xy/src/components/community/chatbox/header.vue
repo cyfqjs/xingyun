@@ -35,7 +35,7 @@ export default {
         // })
     },
     activated() {
-        let val=JSON.parse(localStorage.getItem("friend")).name
+        let val=JSON.parse(sessionStorage.getItem("friend")).name
         this.name=val
     },
 }
