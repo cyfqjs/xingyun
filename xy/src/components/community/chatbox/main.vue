@@ -37,7 +37,7 @@ import qs from "qs";
 import getMyDate from "../time.js"
 export default {
   created() {
-
+        
   },
   data() {
    return {
@@ -66,8 +66,7 @@ export default {
     // 消息发送完之后让滚动条始终保持页面的最底部
      scrollToBottom() {
         this.$nextTick(() => {
-        var container = this.$el.querySelector(" .content ");
-        this.$refs.mainBottom[this.$refs.mainBottom.length-1].scrollIntoView()
+        this.$refs.mainBottom.scrollIntoView()
      })},
      ...Vuex.mapActions({
        handleJz:"Community/handleChat"
