@@ -54,10 +54,8 @@ export default {
             // 聊天记录
             chatList:(state)=>{
                 state.Community.chatList.map((item,index)=>{
-                  item.sendTime=getMyDate.getMyDate(item.sendTime)
-               
-                })
-                
+                  item.sendTime=getMyDate.getMyDate(item.sendTime)               
+                })               
                 return state.Community.chatList
             },
             // 控制历史记录是否加载完毕
@@ -65,6 +63,7 @@ export default {
     }),
   },
   methods: {
+    // 消息发送完之后让滚动条始终保持页面的最底部
      scrollToBottom() {
         this.$nextTick(() => {
         var container = this.$el.querySelector(" .content ");
@@ -106,10 +105,6 @@ export default {
     width:100%;
     height:.2rem;
     display: block;
-    position: fixed;
-    left:0;
-    top:1.2rem;
-    z-index:2;
     text-align:center;
     font-size:.2rem;
     color:gray;

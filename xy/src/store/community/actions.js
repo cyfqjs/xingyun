@@ -11,81 +11,76 @@ export default {
             withCredentials:true
         })
         .then(data=>{
+            console.log(data)
             commit("handleMoments_zjy",data.shares);
             // commit("handleTalklist_zjy",data.Talktlist);
         })
     },
     // 私信列表
     handleTalklist_zjy({commit,state}){
-            let websocket = null;
-            if ('WebSocket' in window) {
+        let websocket = null;
+        if ('WebSocket' in window) {
+            // 创建一个websocket服务
                 websocket = new WebSocket("ws://39.96.91.169:8080/StarOfSea/websocket/321");
             } else {
                 alert('当前浏览器 Not support websocket');
             }
-            websocket.onopen=function () {
+            websocket.onopen= ()=>{
                 // document.getElementById('message').innerHTML="WebSocket连接成功";
             };
-            websocket.onmessage=function (event) {
-                setMessageInnerHTML(event.data);
+            websocket.onmessage= (event)=> {
+                // 返回数据
+                let arr=event.data;
+                let msgs = JSON.parse(arr);
+                commit("handleTalklist_zjy",msgs)
             };
-            window.onbeforeunload = function () {
+            // onbeforeunload 事件在即将离开当前页面（刷新或关闭）时触发。
+            window.onbeforeunload = ()=> {
                 closeWebSocket();
             };
-            function setMessageInnerHTML(jsonString) {
-                let arr=jsonString;
-                var msgs = JSON.parse(arr);
-                // var string='';
-                // for (var i = 0; i < msgs.length; i++) {
-                // 	string += 
-                // 	"<li> <img style='border-radius: 20px; vertical-align: middle; width: 40px' src='"+msgs[i].imgpath+"' onclick='openView()'>"+msgs[i].name+"<span style='margin-left: 10px;'>"+msgs[i].content+"</span>未读数："+msgs[i].unread+"</li>"
-                // }
-                // document.getElementById('message').innerHTML=string;
-                
-                commit("handleTalklist_zjy",msgs)
-                
-            };
             function closeWebSocket() {
+                // 关闭连接
                 websocket.close();
             }
 
         },
     // 聊天室记录
-   
     handleChat({commit},params){
 		if ('WebSocket' in window) {
+            // 321和123为好友id和自己的id   用a来连接
 			websocket = new WebSocket("ws://39.96.91.169:8080/StarOfSea/websocket/321a123");
 		} else {
 			alert('当前浏览器 Not support websocket');
 		}
-		websocket.onopen = function() {
+		websocket.onopen = ()=> {
 			// document.getElementById('message').innerHTML = "WebSocket连接成功";
 		};
-		websocket.onmessage = function(event) {
-			setMessageInnerHTML(event.data);
-		};
-		window.onbeforeunload = function() {
+		websocket.onmessage = (event) =>{
+            var arr = event.data;
+            var msgs = JSON.parse(arr);
+            // params为好友的相关信息，用来渲染头像和昵称
+            commit("handleChat",{msg:msgs,friend:params})
+        };
+            // onbeforeunload 事件在即将离开当前页面（刷新或关闭）时触发。        
+		window.onbeforeunload = ()=> {
 			closeWebSocket();
 		};
-
-		function setMessageInnerHTML(jsonString) {
-			var arr = jsonString;
-            var msgs = JSON.parse(arr);
-            commit("handleChat",{msg:msgs,friend:params})
-        }
 		function closeWebSocket() {
+            // 关闭连接
 			websocket.close();
         }
-
-
     },
     // 实时聊天
     handleChatSend({dispatch,commit},params){
         var message={};
+         // 自己的id
         message.sid="123";
+        //好友id
         message.rid="321";
+        // 输入框的内容
         message.content=params
         var send=JSON.stringify(message);
+        // 发送给后端
         websocket.send(send);
         dispatch("handleChat")
     },
@@ -151,17 +146,15 @@ export default {
     },
     // 关注
     handleGz_zjy({commit,state},params){
+        console.log(params)
         let url_zjy=null;
         if(params.statu==1){
             url_zjy="http://39.96.91.169/StarOfSea/user/unattention"
         }else{
             url_zjy="http://39.96.91.169/StarOfSea/user/attention"
         }
-        axios({
-            method:"get",
-            url:url_zjy,
-            data:{
-                
+        axios.get(url_zjy,{
+            params:{  
                 fid:params.uid,
             },
             withCredentials:true
@@ -183,7 +176,6 @@ export default {
             withCredentials:true
         })
         .then(data=>{
-            console.log(1)
             if(data.code==1){
                 data.share.createdate=getMyDate.getMyDate(data.share.createdate)
                 data.share.replies.map((item,index)=>{
