@@ -66,7 +66,7 @@ export default {
     // 消息发送完之后让滚动条始终保持页面的最底部
      scrollToBottom() {
         this.$nextTick(() => {
-        this.$refs.mainBottom.scrollIntoView()
+        // this.$refs.mainBottom.scrollIntoView()
      })},
      ...Vuex.mapActions({
        handleJz:"Community/handleChat"

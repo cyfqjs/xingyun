@@ -25,7 +25,6 @@ export default {
                 }
                 state.chatList=[...brr.reverse(),...state.chatList];
                 state.friend=obj.friend
-                sessionStorage.setItem("friend",JSON.stringify(obj.friend))
                 state.limit+=6;
             }else{
                 state.flagChatList=false;
@@ -40,7 +39,7 @@ export default {
                 }
                 state.chatList=brr.reverse();
                 state.friend=obj.friend
-                sessionStorage.setItem("friend",JSON.stringify(obj.friend))
+               
         } 
     },
     // 实时聊天

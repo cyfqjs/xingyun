@@ -11,10 +11,9 @@ export default {
           
           if(!this.chatCon==""){
               this.$store.dispatch("Community/handleChatSend",this.chatCon)
-              this.chatCon=""
           }else{
-              console.log(1)
-          }
+              }
+              this.chatCon=""
        }
     },
     data(){

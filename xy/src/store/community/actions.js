@@ -46,8 +46,11 @@ export default {
         },
     // 聊天室记录
     handleChat({commit},params){
+        console.log(params)
+        let uid=JSON.parse(sessionStorage.getItem("friend")).uid
+        
 		if ('WebSocket' in window) {
-            // 321和123为好友id和自己的id   用a来连接
+            // 123和321为好友id和自己的id   用a来连接
 			websocket = new WebSocket("ws://39.96.91.169:8080/StarOfSea/websocket/321a123");
 		} else {
 			alert('当前浏览器 Not support websocket');
@@ -72,11 +75,13 @@ export default {
     },
     // 实时聊天
     handleChatSend({dispatch,commit},params){
+        let uid=JSON.parse(sessionStorage.getItem("friend")).uid
+        // console.log(uid)
         var message={};
          // 自己的id
-        message.sid="123";
-        //好友id
-        message.rid="321";
+         message.rid="321";
+         //好友id
+         message.sid="123";
         // 输入框的内容
         message.content=params
         var send=JSON.stringify(message);
@@ -112,19 +117,16 @@ export default {
     handleSendT_zjy({commit,dispatch},params){
         let num=null;
         let id=null;
-        console.log(params.eid)
         if(params.con==3){
             num=3;
-            id=params.eid;
+            id=params.id;
         }else{
             num=4;
             params.replies.map((item,index)=>{
                 if(item.id==params.eid){
                     id=item.id
                 }
-            })
-            console.log(id,num,params.main_zjy)
-            
+            })  
         }
         axios({
             method:"post",
@@ -146,7 +148,6 @@ export default {
     },
     // 关注
     handleGz_zjy({commit,state},params){
-        console.log(params)
         let url_zjy=null;
         if(params.statu==1){
             url_zjy="http://39.96.91.169/StarOfSea/user/unattention"
@@ -160,7 +161,6 @@ export default {
             withCredentials:true
         })
         .then(data=>{
-            console.log(data)
            if(data.code==1){
                commit("handleGz_zjy",params.id)
            }

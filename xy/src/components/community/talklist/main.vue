@@ -42,6 +42,7 @@ export default {
         handleChat_zjy(params){
             // 点击进入聊天框
             this.Observer.$emit("handleChat_zjy",1)
+            sessionStorage.setItem("friend",JSON.stringify(params))
             this.$store.dispatch("Community/handleChat",params)
         },
         
