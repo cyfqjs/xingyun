@@ -4,11 +4,16 @@ import getMyDate from "../../components/community/time"
 export default {
     // 获取动态列表
     handleMoments_zjy({commit,state}){
+        // let t = sessionStorage.getItem("token");
+
         axios({
             method:"get",
             url:"http://39.96.91.169/StarOfSea/community/getShares",
             // headers:{"Content-type":"application/json"},
-            withCredentials:true
+            withCredentials:true,
+            // headers: {
+            //     accessToken: t
+            //     }
         })
         .then(data=>{
             console.log(data)
