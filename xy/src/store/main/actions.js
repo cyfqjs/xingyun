@@ -5,8 +5,8 @@ export default{
     // 个人主页信息
     handleIndex({commit}){
         axios({
-            method:"post",
-            url:"http://39.96.91.169:8080/StarOfSea/user/getDetails",
+            method:"get",
+            url:"/api/user/getDetails",
             data:{
                 uid:1
             }
@@ -21,13 +21,10 @@ export default{
     handleTime({commit}){
         axios({
             method:"post",
-            url:"http://39.96.91.169:8080/StarOfSea/user/userHistory",
-            data:{
-                uid:1
-            }
+            url:"/getTime"
         })
         .then((data)=>{
-           /// console.log(data);
+            //console.log(data);
             commit("handleTime",data)
         })
     },
@@ -43,10 +40,12 @@ export default{
             commit("handleGetData",data.data);
         })
     },
+
+
     handleGetFoucson({commit}){
         axios({
             method:"post",
-            url:"/api/mock/5c373fe95394183730861ee2/lei/foucson",
+            url:"/getFocus",
         })
         .then((data)=>{
          //   console.log(data);

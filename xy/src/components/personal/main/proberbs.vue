@@ -19,7 +19,21 @@
 <script>
 import axios from "axios";
 export default {
-    
+    created(){
+        axios({
+            type:"post",
+            url:"http://39.96.91.169:8080/StarOfSea/user/updateBrief",
+            data:{
+                // identity:(账号),
+            	// brief:(修改后的箴言)
+            }
+        })
+        .then((data)=>{
+            // "code":1,"msg":"修改成功",
+            // "code":0,"msg":"修改失败"
+            console.log(data);
+        })
+    }
 }
 </script>
 
@@ -74,3 +88,4 @@ export default {
     }
 </style>
 
+      

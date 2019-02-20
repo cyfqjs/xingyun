@@ -2,14 +2,9 @@
     <div id="main">
         <div class="wrapper homeWrapper" ref="homeWrapper">
             <ul class="content">
-<<<<<<< HEAD
                 <router-link :to="{name:'details',query:{dc:item}}"  v-for="(item,index) in Moments_zjy" :key="item,index">
                     <li @click="handleMoments_zjy">
-=======
-                <!-- 点击到详情 -->
-                <router-link to="/details"  v-for="(item,index) in Moments_zjy">
                     <li @click="handleDetails_zjy(item)">
->>>>>>> master
                         <p class="photo_zjy"><img :src="item.photo_path" alt=""></p>
                         <p class="name_zjy">{{item.name}}<span>{{item.createdate}}</span></p>
                         <p class=" Concern_zjy" @click="handleGz_zjy(item)"><router-link to="">{{gzName}}</router-link></p>
