@@ -1,10 +1,21 @@
 <template>
-    <textarea  id="langtxt" placeholder="分享新鲜事..."></textarea>
+    <textarea  id="langtxt" placeholder="分享新鲜事..." value="langtxt" @change="handlang($event)"></textarea>
 
 </template>
 <script>
+    import vue from "vue"
+    import Vuex from "vuex";
     export default {
-
+        computed: {
+            ...Vuex.mapState({
+                langtxt: state => state.plus.langmain,
+            })
+        },
+        methods: {
+            ...Vuex.mapMutations({
+                handlang: "plus/handlang",
+            })
+        }
     }
 </script>
 <style lang="scss" scoped>
