@@ -54,9 +54,9 @@ export default {
   created() {
     Axios({
       method: "post",
-      url: "api/StarOfSea/focus/getArtilces"
+      url: "http://39.96.91.169:8080/StarOfSea/focus/getArtilces"
     }).then(data => {
-      this.articles = data.data.articles;
+      this.articles = data.articles;
       console.log(this.articles);
     });
   },

@@ -11,8 +11,10 @@
 
 <style lang="scss">
 	#rLogo{
-		padding-top:1.88rem;
-		padding-left: 2.83rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding-top:1.08rem;
 		.imgwrap{
 			img{
 				display: block;

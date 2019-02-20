@@ -150,7 +150,7 @@ export default {
       // this.message="";
       Axios({
         method: "post",
-        url: "api/StarOfSea/action/addReply",
+        url: "http://39.96.91.169:8080/StarOfSea/action/addReply",
         data: {
 	      aid:this.details.id,
 	      type:2,
@@ -163,15 +163,15 @@ export default {
         if(data.data.code==1){
          Axios({
       method: "post",
-      url: "api/StarOfSea/focus/getCurlycueDetails",
+      url: "http://39.96.91.169:8080/StarOfSea/focus/getCurlycueDetails",
       data: {
         uid:1,
         aid: this.id,
       }
     }).then(data => {
-      this.details=data.data.details;
+      this.details=data.details;
       console.log(this.details);
-      this.replies=data.data.details.replies;
+      this.replies=data.details.replies;
       console.log(this.replies);
     });
         }
@@ -198,15 +198,15 @@ export default {
      console.log(this.id);
     Axios({
       method: "post",
-      url: "api/StarOfSea/focus/getCurlycueDetails",
+      url: "http://39.96.91.169:8080/StarOfSea/focus/getCurlycueDetails",
       data: {
         uid:1,
         aid: this.id,
       }
     }).then(data => {
-      this.details=data.data.details;
+      this.details=data.details;
       console.log(this.details);
-      this.replies=data.data.details.replies;
+      this.replies=data.details.replies;
       console.log(this.replies);
     });
     

@@ -60,10 +60,10 @@ export default {
   created() {
     Axios({
       method: "post",
-      url: "api/StarOfSea/focus/getCurlycues"
+      url: "http://39.96.91.169:8080/StarOfSea/focus/getCurlycues"
     }).then(data => {
-      this.hotlist = data.data.curlycues;
-      //console.log(data.data);
+      this.hotlist = data.curlycues;
+      console.log(data);
     });
   }
 };

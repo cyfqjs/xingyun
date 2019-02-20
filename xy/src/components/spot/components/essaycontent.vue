@@ -132,7 +132,7 @@ export default {
 
       Axios({
         method: "post",
-        url: "api/StarOfSea/action/compliment",
+        url: "http://39.96.91.169:8080/StarOfSea/action/compliment",
         data: {
           uid: 1,
           aid: this.articledetails.id,
@@ -141,18 +141,18 @@ export default {
         }
       }).then(data => {
         this.plcontent = "";
-        if (data.data.code == 1) {
+        if (data.code == 1) {
           Axios({
             method: "post",
-            url: "api/StarOfSea/focus/getArticleDetails",
+            url: "http://39.96.91.169:8080/StarOfSea/focus/getArticleDetails",
             headers: { "Content-type": "application/json" },
             data: {
               uid: 1,
               aid: this.id
             }
           }).then(data => {
-            this.articledetails = data.data.articledetails;
-            this.replies = data.data.articledetails.replies;
+            this.articledetails = data.articledetails;
+            this.replies = data.articledetails.replies;
             // console.log(this.articledetails);
             console.log(this.replies);
           });
@@ -164,7 +164,7 @@ export default {
       if(this.flag==1){
         Axios({
         method:"post",
-        url:"api/StarOfSea/action/compliment",
+        url:"http://39.96.91.169:8080/StarOfSea/action/compliment",
         data:{
           aid:this.aid,
 	        type:1,
@@ -173,7 +173,7 @@ export default {
         }
       }).then(data=>{
         //console.log(data)
-         if(data.data.code==1){
+         if(data.code==1){
            this.flag=0;
            this.tpurl=require("../../../assets/spot/icon_axq_hf@2x.png")
          }
@@ -182,7 +182,7 @@ export default {
       }else{
         Axios({
         method:"post",
-        url:"api/StarOfSea/action/compliment",
+        url:"http://39.96.91.169:8080/StarOfSea/action/compliment",
         data:{
           aid:this.aid,
 	        type:1,
@@ -191,7 +191,7 @@ export default {
         }
       }).then(data=>{
         //console.log(data)
-         if(data.data.code==1){
+         if(data.code==1){
            this.flag=1;
            this.tpurl=require("../../../assets/spot/icon_ax_hf@2x.png")
          }
@@ -203,11 +203,11 @@ export default {
 
     //文章评论   用户评论
     send() {
-      this.flag = false;
+      this.show = false;
 
       Axios({
         method: "post",
-        url: "api/StarOfSea/action/addReply",
+        url: "http://39.96.91.169:8080/StarOfSea/action/addReply",
         data: {
           uid: 1,
           aid: this.plid,
@@ -217,18 +217,18 @@ export default {
         }
       }).then(data => {
         this.plcontent = "";
-        if (data.data.code == 1) {
+        if (data.code == 1) {
           Axios({
             method: "post",
-            url: "api/StarOfSea/focus/getArticleDetails",
+            url: "http://39.96.91.169:8080/StarOfSea/focus/getArticleDetails",
             headers: { "Content-type": "application/json" },
             data: {
               uid: 1,
               aid: this.aid
             }
           }).then(data => {
-            this.articledetails = data.data.articledetails;
-            this.replies = data.data.articledetails.replies;
+            this.articledetails =data.articledetails;
+            this.replies = data.articledetails.replies;
             // console.log(this.articledetails);
             console.log(this.replies);
           });
@@ -241,15 +241,15 @@ export default {
     // console.log(this.aid);
     Axios({
       method: "post",
-      url: "api/StarOfSea/focus/getArticleDetails",
+      url: "http://39.96.91.169:8080/StarOfSea/focus/getArticleDetails",
       headers: { "Content-type": "application/json" },
       data: {
         uid: 1,
         aid: this.aid
       }
     }).then(data => {
-       this.articledetails = data.data.articledetails;
-       this.replies = data.data.articledetails.replies;
+       this.articledetails = data.articledetails;
+       this.replies = data.articledetails.replies;
       //console.log(this.articledetails);
       this.flag=this.articledetails.flag;
       if(this.flag==1){

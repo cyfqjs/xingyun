@@ -77,7 +77,7 @@ export default {
         this.flagName = true;
         // s1.innerHTML = "合法";
         // alert();
-        console.log("right");
+        // console.log("right");
       } else {
         this.flagName = false;
         // s1.innerHTML = "不合法";
@@ -87,7 +87,7 @@ export default {
           duration: 1000,
           className: "sty"
         });
-        console.log("err");
+        // console.log("err");
       }
     },
     handlePwd1() {
@@ -103,7 +103,7 @@ export default {
           });
           this.flagPwd = false;
         }
-        console.log("err");
+        // console.log("err");
       }
     },
     handle() {
@@ -117,12 +117,13 @@ export default {
           // console.log(this.username,this.password);这个地方是访问不到空的用户名和密码的。
           // let data = { username: this.username, password: this.password };
           axios({
-            url: "http://39.96.91.169:8080/StarOfSea/login/userLogin",
+            url: "http://39.96.91.169/StarOfSea/login/userLogin",
             method: "post",
             data: {
               username: this.username,
               password: this.password
             }
+            
           })
             .then(data => {
               console.log(data);
@@ -139,19 +140,22 @@ export default {
                   duration: 1000,
                   className: "sty"
                 });
-                console.log(this.password);
+                // console.log(this.password);
                 this.clearPwd();
               } else {
+                sessionStorage.setItem('userMessage',JSON.stringify(data.user));
+                sessionStorage.setItem('token',data.token);
+                
                 Toast({
                   message: data.msg,
                   duration: 1000,
                   className: "sty"
                 });
-                this.$router.push("../../recommend");
+                this.$router.push("../../hPage");
               }
             })
             .catch(err => {
-              console.log(err);
+              // console.log(err);
             });
         }
       } else {
@@ -164,8 +168,8 @@ export default {
 
 <style lang="scss">
 .sty {
-  // left: 56% !important;
-  // top: 59% !important;
+  left: 56% !important;
+  top: 59% !important;
   .mint-toast-text {
     font-size: 0.48rem;
   }
@@ -187,6 +191,7 @@ export default {
         top: -0.1rem;
         left: 0.39rem;
         background: url(../../../assets/login/icon_zh@2x.png) no-repeat center;
+        background-size: 100% 100%;
       }
       .iconCode {
         display: block;
@@ -196,6 +201,7 @@ export default {
         top: 0.4rem;
         left: 0.39rem;
         background: url(../../../assets/login/icon_mm@2x.png) no-repeat center;
+        background-size: 100% 100%;
       }
       .iconEye {
         display: block;
@@ -206,6 +212,7 @@ export default {
         top: 0.45rem;
         right: 0.4rem;
         background: url(../../../assets/login/icon_mmkj@2x.png) no-repeat center;
+        background-size: 100% 100%;
       }
       #uname {
         width: 6.24rem;
