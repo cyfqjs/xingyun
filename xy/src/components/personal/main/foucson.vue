@@ -8,7 +8,7 @@
             <ul class="content">
                 <li v-for="(item,index) in foucson">
                     <div id="left">
-                        <router-link :to="{name:'fansindex'}">
+                        <router-link :to="{name:'fansindex',params:{id:item.id,name:item.fousonName,sign:item.foucsonSign,img:item.fousonImg}}">
                             <img :src="item.fousonImg">
                         </router-link>
                         <div id="message">

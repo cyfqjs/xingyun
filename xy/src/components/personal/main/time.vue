@@ -3,20 +3,22 @@
         <ul class="content" id="content" >
             <div id="zhou">
                 <p id="time">2019/1/1</p>
-                <li>
-                    <!-- v-for="(item,index) in personTime.today.articles" -->
+                <li v-for="(item,index) in personTime.data" >
+                    <!-- :style={background-image=url("{item.img}")} -->
                     <div class="swiper-container" ref="swiperContainer" >
                         <div class="swiper-wrapper" >
                             <div class="swiper-slide">
-                               222222
+                               <div class="title">{{item.title}}</div>
+                               <div class="content">{{item.content}}</div>
                             </div>
                             <div class="swiper-slide">
-                              333333333      
+                              <div class="title">{{item.title}}</div>
+                               <div class="content">{{item.content}}</div> 
                             </div>
                             <div class="swiper-slide">
-                               44444
-                            </div>
-                            
+                               <div class="title">{{item.title}}</div>
+                               <div class="content">{{item.content}}</div>
+                            </div>    
                         </div>
                     </div>
                 </li>
@@ -57,7 +59,7 @@ export default {
     },
     created() {
         this.handleTime();
-        console.log(this.personTime)
+        console.log(this.personTime.data)
     },
     computed: {
         ...vuex.mapState({
@@ -100,6 +102,7 @@ export default {
           background:rgb(135, 160, 135);
           position:relative;
           margin-left:-.8rem;
+          margin-bottom:1rem;
            .swiper-container{
                width:100%;
                height:100%;

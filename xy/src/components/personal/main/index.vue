@@ -1,11 +1,11 @@
 <template>
 	<div id="Person">
 		<div id="personTop">
-				<router-link :to="{name:'set'}"><img src="@/assets/personImg/shezhi.png"></router-link>
-				<div id="name">{{personIndex.name}}</div>
-				<div id="photo">
-					<img src="@/assets/personImg/photo.png">
-				</div>
+			<router-link :to="{name:'set'}"><img src="@/assets/personImg/shezhi.png"></router-link>
+			<div id="name">{{personIndex.name}}</div>
+			<div id="photo">
+				<img src="@/assets/personImg/photo.png">
+			</div>
 		</div>
 		<div id="personContent">
 			<div id="signatrue">
