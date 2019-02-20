@@ -2,8 +2,13 @@
   <div class="stop">
     <div class="search">
       <p>看点</p>
-      <input type="text">
-      <p>水瓶座</p>
+      <router-link to="search">
+        <input type="text" placeholder="请输入博主ID" v-model="searchcontent" @keyup="search()">
+        <button>
+          <img src="../../assets/spot/icon1-kd@2x.png">
+        </button>
+      </router-link>
+      <p>{{constellation}}</p>
     </div>
     <!--热门话题与精彩文章组建切换-->
     <div class="navl">
@@ -23,12 +28,11 @@
       <img src="@/assets/spot/icon3-kd@2x.png">
     </div>
 
-    <div class="constellation" v-show="flag">
-      <div class="wrapper" ref="homeWrapper" >
+    <div class="constellation" v-show="flag" >
+      <div class="wrapper" ref="homeWrapper">
         <div class="content">
-          
           <ul>
-            <li v-for="(item,index) in constellationlist">
+            <li v-for="(item,index) in constellationlist" @click="selectconstellation(index)">
               <img :src="item">
             </li>
           </ul>
@@ -42,6 +46,7 @@
 import BScroll from "better-scroll";
 import Hot from "./components/indexvue/hot";
 import Wonderful from "./components/indexvue/wonderful";
+import axios from "axios";
 // import qs from "qs";
 export default {
   components: {
@@ -53,26 +58,39 @@ export default {
   data() {
     return {
       navs: ["热门话题", "精彩文章"],
+      searchcontent: "",
       activeindex: 0,
       conName: "hot-com",
       flag: false,
-      constellationlist:[
-        '../../assets/spot/ascendant_aries_icon.png',
-        '../../assets/spot/ascendant_cancer_icon.png',
-        "../../../assets/spot/ascendant_capricorn_icon.png",
-        "../../../assets/spot/ascendant_gemini_icon.png",
-        "../../../assets/spot/ascendant_leo_icon.png",
-        "../assets/spot/ascendant_libra_icon.png",
-        "@/assets/spot/ascendant_sagittarius_icon.png",
-        "@/assets/spot/ascendant_virgo_icon.png",
-        "@/assets/spot/ascendant_taurus_icon.png",
-        "@/assets/spot/ascendant_scorpio_icon.png",
-        "@/assets/spot/ascendant_aquarius_icon.png",
-        "@/assets/spot/ascendant_pisces_icon.png"
+      constellation:"水瓶座",
+      selectconstellationlist:["白羊座","巨蟹座","摩羯座","双子座","狮子座","天秤座","射手座","处女座","金牛座","天蝎座","水瓶座","双鱼座"],
+      constellationlist: [
+        require('../../assets/spot/ascendant_aries_icon.png'),
+        require('../../assets/spot/ascendant_cancer_icon.png'),
+        require('../../assets/spot/ascendant_capricorn_icon.png'),
+        require('../../assets/spot/ascendant_gemini_icon.png'),
+        require('../../assets/spot/ascendant_leo_icon.png'),
+        require('../../assets/spot/ascendant_libra_icon.png'),
+        require('../../assets/spot/ascendant_sagittarius_icon.png'),
+
+        require('../../assets/spot/ascendant_virgo_icon.png'),
+        require('../../assets/spot/ascendant_taurus_icon.png'),
+        require('../../assets/spot/ascendant_scorpio_icon.png'),
+        require('../../assets/spot/ascendant_aquarius_icon.png'),
+        require('../../assets/spot/ascendant_pisces_icon.png')
       ]
     };
   },
   methods: {
+    search() {
+      axios
+        .post("http://39.96.91.169/StarOfSea/action/searchUser", {
+          search: this.searchcontent
+        })
+        .then(data => {
+          console.log(data);
+        });
+    },
     handleTo(index) {
       if (index == 0) {
         this.conName = "hot-com";
@@ -83,6 +101,12 @@ export default {
     },
     hendleshow() {
       this.flag = true;
+    },
+    selectconstellation(val){
+      this.flag=false;
+      this.constellation=this.selectconstellationlist[val];
+      
+      
     }
   },
   mounted() {
@@ -90,7 +114,7 @@ export default {
     this.scroll = new BScroll(this.$refs.homeWrapper, {
       click: true,
       pullUpLoad: true,
-      scrollX:true,
+      scrollX: true,
       freeScroll: true,
       bounce: true
     });
@@ -100,8 +124,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-*{margin: 0;
-padding: 0;}
+* {
+  margin: 0;
+  padding: 0;
+}
 .stop {
   width: 100%;
   height: 100%;
@@ -126,13 +152,32 @@ padding: 0;}
       font-size: 0.32rem;
       color: white;
     }
-    input {
+    a {
       width: 3.56rem;
-      height: 0.42rem;
-      background: #3d326c;
-      border-radius: 0.1rem;
-      border: none;
-      outline: none;
+      display: flex;
+      justify-content: space-between;
+      input {
+        width: 3.56rem;
+        height: 0.42rem;
+        background: #3d326c;
+        border-radius: 0.1rem;
+        border: none;
+        outline: none;
+        font-size: 0.28rem;
+        color: #cdcdcd;
+      }
+      button {
+        width: 0.4rem;
+        height: 0.42rem;
+        margin-left: -1.22rem;
+        border-radius: 0.1rem;
+        border: none;
+        background: #3d326c;
+        outline: none;
+        img {
+          width: 60%;
+        }
+      }
     }
   }
   .navl {
@@ -199,10 +244,10 @@ padding: 0;}
       overflow: hidden;
       //background: rgba(61, 50, 108, 0.7);
       .content {
-        width: 13.6rem;
+        width: 23rem;
         height: 2.75rem;
-         ul {
-          width: 13.6rem;
+        ul {
+          width: 23rem;
           height: 2.75rem;
           // margin-top: 6.02rem;
           display: flex;
@@ -210,7 +255,7 @@ padding: 0;}
           li {
             width: 1.33rem;
             height: 1.33rem;
-             margin: 0 0.3rem 0 0.3rem;
+            margin: 0 0.3rem 0 0.3rem;
             // margin: 0 0.1rem 0 0.1rem;
             float: left;
             img {

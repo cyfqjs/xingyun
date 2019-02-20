@@ -80,6 +80,7 @@ export default {
             // 关注
             handleGz_zjy:"Community/handleGz_zjy"
         }),
+
         // 点赞
         handleAddDz_zjy(item){
             if(item.flag==1){

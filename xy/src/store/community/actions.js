@@ -13,22 +13,23 @@ export default {
         .then(data=>{
             commit("handleMoments_zjy",data.shares);
             // commit("handleTalklist_zjy",data.Talktlist);
+            console.log(data)
         })
     },
     // 私信列表
-    handleTalklist_zjy({commit,state}){
-        axios({
-            method:"post",
-            url:"/api/mock/5c36ed7596e17359c184e353/community/getShares",
-            // data:{
-            //     uid:1
-            // },
-        })
-        .then(data=>{
-            console.log(data)
-            commit("handleTalklist_zjy",data.Talktlist);
-        })
-    },
+    // handleTalklist_zjy({commit,state}){
+    //     axios({
+    //         method:"post",
+    //         url:"/api/mock/5c36ed7596e17359c184e353/community/getShares",
+    //         // data:{
+    //         //     uid:1
+    //         // },
+    //     })
+    //     .then(data=>{
+    //         console.log(data)
+    //         commit("handleTalklist_zjy",data.Talktlist);
+    //     })
+    // },
     // 转发
     handlePush_zjy({commit}){
         commit("handlePush_zjy")

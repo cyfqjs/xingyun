@@ -24,7 +24,8 @@ import Recommend from "../components/recommend";
 
 import Spot from "../components/spot";
 import Topiccontent from "@/components/spot/components/topiccontent";
-import Essaycontent from "@/components/spot/components/essaycontent"
+import Essaycontent from "@/components/spot/components/essaycontent";
+import Search from "@/components/spot/components/search";
 
 import Plus from "../components/plus";
 import Pushpic from "../components/plus/pic";
@@ -93,6 +94,14 @@ const router = new Router({
                 flag: true,
             },
           
+        },
+        {
+            path:"/search",
+            name:"search",
+            component:Search,
+            meta:{
+              flag:false
+            }
         },
         {
             path:"/topiccontent/:id",
