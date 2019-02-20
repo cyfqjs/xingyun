@@ -3,7 +3,7 @@
         <div class="wrapper homeWrapper" ref="homeWrapper">
             <ul class="content">
                 <!-- 点击到详情 -->
-                <router-link to="/details"  v-for="(item,index) in Moments_zjy">
+                <router-link to="/details"  v-for="(item,index) in Moments_zjy" :key="index">
                     <li @click="handleDetails_zjy(item)">
                 <router-link :to="{name:'details',query:{dc:item}}"  v-for="(item,index) in Moments_zjy" :key="item,index">
                     <li @click="handleMoments_zjy">
@@ -34,7 +34,9 @@
     </div>
 </template>
 <script>
+import getMyDate from "../time.js";
 import BScroll from "better-scroll";
+import axios from "axios"
 import Vuex from "vuex";
 export default {
     data(){
@@ -51,6 +53,12 @@ export default {
     created(){
         // 页面加载获取动态列表
         this.handleMoments_zjy();
+        axios({
+            method:"get",
+            url:"http://39.96.91.169/StarOfSea/login/getCookie",
+            // headers:{"Content-type":"application/json"},
+            withCredentials:true
+        })
     },
     mounted() {
         this.scroll=new BScroll(this.$refs.homeWrapper,{
@@ -69,7 +77,12 @@ export default {
     },
     computed:{
         ...Vuex.mapState({
-            Moments_zjy:state=>state.Community.Moments_zjy
+            Moments_zjy:state=>{
+                state.Community.Moments_zjy.map((item,index)=>{
+                    item.createdate=getMyDate.getMyDate(item.createdate)
+                })
+                return state.Community.Moments_zjy
+            }
         }),
     },
     methods:{
@@ -86,8 +99,12 @@ export default {
         handleAddDz_zjy(item){
             if(item.flag==1){
                 item.flag=0
+                item.compliments--;
+                
             }else{
-                item.flag=1    
+                item.flag=1 
+                item.compliments++;
+
             }
             console.log(item.flag)
             this.$store.dispatch("Community/handleAddDz_zjy",item)
@@ -154,8 +171,8 @@ export default {
         padding-top:.15rem;
     }
      #main>.homeWrapper>Ul>a>li>.photo_zjy{
-         width:1.08rem;
-         height:1.08rem;
+         width:.9rem;
+         height:.9rem;
      }
      #main>.homeWrapper>Ul>a>li>.photo_zjy>img{
          width:100%;
@@ -166,12 +183,12 @@ export default {
      #main .name_zjy{
          width:40%;
          height:.5rem;
-         font-size:.3rem;
+         font-size:.28rem;
          line-height: .32rem;
          margin-left:-2rem;
      }
      #main .name_zjy>span{
-         font-size:.22rem;
+         font-size:.18rem;
          color:#ccc;
          display: block;
         font-family: PingFang-SC-Regular;

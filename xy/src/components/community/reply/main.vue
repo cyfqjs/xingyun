@@ -2,18 +2,22 @@
     <div id="main_zjy">
         <div class="wrapper mainWrapper" ref="mainWrapper">
             <ul class="content list_zjy">
+<<<<<<< HEAD
                 <router-link to="" v-for="(item,index) in Talklist_zjy" :key="item,index">
+=======
+                <router-link to="" v-for="(item,index) in plList" :key="index">
+>>>>>>> zjy
                     <li>
                         <p class="photo_zjy">
-                            <img :src="item.photo" alt="">
-                            <span>{{item.username}}
-                                <b>{{item.messageTime}}</b>
+                            <img :src="item.img_path" alt="">
+                            <span>{{item.name}}
+                                <b>{{item.createtime}}</b>
                             </span>
                             <b>
-                                <img src="@/assets/community/img/pl_zjy.png" alt=""><img src="@/assets/community/img/zh.png" alt="">2017
+                                <img src="@/assets/community/img/pl_zjy.png" alt=""><img src="@/assets/community/img/zh.png" alt="">{{item.compliments}}
                             </b>
                         </p>
-                        <p class="message_zjy">{{item.newMessage}}</p>            
+                        <p class="message_zjy">{{item.content}}</p>            
                     </li>
                 </router-link>
             </ul>
@@ -23,10 +27,10 @@
 <script>
 import Vuex from "vuex";
 import BScroll from "better-scroll";
+import Vue from "vue"
 export default {
-    // created(){
-    //     this. handleTalklist_zjy();
-    // },
+    created(){
+    },
     mounted() {
         this.scroll=new BScroll(this.$refs.mainWrapper,{
             click:true
@@ -34,14 +38,11 @@ export default {
     },
     computed:{
         ...Vuex.mapState({
-            Talklist_zjy:state=>state.Community.Talklist_zjy
-        })
+            plList:state=>state.Community.plList                       
+        }),
+        
     },
-    // methods:{
-    //     ...Vuex.mapActions({
-    //         handleTalklist_zjy:"Community/handleTalklist_zjy",
-    //     })
-    // },
+    
     watch:{
         Talklist_zjy(newVal,oldVal){
                 this.scroll.refresh();
@@ -90,6 +91,7 @@ export default {
                                 b{
                                     display: block;
                                     color:#B8B8B8;
+                                    margin-top:-.1rem
                                 }                       
                             }
                             b{
@@ -101,6 +103,7 @@ export default {
                                     width:.24rem;
                                     height:.22rem;
                                     margin-right:.1rem;
+                                    margin-bottom:-0.05rem
                                 }
                             }
                             
@@ -117,6 +120,7 @@ export default {
                 font-family:PingFangSC-Regular;
                 font-weight:400;
                 color:#fff;
+                padding-left:.2rem ;
             }
         }
     }

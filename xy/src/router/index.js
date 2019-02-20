@@ -133,11 +133,8 @@ const router = new Router({
             component: Plus,
             meta: {
                 flag: false,
-<<<<<<< HEAD
                 requireAuth:true
 
-=======
->>>>>>> sjw
             }
         },
         {
@@ -170,8 +167,6 @@ const router = new Router({
 
             }
         },
-<<<<<<< HEAD
-=======
         { //社区
             path: "/community",
             name: "community",
@@ -205,6 +200,7 @@ const router = new Router({
             meta: {
                 flag: false,
             },
+
             children: [{
                 //评论列表
                 path: "/details/reply",
@@ -215,7 +211,16 @@ const router = new Router({
                 }
             }, ]
         },
->>>>>>> sjw
+            
+          {
+            //评论列表
+                path:"/reply",
+                name:"reply",
+                component:Reply,
+                meta:{
+                  flag:false,
+                }
+          },
         //个人中心
         {
             path: "/personal",
