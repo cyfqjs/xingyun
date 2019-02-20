@@ -1,17 +1,19 @@
 import axios from 'axios'
 export default {
-    toThree({state}) {
+    toThree({commit}) {
         axios({
             method: "post",
-            url: "http://39.96.91.169:8080/StarOfSea/login/reginDetails",
+            url: "http://39.96.91.169/StarOfSea/login/reginDetails",
             data: {
-                address: state.address,
-                nickname: state.nickname,
-                sex: state.sex,
-                birthday:state.birthday
+                address: commit.address,
+                nickname: commit.nickname,
+                sex: commit.sex,
+                birthday:commit.birthday
             }
         }).then(data => { 
-            console.log(data);  
+            // console.log(data.data);
+            // commit("toThree", data.data); 
+            // console.log(data);
         })
      }
 }

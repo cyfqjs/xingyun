@@ -10,7 +10,7 @@
     <div class="bot">
       <div class="reg" v-show="flag">
         <!-- 手机号注册 -->
-        <form class="form2" @submit="toTwo" action>
+        <form class="form2" @submit.prevent="toTwo" action>
           <label>
             <span>{{phone}}:</span>
             <i class="pIcon"></i>
@@ -47,7 +47,7 @@
 
       <!-- 邮箱注册 -->
       <div class="reg" v-show="!flag">
-        <form class="form2" @submit="etoTwo">
+        <form class="form2" @submit.prevent="etoTwo">
           <label>
             <span>{{email}}:</span>
             <i class="eIcon"></i>
@@ -84,6 +84,8 @@
 
 <script>
 import axios from "axios";
+axios.defaults.withCredentials=true;
+// import axios from "../../../../lib/index"
 import { Toast } from "mint-ui";
 export default {
   data() {
@@ -146,10 +148,10 @@ export default {
       var regp = /1(3|5|7|8)[0-9]{9}/;
       if (regp.test(this.phoneNumber)) {
         this.pFlag = true;
-        console.log("right");
+        // console.log("right");
       } else {
         this.pFlag = false;
-        console.log("err");
+        // console.log("err");
         Toast({
           message: "请输入正确的手机号",
           duration: 1000,
@@ -162,10 +164,10 @@ export default {
       var reg = /^[a-zA-Z0-9]{6,8}$/;
       if (reg.test(this.pwd1)) {
         this.flagPwd1 = true;
-        console.log("right");
+        // console.log("right");
       } else {
         this.flagPwd1 = false;
-        console.log("err");
+        // console.log("err");
         Toast({
           message: "请输入6-8位密码",
           duration: 1000,
@@ -177,7 +179,7 @@ export default {
     handlePwd2() {
       if (this.pwd2 != this.pwd1) {
         this.flagPwd2 = false;
-        console.log("err");
+        // console.log("err");
         Toast({
           message: "两次输入密码不一致",
           duration: 1000,
@@ -193,7 +195,7 @@ export default {
           });
         } else {
           this.flagPwd2 = true;
-          console.log("right");
+          // console.log("right");
         }
       }
     },
@@ -238,7 +240,7 @@ export default {
           }, 1000);
         }
         axios({
-          url: "http://39.96.91.169:8080/StarOfSea/login/phoneCode",
+          url: "http://39.96.91.169/StarOfSea/login/phoneCode",
           method: "post",
           data: {
             phone: this.phoneNumber
@@ -246,10 +248,10 @@ export default {
         })
           .then(data => {
             this.codeFwq = data.code;
-            console.log(this.codeFwq);
+            // console.log(this.codeFwq);
           })
           .catch(err => {
-            console.log(err);
+            // console.log(err);
           });
       }
     },
@@ -267,25 +269,27 @@ export default {
       if (
         this.phoneNumber == "" ||
         this.pwd1 == "" ||
-        this.pwd2 == "" ||
-        this.code == ""
+        this.pwd2 == "" 
+        // ||this.code == ""
       ) {
         alert("请填写所有表单项");
+        return false;
       } else {
         axios({
-          url: "http://39.96.91.169:8080/StarOfSea/login/createUser",
+          url: "http://39.96.91.169/StarOfSea/login/createUser",
           method: "post",
           data: {
             username: this.phoneNumber,
             password: this.pwd1
           }
         }).then(data => {
-          if (this.pFlag && this.flagPwd1 && this.flagPwd2 && this.flagCode) {
+          //&& this.flagCode
+          if (this.pFlag && this.flagPwd1 && this.flagPwd2 ) {
             console.log(data);
             if (data.code == 1) {
-              // this.$router.push("../../regtwo");
+              this.$router.push("../../regtwo");
             } else {
-              return false;
+              // return false;
             }
           }
         });
@@ -297,10 +301,10 @@ export default {
       var rege = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g;
       if (rege.test(this.emailContent)) {
         this.eFlag = true;
-        console.log("right");
+        // console.log("right");
       } else {
         this.eFlag = false;
-        console.log("err");
+        // console.log("err");
         Toast({
           message: "请输入正确的邮箱号",
           duration: 1000,
@@ -312,10 +316,10 @@ export default {
       var reg = /^[a-zA-Z0-9]{6,8}$/;
       if (reg.test(this.ePwd1)) {
         this.flagPwd1 = true;
-        console.log("right");
+        // console.log("right");
       } else {
         this.flagPwd1 = false;
-        console.log("err");
+        // console.log("err");
         Toast({
           message: "请输入6-8位密码",
           duration: 1000,
@@ -327,7 +331,7 @@ export default {
     pFn2() {
       if (this.ePwd2 != this.ePwd1) {
         this.flagPwd2 = false;
-        console.log("err");
+        // console.log("err");
         Toast({
           message: "两次输入密码不一致",
           duration: 1000,
@@ -342,7 +346,7 @@ export default {
           });
         } else {
           this.flagPwd2 = true;
-          console.log("right");
+          // console.log("right");
         }
       }
     },
@@ -392,7 +396,7 @@ export default {
           }, 1000);
         }
         axios({
-          url: "http://39.96.91.169:8080/StarOfSea/login/emailCode",
+          url: "http://39.96.91.169/StarOfSea/login/emailCode",
           method: "post",
           data: {
             email: this.emailContent
@@ -400,10 +404,10 @@ export default {
         })
           .then(data => {
             this.codeFwqe = data.code;
-            console.log(this.codeFwqe);
+            // console.log(this.codeFwqe);
           })
           .catch(err => {
-            console.log(err);
+            // console.log(err);
           });
       }
     },
@@ -417,7 +421,7 @@ export default {
         alert("请填写所有表单项");
       } else {
         axios({
-          url: "http://39.96.91.169:8080/StarOfSea/login/createUser",
+          url: "http://39.96.91.169/StarOfSea/login/createUser",
           method: "post",
           data: {
             username: this.emailContent,
@@ -459,13 +463,13 @@ export default {
       background: #cc3333;
       text-align: center;
       line-height: 0.6rem;
-      background-color: rgba(255, 255, 255, 0.3);
+      background-color: rgba(255, 255, 255, 0.1);
       color: #fff;
       border-radius: 0.2rem;
       font-size: 0.28rem;
     }
     .active {
-      background: red;
+      background:  rgba(255, 255, 255, 0.7);
       color: #000;
     }
   }
@@ -487,12 +491,15 @@ export default {
             top: 0.25rem;
             background: url(../../../../assets/login/icon_dx@2x.png) no-repeat
               center;
+              background-size: 100% 100%;
+              font-family: 宋体;
           }
           .eIcon {
             width: 0.41rem;
             left: 1.6rem;
             background: url(../../../../assets/login/icon_yx@2x.png) no-repeat
               center;
+              background-size: 100% 100%;
           }
           .mIcon {
             display: block;
@@ -503,6 +510,7 @@ export default {
             top: 0.25rem;
             background: url(../../../../assets/login/icon_mm@2x.png) no-repeat
               center;
+              background-size: 100% 100%;
           }
           .eye1 {
             display: block;
@@ -514,6 +522,7 @@ export default {
             cursor: pointer;
             background: url(../../../../assets/login/icon_mmkj@2x.png) no-repeat
               center;
+              background-size: 100% 100%;
           }
           .cIcon {
             width: 1.6rem;
@@ -556,7 +565,8 @@ export default {
             color: #fff;
             line-height: 0.9rem;
             font-size: 0.28rem;
-            font-weight: bold;
+            // font-weight: bold;
+            font-family: 宋体;
             margin-right: 0.2rem;
             text-align-last: justify;
             text-align: justify;
@@ -606,6 +616,7 @@ export default {
             cursor: pointer;
             background: url(../../../../assets/login/icon_mmkj@2x.png) no-repeat
               center;
+              background-size: 100% 100%;
           }
           .pwd1,
           .pwd2 , .ePwd1 ,.ePwd2{
@@ -630,6 +641,7 @@ export default {
             top: 0.25rem;
             background: url(../../../../assets/login/icon_mm@2x.png) no-repeat
               center;
+              background-size: 100% 100%;
           }
         }
         
@@ -736,10 +748,10 @@ export default {
           line-height: 0.9rem;
           width: 4rem;
           margin: 0.4rem 0 0 1.4rem;
-          background: rgb(255, 0, 0);
+          background: rgba(255, 255, 255,.3);
           color: #fff;
           font-size: 0.48rem;
-          font-family: PingFang-SC-Medium;
+          font-family: 宋体;
           border-radius: 0.22rem;
           border: 0;
         }

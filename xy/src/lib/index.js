@@ -1,6 +1,10 @@
 import axios from "axios";
 import qs from "qs";
 
+//携带cookie
+axios.defaults.withCredentials=true;
+
+
 //请求拦截
 axios.interceptors.request.use((config)=>{
     if(config.method == "post"){

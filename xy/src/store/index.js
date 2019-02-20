@@ -4,6 +4,7 @@ import plus from "./plus";
 import Main from "./main";
 import loginBlock from './loginBlock';
 import registerBlock from './registerBlock';
+import recommendBlock from './recommendBlock'
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
@@ -11,7 +12,8 @@ const store = new Vuex.Store({
         plus,
         Main,
         loginBlock,
-        registerBlock
+        registerBlock,
+        recommendBlock
     }
 })
 

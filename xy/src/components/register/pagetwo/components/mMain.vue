@@ -13,7 +13,9 @@
 </template>
 
 <script>
+axios.defaults.withCredentials=true;
 	import Vuex from "vuex";
+	import axios from "axios"
 	export default{
 
 		computed:{
@@ -41,6 +43,15 @@
 			}),
 
 			toThree(){
+				axios({
+					url:"http://39.96.91.169/StarOfSea/login/reginDetails",
+					method:"post",
+					data:{
+						address:this.address,gender:this.sex,name:this.nickname
+					}
+				}).then(data=>{
+					console.log(data);
+				})
 				this.$router.push('../../regthree')
 			}
 		}
