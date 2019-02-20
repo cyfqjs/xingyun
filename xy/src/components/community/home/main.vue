@@ -81,6 +81,17 @@ export default {
             // 点赞
             handleAddDz_zjy:"Community/handleAddDz_zjy",
         }),
+
+        // 点赞
+        handleAddDz_zjy(item){
+            if(item.flag==1){
+                item.flag=0
+            }else{
+                item.flag=1    
+            }
+            console.log(item.flag)
+            this.$store.dispatch("Community/handleAddDz_zjy",item)
+        },
         // 转发
         handlePush_zjy(){
             this.flagPush_zjy=true;

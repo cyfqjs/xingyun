@@ -1,4 +1,5 @@
 <template>
+<!-- 热门话题列表 -->
   <div class="hot">
     <div class="wrapper" ref="homeWrapper">
       <div class="content">
@@ -8,13 +9,11 @@
               <!-- +item.topicid+'/'+item.backimg -->
               <div class="topic">{{item.content}}</div>
               <div class="praisecount">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span>评分：{{item.score}}</span>
                 <!-- <span>{{item.praisepeoplehead[0]}}</span>
               <span>{{item.praisepeoplehead[1]}}</span>
                 <span>{{item.praisepeoplehead[2]}}</span>-->
-                <span class="praise">{{item.score}}</span>
+                <span class="praise">{{item.times}}人</span>
               </div>
             </router-link>
           </li>
@@ -59,7 +58,7 @@ export default {
   },
   created() {
     Axios({
-      method: "post",
+      method: "get",
       url: "http://39.96.91.169:8080/StarOfSea/focus/getCurlycues"
     }).then(data => {
       this.hotlist = data.curlycues;
@@ -108,12 +107,8 @@ export default {
             position: relative;
             align-items: center;
             span {
-              display: block;
-              width: 0.48rem;
-              height: 0.48rem;
-              background: #fff;
-              margin-left: 0.18rem;
-              border-radius: 50%;
+              color: #fff;
+              padding-left: .1rem;
             }
             .praise {
               height: 0.48rem;

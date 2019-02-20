@@ -6,17 +6,15 @@ const path = require('path')
 // https://www.easy-mock.com/mock/5c36ed7596e17359c184e353/community
 module.exports = {
   dev: {
-<<<<<<< HEAD
     // https://www.easy-mock.com/mock/5c373fe95394183730861ee2/lei/fans
-=======
->>>>>>> lei
+
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-<<<<<<< HEAD
+
       "/api": {
-        target: "http://www.kuailvzaixian.com",
+        target: "http://39.96.91.169",
         changeOrigin: true,
         pathRewrite: {
           "^/api": ""
@@ -31,24 +29,17 @@ module.exports = {
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
-=======
+
         "/api":{
           target:"http://39.96.91.169/StarOfSea",
           changeOrigin:true,
           pathRewrite:{
             "^/api":""
           }
-        }
+        
       },
 
-        // Various Dev Server settings
-        host: 'localhost', // can be overwritten by process.env.HOST
-        port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
-        autoOpenBrowser: false,
-        errorOverlay: true,
-        notifyOnErrors: true,
-        poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
->>>>>>> lei
+       
 
     /**
      * Source Maps

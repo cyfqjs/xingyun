@@ -1,11 +1,12 @@
 <template>
+  <!-- 文章详情 -->
   <div class="app">
     <div class="back">
       <mt-header fixed class="contentback">
         <router-link to="/spot" slot="left">
-          <mt-button icon="back"></mt-button>
+          <mt-button class="backicon"><img src="@/assets/spot/icon8-ht@2x.png"/></mt-button>
         </router-link>
-        <mt-button icon="back" slot="right"></mt-button>
+        <mt-button slot="right" @click="share()">分享</mt-button>
       </mt-header>
     </div>
 
@@ -16,7 +17,7 @@
             <div class="content">
               <div class="user">
                 <div class="headphoto">
-                  <img src="@/assets/spot/icon_axq_hf.png">
+                  <img :src="articledetails.imgpath">
                 </div>
                 <div class="uname">
                   <div class="name">{{articledetails.name}}</div>
@@ -50,7 +51,10 @@
               <div class="right">
                 <div class="uname">{{item.name}}</div>
                 <div class="pl">{{item.content}}</div>
-                <div class="gl" v-for="(item_text,index) in item.replies"><span>{{item_text.name}}</span>回复：{{item_text.content}}</div>
+                <div class="gl" v-for="(item_text,index) in item.replies">
+                  <span>{{item_text.name}}</span>
+                  回复：{{item_text.content}}
+                </div>
                 <div class="cl">
                   <!--评论用户-->
                   <div class="hfwrap" @click="hfessay(4,item.id)">
@@ -60,11 +64,11 @@
                     <span>18</span>
                   </div>
                   <!--点赞评论-->
-                  <div class="zwrap" @click="dzpl(4,item.id)">
+                  <div class="zwrap" @click="dzpl(4,item)">
                     <div class="z">
-                      <img src="@/assets/spot/icon_axq_hf@2x.png">
+                      <img :src="item.flag?require('../../../assets/spot/icon_ax_hf@2x.png'):require('../../../assets/spot/icon_axq_hf@2x.png')">
                     </div>
-                    <span>{{item.compliments}}</span>S
+                    <span>{{item.compliments}}</span>
                   </div>
                 </div>
               </div>
@@ -76,7 +80,7 @@
     </div>
     <ul class="operation">
       <li>
-        <div class="fx">
+        <div class="fx" @click="sharebottom()">
           <img src="@/assets/spot/icon_fx_dt@2x.png">
         </div>分享
       </li>
@@ -92,9 +96,71 @@
         </div>喜欢
       </li>
     </ul>
+    <!-- 评论区 -->
     <div class="hfpeople" v-show="show">
       <textarea class="hfbox" placeholder="写评论..." autofocus="autofocus" v-model="plcontent"></textarea>
       <span @click="send()">发送</span>
+    </div>
+    <!-- 分享区 -->
+    <div class="share" v-show="shareshow">
+      <div class="sharewhere">
+        <h5>分享</h5>
+        <ul>
+          <li>
+            <div>
+              <img src="../../../assets/spot/icon_wx_dt@2x.png">
+            </div>
+            <span>微信</span>
+          </li>
+          <li>
+            <div>
+              <img src="../../../assets/spot/icon_pyq_dt@2x.png">
+            </div>
+            <span>朋友圈</span>
+          </li>
+          <li>
+            <div>
+              <img src="../../../assets/spot/icon_qq_dt@2x.png">
+            </div>
+            <span>QQ</span>
+          </li>
+          <li>
+            <div>
+              <img src="../../../assets/spot/icon_kj_dt@2x.png">
+            </div>
+            <span>QQ空间</span>
+          </li>
+        </ul>
+      </div>
+      <div class="report">
+        <ul>
+          <li>
+            <div>
+              <img src="../../../assets/spot/icon_lj_fx@2x.png">
+            </div>
+            <span>复制链接</span>
+          </li>
+          <li>
+            <div>
+              <img src="../../../assets/spot/icon_pb_fx@2x.png">
+            </div>
+            <span>屏蔽</span>
+          </li>
+          <li>
+            <div>
+              <img src="../../../assets/spot/icon_ts_fx@2x.png">
+            </div>
+            <span>投诉</span>
+          </li>
+          <li>
+            <div>
+              <img src="../../../assets/spot/icon-zy_fx@2x.png">
+            </div>
+            <span>返回主页</span>
+          </li>
+        </ul>
+      </div>
+      <div class="cancel" @click="cancel()">取消</div>
     </div>
   </div>
 </template>
@@ -105,14 +171,16 @@ import BScroll from "better-scroll";
 export default {
   data() {
     return {
-      tpurl:"",
-      aid:"",
+      shareshow: false,
+      tpurl: "",
+      aid: "",
       //评论id或者是文章id
       plid: "",
       //
-      type:"",
+      type: "",
       //文章点赞状态
-      flag:"",
+      flag: "",
+      uflag: "",
       show: false,
       plcontent: "",
       articledetails: {},
@@ -120,85 +188,103 @@ export default {
     };
   },
   methods: {
+    //触发分享功能
+    share() {
+      this.shareshow = true;
+    },
+    //触发分享功能
+    sharebottom() {
+      this.shareshow = true;
+    },
+    //取消评论
+    cancel() {
+      this.shareshow = false;
+    },
     //触发评论功能
-    hfessay(val1,val2) {
-      this.type=val1;
+    hfessay(val1, val2) {
+      this.type = val1;
       this.show = true;
-      this.plid=val2;
+      this.plid = val2;
       //console.log(this.id)
     },
     //评论点赞
-    handlelike(){
-
+    dzpl(val,item) {
+      console.log(item)
+      console.log(val);
+      if (item.flag == 1) {
+        this.uflag = 0;
+      } else {
+        this.uflag = 1;
+      }
       Axios({
         method: "post",
-        url: "http://39.96.91.169:8080/StarOfSea/action/compliment",
+        url: "api/StarOfSea/action/compliment",
         data: {
           uid: 1,
-          aid: this.articledetails.id,
-          type:1,
-          // state: w
+          aid: item.id,
+          type: 4,
+          state: this.uflag
         }
       }).then(data => {
-        this.plcontent = "";
-        if (data.code == 1) {
-          Axios({
-            method: "post",
-            url: "http://39.96.91.169:8080/StarOfSea/focus/getArticleDetails",
-            headers: { "Content-type": "application/json" },
-            data: {
-              uid: 1,
-              aid: this.id
-            }
-          }).then(data => {
-            this.articledetails = data.articledetails;
-            this.replies = data.articledetails.replies;
-            // console.log(this.articledetails);
-            console.log(this.replies);
-          });
-        }
+        console.log(data);
+        Axios({
+          method: "post",
+          url: "api/StarOfSea/focus/getArticleDetails",
+          headers: { "Content-type": "application/json" },
+          data: {
+            uid: 1,
+            aid: this.aid
+          }
+        }).then(data => {
+          this.articledetails = data.articledetails;
+          this.replies = data.articledetails.replies;
+          console.log(this.articledetails);
+          this.flag = this.articledetails.flag;
+          // if (this.flag == 1) {
+          //   this.tpurl = require("../../../assets/spot/icon_ax_hf@2x.png");
+          // } else {
+          //   this.tpurl = require("../../../assets/spot/icon_axq_hf@2x.png");
+          // }
+
+          //console.log(this.replies);
+        });
       });
     },
     //文章点赞
-    praiseessay(){
-      if(this.flag==1){
+    praiseessay() {
+      if (this.flag == 1) {
         Axios({
-        method:"post",
-        url:"http://39.96.91.169:8080/StarOfSea/action/compliment",
-        data:{
-          aid:this.aid,
-	        type:1,
-	        uid:1,
-	        state:0
-        }
-      }).then(data=>{
-        //console.log(data)
-         if(data.code==1){
-           this.flag=0;
-           this.tpurl=require("../../../assets/spot/icon_axq_hf@2x.png")
-         }
-       
-      })
-      }else{
+          method: "post",
+          url: "api/StarOfSea/action/compliment",
+          data: {
+            aid: this.aid,
+            type: 1,
+            state: 0
+          }
+        }).then(data => {
+          //console.log(data)
+          if (data.code == 1) {
+            this.flag = 0;
+            this.tpurl = require("../../../assets/spot/icon_axq_hf@2x.png");
+          }
+        });
+      } else {
         Axios({
-        method:"post",
-        url:"http://39.96.91.169:8080/StarOfSea/action/compliment",
-        data:{
-          aid:this.aid,
-	        type:1,
-	        uid:1,
-	        state:1
-        }
-      }).then(data=>{
-        //console.log(data)
-         if(data.code==1){
-           this.flag=1;
-           this.tpurl=require("../../../assets/spot/icon_ax_hf@2x.png")
-         }
-       
-      })
+          method: "post",
+          url: "api/StarOfSea/action/compliment",
+          data: {
+            aid: this.aid,
+            type: 1,
+            state: 1
+          }
+        }).then(data => {
+          //console.log(data)
+          if (data.code == 1) {
+            this.flag = 1;
+            this.tpurl = require("../../../assets/spot/icon_ax_hf@2x.png");
+          }
+        });
       }
-      
     },
 
     //文章评论   用户评论
@@ -207,27 +293,25 @@ export default {
 
       Axios({
         method: "post",
-        url: "http://39.96.91.169:8080/StarOfSea/action/addReply",
+        url: "api/StarOfSea/action/addReply",
         data: {
-          uid: 1,
           aid: this.plid,
           type: this.type,
-          option:this.option,
-          content: this.plcontent,
+          option: this.option,
+          content: this.plcontent
         }
       }).then(data => {
         this.plcontent = "";
         if (data.code == 1) {
           Axios({
-            method: "post",
-            url: "http://39.96.91.169:8080/StarOfSea/focus/getArticleDetails",
+            method: "get",
+            url: "api/StarOfSea/focus/getArticleDetails",
             headers: { "Content-type": "application/json" },
             data: {
-              uid: 1,
               aid: this.aid
             }
           }).then(data => {
-            this.articledetails =data.articledetails;
+            this.articledetails = data.articledetails;
             this.replies = data.articledetails.replies;
             // console.log(this.articledetails);
             console.log(this.replies);
@@ -240,26 +324,24 @@ export default {
     this.aid = this.$route.params.id;
     // console.log(this.aid);
     Axios({
-      method: "post",
-      url: "http://39.96.91.169:8080/StarOfSea/focus/getArticleDetails",
+      method: "get",
+      url: "api/StarOfSea/focus/getArticleDetails",
       headers: { "Content-type": "application/json" },
       data: {
-        uid: 1,
         aid: this.aid
       }
     }).then(data => {
-       this.articledetails = data.articledetails;
-       this.replies = data.articledetails.replies;
-      //console.log(this.articledetails);
-      this.flag=this.articledetails.flag;
-      if(this.flag==1){
-        
-        this.tpurl=require("../../../assets/spot/icon_ax_hf@2x.png")
-      }else{
-        this.tpurl=require("../../../assets/spot/icon_axq_hf@2x.png")
+      this.articledetails = data.articledetails;
+      this.replies = data.articledetails.replies;
+      console.log(this.articledetails);
+      this.flag = this.articledetails.flag;
+      if (this.flag == 1) {
+        this.tpurl = require("../../../assets/spot/icon_ax_hf@2x.png");
+      } else {
+        this.tpurl = require("../../../assets/spot/icon_axq_hf@2x.png");
       }
-      
-       //console.log(this.replies);
+
+      //console.log(this.replies);
     });
   },
   mounted() {
@@ -287,6 +369,11 @@ export default {
       height: 0.98rem;
       margin-top: 0.25rem;
       background: #2f284b;
+      font-size: 0.25rem;
+      color: #ccc;
+      a {
+        font-size: 0.3rem;
+      }
     }
   }
 
@@ -438,7 +525,7 @@ export default {
           li {
             width: 92%;
             min-height: 1.87rem;
-            margin: .1rem auto;
+            margin: 0.1rem auto;
             display: flex;
             .headpho {
               width: 0.8rem;
@@ -449,6 +536,9 @@ export default {
                 height: 0.64rem;
                 border-radius: 50%;
                 background: #ccc;
+                img {
+                  width: 100%;
+                }
               }
             }
             .right {
@@ -466,19 +556,21 @@ export default {
                 font-size: 0.26rem;
                 color: rgb(165, 153, 177);
               }
-              .gl{
-                margin-left: .15rem;
+              .gl {
+                word-wrap: break-word;
+                width: 2.5rem;
+                margin-left: 0.15rem;
                 color: rgb(165, 153, 177);
-                span{
-                  color:skyblue;
-                  margin-right: .08rem;
+                span {
+                  color: skyblue;
+                  margin-right: 0.08rem;
                 }
               }
               .cl {
                 width: 100%;
                 height: 0.3rem;
                 position: absolute;
-                top: .3rem;
+                top: 0.3rem;
                 display: flex;
                 margin-top: 0.5rem;
                 font-size: 0.24rem;
@@ -595,6 +687,102 @@ export default {
     }
     li:nth-children(3) {
       border: none;
+    }
+  }
+  .share {
+    width: 100%;
+    height: 5.6rem;
+    position: fixed;
+    bottom: 0rem;
+    left: 0rem;
+    background: #e7e7e7;
+    //268 200
+    .sharewhere {
+      width: 100%;
+      height: 2.68rem;
+      border-bottom: 0.02rem#CACACA solid;
+      h5 {
+        width: 100%;
+        height: 0.98rem;
+        line-height: 0.98rem;
+        text-align: center;
+        font-size: 0.28rem;
+      }
+      ul {
+        width: 74.6%;
+        height: 1.7rem;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-around;
+        li {
+          width: 1rem;
+          height: 1.7rem;
+          div {
+            background: #fff;
+            width: 100%;
+            height: 1rem;
+            padding-top: 0.2rem;
+            img {
+              width: 60%;
+              margin: 0 auto;
+            }
+          }
+          span {
+            display: block;
+            width: 100%;
+            margin-top: 0.22rem;
+            text-align: center;
+            font-size: 0.22rem;
+            font-family: PingFang-SC-Regular;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+    .report {
+      width: 100%;
+      height: 2rem;
+      padding-top: 0.3rem;
+      ul {
+        width: 74.6%;
+        height: 1.7rem;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-around;
+        li {
+          width: 1rem;
+          height: 1.7rem;
+          div {
+            background: #fff;
+            width: 100%;
+            height: 1rem;
+            padding-top: 0.2rem;
+            img {
+              width: 60%;
+              margin: 0 auto;
+            }
+          }
+          span {
+            display: block;
+            width: 100%;
+            margin-top: 0.22rem;
+            text-align: center;
+            font-size: 0.22rem;
+            font-family: PingFang-SC-Regular;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+    .cancel {
+      width: 100%;
+      height: 0.9rem;
+      background: #fff;
+      font-size: 0.3rem;
+      font-weight: bold;
+      color: #000;
+      text-align: center;
+      line-height: 0.9rem;
     }
   }
 }

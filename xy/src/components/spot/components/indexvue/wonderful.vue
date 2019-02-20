@@ -1,4 +1,5 @@
 <template>
+  <!-- 精彩文章列表 -->
   <div class="wonderful">
     <div class="wrapper" ref="homeWrapper">
       <div class="content">
@@ -53,8 +54,8 @@ export default {
   },
   created() {
     Axios({
-      method: "post",
-      url: "http://39.96.91.169:8080/StarOfSea/focus/getArtilces"
+      method: "get",
+      url: "apiStarOfSea/focus/getArtilces"
     }).then(data => {
       this.articles = data.articles;
       console.log(this.articles);
@@ -77,11 +78,13 @@ export default {
     height: 10.3rem;
     overflow: hidden;
     .content {
+      padding-bottom: 0.7rem;
+
       ul {
         width: 83.2%;
         margin: 0 auto;
         li {
-          width: 100%;//6.24
+          width: 100%; //6.24
           height: 1.6rem;
           margin-top: 0.2rem;
           border-radius: 0.1rem;
@@ -105,7 +108,7 @@ export default {
             background-size: 100% 100%;
           }
           .logoright {
-            width: 72.4%;//4.52
+            width: 72.4%; //4.52
             height: 1.58rem;
             .title {
               display: block;
