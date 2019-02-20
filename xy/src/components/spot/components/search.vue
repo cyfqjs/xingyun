@@ -1,7 +1,7 @@
 <template>
   <div class="app">
     <div class="search">
-      <span class="back"><img src="../../../assets/spot/icon_fh_dt@2x.png"/></span>
+      <span class="back" @click="back()"><img src="../../../assets/spot/icon_fh_dt@2x.png"/></span>
       <span class="searchicon"><img src="../../../assets/spot/icon1-kd@2x.png"/></span>
       <input type="text" placeholder="请输入博主ID" v-model="searchcontent" @keyup="search()">
     </div>
@@ -48,6 +48,9 @@ export default {
         this.list = data.users;
         console.log(this.list);
       });
+    },
+    back(){
+      this.$router.history.push('/spot');
     }
   }
 };
