@@ -19,15 +19,15 @@
         methods: {
             sendbook() {
                 axios({
-                        url: "http://39.96.91.169:8080/StarOfSea/community/addArticle",
+                        url: "http://39.96.91.169/StarOfSea/community/addArticle",
                         method: "post",
                         data: {
-                            uid: "1",
                             title: this.bktitle,
                             content: this.bkmain
-                        }
+                        },
                     })
                     .then(data => {
+                        console.log(data)
                         if (data.code == 1) {
                             alert("发表成功");
                             this.$router.push("/community")

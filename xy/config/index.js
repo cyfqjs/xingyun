@@ -3,29 +3,23 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
-// https://www.easy-mock.com/mock/5c36ed7596e17359c184e353/community
+    // https://www.easy-mock.com/mock/5c36ed7596e17359c184e353/community
 module.exports = {
-  dev: {
-// https://www.easy-mock.com/mock/5c373fe95394183730861ee2/lei/fans
-    // Paths
-    assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
-    proxyTable: {
-        "/api":{
-          target:"https://www.easy-mock.com",
-          changeOrigin:true,
-          pathRewrite:{
-            "^/api":""
-          }
-          }
-    },
-    // Various Dev Server settings
-host: 'localhost', // can be overwritten by process.env.HOST
-port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
-autoOpenBrowser: false,
-errorOverlay: true,
-notifyOnErrors: true,
-poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
+    dev: {
+        // https://www.easy-mock.com/mock/5c373fe95394183730861ee2/lei/fans
+        // Paths
+        assetsSubDirectory: 'static',
+        assetsPublicPath: '/',
+        proxyTable: {
+            // "/api": {
+            //     target: "",
+            //     changeOrigin: true,
+            //     pathRewrite: {
+            //         "^/api": ""
+            //     }
+            // }
+
+        },
 
         // Various Dev Server settings
         host: "localhost", // can be overwritten by process.env.HOST
@@ -79,5 +73,6 @@ poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watch
         // `npm run build --report`
         // Set to `true` or `false` to always turn it on or off
         bundleAnalyzerReport: process.env.npm_config_report
+
     }
 }

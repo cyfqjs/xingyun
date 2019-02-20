@@ -19,13 +19,12 @@
         methods: {
             sendlang() {
                 axios({
-                        url: "http://39.96.91.169:8080/StarOfSea/community/addShare",
+                        url: "http://39.96.91.169/StarOfSea/community/addShare",
                         method: "post",
                         data: {
-                            "uid": 1,
-                            "title": "",
+                            "title": "c",
                             "content": this.langtxt,
-                            "img": ""
+                            "img": "c"
                         }
                     })
                     .then(data => {

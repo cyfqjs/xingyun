@@ -92,30 +92,30 @@ const router = new Router({
             meta: {
                 flag: true,
             },
-          
+
         },
         {
-            path:"/topiccontent/:id",
-            name:"topiccontent",
-            component:Topiccontent,
-            meta:{
-              flag:false
+            path: "/topiccontent/:id",
+            name: "topiccontent",
+            component: Topiccontent,
+            meta: {
+                flag: false
             }
-          },
-          {
-            path:"/essaycontent/:id",
-            name:"essaycontent",
-            component:Essaycontent,
-            meta:{
-              flag:false
+        },
+        {
+            path: "/essaycontent/:id",
+            name: "essaycontent",
+            component: Essaycontent,
+            meta: {
+                flag: false
             }
-          },
+        },
         {
             path: "/plus",
             name: "plus",
             component: Plus,
             meta: {
-                flag: true,
+                flag: false,
             }
         },
         {
@@ -142,23 +142,23 @@ const router = new Router({
                 flag: false,
             }
         },
-        {  //社区
-            path:"/community",
-            name:"community",
-            component:Community,
-            meta:{
-              flag:true,
+        { //社区
+            path: "/community",
+            name: "community",
+            component: Community,
+            meta: {
+                flag: true,
             }
-          },
-       
-          {//私信列表
-            path:"/talklist",
-            name:"talklist",
-            component:TalkChat,
-            meta:{
-              flag:false,
+        },
+
+        { //私信列表
+            path: "/talklist",
+            name: "talklist",
+            component: TalkChat,
+            meta: {
+                flag: false,
             }
-          },
+        },
         //   {//聊天框
         //     path:"/chat",
         //     name:"chat",
@@ -167,26 +167,24 @@ const router = new Router({
         //       flag:false,
         //     }
         //   },
-          {//评论详情
-            path:"/details",
-            name:"details",
-            component:Details,
-            props:true,
-            meta:{
-              flag:false,
+        { //评论详情
+            path: "/details",
+            name: "details",
+            component: Details,
+            props: true,
+            meta: {
+                flag: false,
             },
-            children:[
-              {
-            //评论列表
-                path:"/details/reply",
-                name:"reply",
-                component:Reply,
-                meta:{
-                  flag:false,
+            children: [{
+                //评论列表
+                path: "/details/reply",
+                name: "reply",
+                component: Reply,
+                meta: {
+                    flag: false,
                 }
-          },
-            ]
-          },
+            }, ]
+        },
         //个人中心
         {
             path: "/personal",
