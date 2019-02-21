@@ -1,6 +1,8 @@
 <template>
     <div id="home">
         <Header-com></Header-com>
+        
+        
         <Main-com></Main-com>
         <Footer-com></Footer-com>
     </div>
@@ -9,14 +11,15 @@
 import Header from "./header"
 import Main from "./main"
 import Footer from "./footer"
-import Vuex from "vuex";
-import BScroll from "better-scroll";
+import BScroll from "better-scroll"
+import Vuex from "vuex"
 export default {
     components:{
         "Header-com":Header,
         "Main-com":Main,
         "Footer-com":Footer
     },
+    
 }
 </script>
 <style scoped>

@@ -2,11 +2,11 @@
     <div id="main_zjy">
         <div class="wrapper mainWrapper" ref="mainWrapper">
             <ul class="content list_zjy">
-                <li v-for="(item,index) in Talklist_zjy" @click="handleChat_zjy">
+                <li v-for="(item,index) in Talklist_zjy" @click="handleChat_zjy(item)">
                     <router-link to="">
-                        <p class="photo_zjy"><img :src="item.photo" alt=""></p>
-                        <p class="message_zjy">{{item.username}}<span>{{item.newMessage}}</span></p>
-                        <p class="time_zjy">{{item.messageTime}}<img src="@/assets/community/img/msg.png" alt=""></p>
+                        <p class="photo_zjy"><img :src="item.imgpath" alt=""></p>
+                        <p class="message_zjy">{{item.name}}<span>{{item.content}}</span></p>
+                        <p class="time_zjy">{{item.sendTime}}<img src="@/assets/community/img/msg.png" alt=""></p>
                     </router-link>
                 </li>
             </ul>
@@ -28,7 +28,8 @@ export default {
     },
     computed:{
         ...Vuex.mapState({
-            Talklist_zjy:state=>state.Community.Talklist_zjy
+            Talklist_zjy:state=>state.Community.Talklist_zjy,
+            
         })
     },
     methods:{
@@ -38,10 +39,13 @@ export default {
         }),
 
 
-        handleChat_zjy(){
+        handleChat_zjy(params){
             // 点击进入聊天框
             this.Observer.$emit("handleChat_zjy",1)
-        }
+            sessionStorage.setItem("friend",JSON.stringify(params))
+            this.$store.dispatch("Community/handleChat",params)
+        },
+        
     },
     watch:{
         // 监听属性，一直处于可以滚动状态。
@@ -86,10 +90,10 @@ export default {
         border-radius:50%;
     }
      .message_zjy{
-        font-size:.26rem;
+        font-size:.22rem;
         font-family: PingFangSC-Regular;
         color:#fff;
-        margin-left:-2.5rem;
+        margin-left:-2rem;
     }
     .message_zjy>span{
         display: block;

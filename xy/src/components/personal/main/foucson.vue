@@ -8,7 +8,7 @@
             <ul class="content">
                 <li v-for="(item,index) in foucson">
                     <div id="left">
-                        <router-link :to="{name:'fansindex'}">
+                        <router-link :to="{name:'fansindex',params:{id:item.id,name:item.fousonName,sign:item.foucsonSign,img:item.fousonImg}}">
                             <img :src="item.fousonImg">
                         </router-link>
                         <div id="message">
@@ -28,18 +28,12 @@
 import BScroll from "better-scroll";
 import vuex from "vuex";
 export default {
-    mounted() {
-        if(!this.scroll){
+    updated() {
           this.scroll=new BScroll(this.$refs.foucsonWrapper,{
               scrollY:true
           })
-       }    
+         
     },
-    // computed: {
-    //     ...vuex.mapStates({
-                   
-    //     })
-    // }
     methods: {
         ...vuex.mapActions({
             handleGet:"Main/handleGetFoucson"

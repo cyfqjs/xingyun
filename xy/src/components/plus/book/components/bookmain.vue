@@ -1,12 +1,25 @@
 <template>
         <div id="bookmain">
-         <input type="text" id="booktitle" placeholder="请输入您要发表的文章标题！！！">
-         <textarea  id="booktxt" placeholder="请输入您要发表的文章内容"></textarea>
+         <input type="text" id="booktitle" placeholder="请输入您要发表的文章标题！！！" :value="bktitle" @change="handtitle($event)">
+         <textarea  id="booktxt" placeholder="请输入您要发表的文章内容" :value="bkmain" @change="handmain($event)"></textarea>
         </div>
     </template>
 <script>
+    import vue from "vue"
+    import Vuex from "vuex";
     export default {
-
+        computed: {
+            ...Vuex.mapState({
+                bktitle: state => state.plus.bktitle,
+                bkmain: state => state.plus.bkmain,
+            })
+        },
+        methods: {
+            ...Vuex.mapMutations({
+                handtitle: "plus/handtitle",
+                handmain: "plus/handmain"
+            }),
+        }
     }
 </script>
 <style lang="scss" scoped>

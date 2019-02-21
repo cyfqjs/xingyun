@@ -3,21 +3,22 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
-//https://www.easy-mock.com/mock/5c3465937db0f179db20292b/api/idea
+    // https://www.easy-mock.com/mock/5c36ed7596e17359c184e353/community
 module.exports = {
     dev: {
-
+        // https://www.easy-mock.com/mock/5c373fe95394183730861ee2/lei/fans
         // Paths
         assetsSubDirectory: 'static',
         assetsPublicPath: '/',
         proxyTable: {
-            "/api": {
-                target: "https://www.easy-mock.com",
-                changeOrigin: true,
-                pathRewrite: {
-                    "^/api": ""
-                }
-            }
+            // "/api": {
+            //     target: "",
+            //     changeOrigin: true,
+            //     pathRewrite: {
+            //         "^/api": ""
+            //     }
+            // }
+
         },
 
         // Various Dev Server settings
@@ -73,5 +74,6 @@ module.exports = {
         // `npm run build --report`
         // Set to `true` or `false` to always turn it on or off
         bundleAnalyzerReport: process.env.npm_config_report
+
     }
 }

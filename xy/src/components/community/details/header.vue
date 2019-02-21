@@ -23,7 +23,7 @@ export default {
         }),
         handleT(){
             // 编程时导航。
-            this.$router.back();
+            this.$router.push("/community");
         }
     }
 }

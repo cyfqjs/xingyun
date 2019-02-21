@@ -1,6 +1,6 @@
 <template>
         <div class="imgmain">
-        <textarea  id="textarea" cols="30" rows="10"></textarea>
+        <textarea  id="textarea" cols="30" rows="10" @change="handchange($event)"></textarea>
         <div class="image-list">
         <div style="text-align:center" ref="divGenres" class="list-default-img" v-show="isPhoto" @click.stop="addPic">
             <div id="addtsimg">
@@ -25,18 +25,24 @@
         <div class="add-preview" v-show="isPreview" @click="closePreview">
             <img :src="previewImg">
         </div>
-        <div style="font: 0px/0px sans-serif;clear: both;display: block"> </div>
         </div>
     </template>
 <script>
+    import axios from "axios"
     import lrz from "lrz";
     import {
         XHeader,
         Confirm
     } from 'vux'
     export default {
+        mounted() {
+            this.Observer.$on("sendpic", () => {
+                this.saveImage();
+            })
+        },
         data: function() {
             return {
+                textarea: "",
                 show: false,
                 imgUrls: [],
                 urlArr: [],
@@ -44,13 +50,18 @@
                 btnTitle: '',
                 isModify: false,
                 previewImg: '',
-                isPreview: false
+                isPreview: false,
+                files: []
             }
         },
         watch: {
             imgUrls: 'toggleAddPic'
         },
         methods: {
+            handchange(e) {
+                let val = e.target.value;
+                this.textarea = val;
+            },
             toggleAddPic: function() {
                 let vm = this;
                 if (vm.imgUrls.length >= 1) {
@@ -75,6 +86,7 @@
                     width: 480
                 }).then(function(rst) {
                     vm.imgUrls.push(rst.base64);
+                    this.files.push(rst.formdata)
                     return rst;
                 }).always(function() {
                     // 清空文件上传控件的值
@@ -113,8 +125,29 @@
                         urlArr.push(imgUrls[i]);
                     }
                 }
-
-                //数据传输操作
+                this.sendpic();
+            },
+            sendpic: function() {
+                axios({
+                        url: "http://39.96.91.169/StarOfSea/community/addShare",
+                        method: "post",
+                        data: {
+                            "title": "",
+                            "content": this.textarea,
+                            "img": this.files
+                        }
+                    })
+                    .then(data => {
+                        if (data.code == 1) {
+                            alert("发表成功");
+                            this.$router.push("/community")
+                        } else if (data.code == 0) {
+                            alert("发表失败");
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
             }
         }
     }

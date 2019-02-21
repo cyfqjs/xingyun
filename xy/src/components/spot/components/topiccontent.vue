@@ -42,17 +42,23 @@
                   <span>{{item.createtime}}</span>
                 </div>
                 <div class="sex">{{item.gender}}{{item.constellat}}</div>
-                <div class="vote">投票给:{{item.votecontent}}</div>
+                <div class="vote">投票给:{{item.opinion}}</div>
                 <div class="viewpoint">{{item.content}}</div>
                 <div class="zandpl">
                   <div class="z">
-                    <div class="dz">
-                      <img src="@/assets/spot/icon_axq_hf@2x.png" class="z" @click="dz()">
+                    <div class="dz" @click="dz(item)">
+                      <!-- 用户评论点赞 -->
+                      <img
+                        :src="item.flag?require('../../../assets/spot/icon_ax_hf@2x.png'):require('../../../assets/spot/icon_axq_hf@2x.png')"
+                        class="z"
+                      >
                     </div>
-
                     <span>{{item.compliments}}</span>
                   </div>
-                  <div class="pl" @click="pl()">
+                  <div
+                    class="pl"
+                    @click="pl(item)"
+                  >
                     <div class="hf">
                       <img src="@/assets/spot/icon_pl_dt@2x.png" class="pl">
                     </div>
@@ -68,7 +74,7 @@
     </div>
     <div class="coven" v-show="floag">
       <div class="out">
-        <p>投票给:</p>
+        <p>投票给:{{opinion}}</p>
         <div class="idea">
           <p>说说你的想法</p>
           <textarea v-model="message" ref="textarea" autofocus="autofocus"></textarea>
@@ -82,23 +88,36 @@
     <!-- 评论弹框 -->
     <div class="coventwo" v-show="floagtwo">
       <div class="out">
-        <div class="top"><div class="back" @click="close()"><img src="@/assets/spot/icon9-ht@2x.png"></div><span>回复</span></div>
+        <div class="top">
+          <div class="back" @click="close()">
+            <img src="@/assets/spot/icon9-ht@2x.png">
+          </div>
+          <span>回复</span>
+        </div>
         <div class="idea">
           <div class="people">
             <div class="info">
-              <div class="left"><span></span></div>
+              <div class="left">
+                <span>
+                  <img :src="xx.img_path">
+                </span>
+              </div>
               <div class="right">
-                <p><b>名字</b><span>时间</span></p>
-                <p>sex   星座</p>
+                <p>
+                  <b>{{xx.name}}</b>
+                  <span>时间</span>
+                </p>
+                <p>{{xx.gender}} {{xx.constellat}}</p>
               </div>
             </div>
             <div class="other">
-              <p class="othervote">投票给：伤得太深做不到体面</p>
-              <p class="otheropinion">体面是理想结果，很难实现</p>
+              <p class="othervote">投票给：{{xx.opinion}}</p>
+              <p class="otheropinion">{{xx.content}}</p>
             </div>
           </div>
           <div class="choice">
-            <input type="text" v-model="umessage"><span @click="comments()">发表</span>
+            <input type="text" v-model="umessage">
+            <span @click="comments()">发表</span>
           </div>
         </div>
       </div>
@@ -112,34 +131,58 @@ import BScroll from "better-scroll";
 import Axios from "axios";
 export default {
   data() {
-    
     return {
-      message:"",
-      umessage:"",
-       floag: false,
-      floagtwo:false,
-      replies:{
-
-
-      },
-      details:{
+      xx: [],
+      opinion:"",
+      message: "",
+      umessage: "",
+      floag: false,
+      floagtwo: false,
+      uflag: "",
+      replies: {},
+      details: {
         //"agree":(认同数),
-		//"resist":(反对数),
-		//"content":"(内容)",
-		//"createdate":(发表时间),
-		//"id":(详情id),
-		//"flag": 1(1赞同，-1反对),
+        //"resist":(反对数),
+        //"content":"(内容)",
+        //"createdate":(发表时间),
+        //"id":(详情id),
+        //"flag": 1(1赞同，-1反对),
       }
-
     };
   },
   methods: {
-    yes() {//投票给同意
+    yes() {
+      //投票给同意
       this.floag = true;
       this.$refs.textarea.focus();
+      this.opinion="同意";
+      Axios({
+        method: "post",
+        url: "api/StarOfSea/action/compliment",
+        data: {
+          aid: this.id,
+          type: 2,
+          state: 1
+        }
+      }).then(data=>{
+        console.log(data)
+      });
     },
     no() {
       this.floag = true;
+      this.$refs.textarea.focus();
+      this.opinion="反对";
+      Axios({
+        method: "post",
+        url: "api/StarOfSea/action/compliment",
+        data: {
+          aid: this.id,
+          type: 2,
+          state: 0,
+        }
+      }).then(data=>{
+        //console.log(data)
+      });
     },
     cancel() {
       this.floag = false;
@@ -152,64 +195,100 @@ export default {
         method: "post",
         url: "api/StarOfSea/action/addReply",
         data: {
-	      aid:this.details.id,
-	      type:2,
-	      uid:1,
-	      content:this.message
+          aid: this.details.id,
+          type: 2,
+          opinion:this.opinion,
+          content: this.message
         }
       }).then(data => {
         //返回的参数"status":1,"msg":"发表成功"
         //      "status":0,"msg":"发表失败"
-        if(data.data.code==1){
-         Axios({
-      method: "post",
-      url: "api/StarOfSea/focus/getCurlycueDetails",
-      data: {
-        uid:1,
-        aid: this.id,
-      }
-    }).then(data => {
-      this.details=data.data.details;
-      console.log(this.details);
-      this.replies=data.data.details.replies;
-      console.log(this.replies);
-    });
+        if (data.data.code == 1) {
+          Axios({
+            method: "get",
+            url: "api/StarOfSea/focus/getCurlycueDetails",
+            data: {
+              aid: this.id
+            }
+          }).then(data => {
+            this.details = data.details;
+            //console.log(this.details);
+            this.replies = data.details.replies;
+            //console.log(this.replies);
+          });
         }
       });
     },
-    pl(){
-      this.floagtwo=true;
+    //点赞评论
+    dz(val) {
+      //console.log(val);
+      if (val.flag == 1) {
+        this.uflag = 0;
+      } else {
+        this.uflag = 1;
+      }
+      Axios({
+        method: "post",
+        url: "api/StarOfSea/action/compliment",
+        data: {
+          aid: val.id,
+          type: 4,
+          state: this.uflag
+        }
+      }).then(data => {
+        Axios({
+          method: "get",
+          url: "api/StarOfSea/focus/getCurlycueDetails",
+          data: {
+            aid: this.id
+          }
+        }).then(data => {
+          this.details = data.details;
+         // console.log(this.details);
+          this.replies = data.details.replies;
+          //console.log(this.replies);
+        });
+      });
     },
-    close(){
-      this.floagtwo=false;
+    pl(val) {
+      this.floagtwo = true;
+      this.xx = val;
+      //console.log(this.xx);
+      
     },
-    comments(){
-      // Axios({
-      //   method: "post",
-      // })
+    close() {
+      this.floagtwo = false;
+    },
+    comments() {
+      
+      Axios({
+      method: "post",
+       url: "api/StarOfSea/action/addReply",
+        data: {
+          aid: this.xx.id,
+          type: 4,
+          content: this.plcontent
+        }
+       })
     }
   },
 
-  beforecreate() {
-  
-  },
+  beforecreate() {},
   created() {
     this.id = this.$route.params.id;
-     console.log(this.id);
+    console.log(this.id);
     Axios({
-      method: "post",
+      method: "get",
       url: "api/StarOfSea/focus/getCurlycueDetails",
       data: {
-        uid:1,
-        aid: this.id,
+        aid: this.id
       }
     }).then(data => {
-      this.details=data.data.details;
-      console.log(this.details);
-      this.replies=data.data.details.replies;
-      console.log(this.replies);
+      this.details = data.details;
+      //console.log(this.details);
+      this.replies = data.details.replies;
+      //console.log(this.replies);
     });
-    
   },
   mounted() {
     let wrapper = document.querySelector(".wrapper");
@@ -377,46 +456,44 @@ export default {
                 width: 100%;
                 display: flex;
                 margin-top: 0.15rem;
-                .z{
+                .z {
                   display: flex;
                   .dz {
-                  width: 0.33rem;
-                  height: 0.29rem;
-                  img {
-                    
-                    width: 100%;
-                    height: 100%;
+                    width: 0.33rem;
+                    height: 0.29rem;
+                    img {
+                      width: 100%;
+                      height: 100%;
+                    }
                   }
-                }
-                 span {
-                   margin-left: .2rem;
-                  color: white;
-                  font-size: 0.24rem;
-                  margin-bottom: 0.3rem;
-                }
-                }
-                .pl{
-                  margin-left: 1rem;
-                  display: flex;
-                  .hf {
-                  width: 0.33rem;
-                  height: 0.29rem;
-                  img {
-                    margin-left: 0;
-                    width: 100%;
-                    height: 100%;
+                  span {
+                    margin-left: 0.2rem;
+                    color: white;
+                    font-size: 0.24rem;
                     margin-bottom: 0.3rem;
                   }
                 }
-                 span {
-                   margin-left: .2rem;
-                  color: white;
-                  font-size: 0.24rem;
-                  margin-bottom: 0.3rem;
+                .pl {
+                  margin-left: 1rem;
+                  display: flex;
+                  .hf {
+                    width: 0.33rem;
+                    height: 0.29rem;
+                    img {
+                      margin-left: 0;
+                      width: 100%;
+                      height: 100%;
+                      margin-bottom: 0.3rem;
+                    }
+                  }
+                  span {
+                    margin-left: 0.2rem;
+                    color: white;
+                    font-size: 0.24rem;
+                    margin-bottom: 0.3rem;
+                  }
                 }
-                }
-                
-               
+
                 // .pl {
                 //   margin-left: 1rem;
                 // }
@@ -440,7 +517,7 @@ export default {
       width: 6.12rem;
       height: 5.2rem;
       position: fixed;
-      left: .7rem;
+      left: 0.7rem;
       top: 30%;
       background: #50445e;
       border-radius: 0.25rem;
@@ -502,8 +579,8 @@ export default {
       }
     }
   }
-  .coventwo{
-     width: 100%;
+  .coventwo {
+    width: 100%;
     height: 100%;
     background: rgba(47, 40, 75, 0.5);
     position: fixed;
@@ -519,7 +596,7 @@ export default {
       top: 30%;
       background: #50445e;
       border-radius: 0.25rem;
-      .top{
+      .top {
         //padding: 0.32rem 0 0 0.48rem;
         width: 100%;
         height: 0.88rem;
@@ -528,17 +605,17 @@ export default {
         font-size: 0.26rem;
         display: flex;
         align-items: center;
-        .back{
-          width: .22rem;
-          height: .25rem;
-          margin-left: .08rem;
-          img{
+        .back {
+          width: 0.22rem;
+          height: 0.25rem;
+          margin-left: 0.08rem;
+          img {
             display: inline-block;
             width: 100%;
             height: 100%;
           }
         }
-        span{
+        span {
           margin-left: 40%;
           width: 1rem;
         }
@@ -547,58 +624,59 @@ export default {
         width: 100%;
         height: 3.02rem;
         border-bottom: 1px solid #ccc;
-        .people{
+        .people {
           width: 100%;
           height: 2.9rem;
           font-size: 0.26rem;
           color: #9d98ae;
           border: none;
-          .info{
+          .info {
             width: 100%;
             height: 1.2rem;
             margin: 0 auto;
             display: flex;
-            .left{
-              width: .83rem;
+            .left {
+              width: 0.83rem;
               height: 100%;
-              margin-top:.46rem;
-              span{
+              margin-top: 0.46rem;
+              span {
                 display: block;
-                width: .48rem;
-                height: .48rem;
+                width: 0.48rem;
+                height: 0.48rem;
                 border-radius: 50%;
                 background: #fff;
-                margin:0 auto;
-              }
-
-            }
-            .right{
-              margin-top:.46rem;
-              width: 5rem;
-              p{
-                width: 5rem;
-                b{
-                  font-size: .28rem;
+                margin: 0 auto;
+                img {
+                  width: 100%;
                 }
-                span{
+              }
+            }
+            .right {
+              margin-top: 0.46rem;
+              width: 5rem;
+              p {
+                width: 5rem;
+                b {
+                  font-size: 0.28rem;
+                }
+                span {
                   position: absolute;
-                  right: .22rem;
+                  right: 0.22rem;
                   top: 1.4rem;
                 }
               }
             }
-
           }
-          .other{
-            margin-left: .84rem;
-            font-size: .26rem;
-            .othervote{
-              color: #dc7725
+          .other {
+            margin-left: 0.84rem;
+            font-size: 0.26rem;
+            .othervote {
+              color: #dc7725;
             }
-            .otheropinion{
-              color:#FFFDFD;
-              margin-top: .05rem;
-              opacity: .8;
+            .otheropinion {
+              color: #fffdfd;
+              margin-top: 0.05rem;
+              opacity: 0.8;
             }
           }
         }
@@ -608,21 +686,21 @@ export default {
           display: flex;
           margin-top: 0.1rem;
           align-items: center;
-          border-top: .01rem solid #ccc;
-          input{
+          border-top: 0.01rem solid #ccc;
+          input {
             width: 5rem;
-            height: .45rem;
-            border-radius: .3rem;
-            margin-left: .18rem;
-            background: #EBE8F9;
+            height: 0.45rem;
+            border-radius: 0.3rem;
+            margin-left: 0.18rem;
+            background: #ebe8f9;
             outline: none;
-            font-size: .24rem;
+            font-size: 0.24rem;
           }
-          span{
-            font-size: .32rem;
-            color: #DC7725;
-            margin-top: .03rem;
-            margin-left: .2rem;
+          span {
+            font-size: 0.32rem;
+            color: #dc7725;
+            margin-top: 0.03rem;
+            margin-left: 0.2rem;
           }
         }
       }

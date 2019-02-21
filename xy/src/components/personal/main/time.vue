@@ -1,25 +1,36 @@
 <template>
     <div class="wrapper personWrapper" id="personBottom" ref="personWrapper">
-			<ul class="content" id="content">
-				<div id="zhou">
-                    <p id="time">2019/1/1</p>
-                    <li>
-                        <div class="swiper-container" ref="swiperContainer">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">Slide 1</div>
-                                <div class="swiper-slide">Slide 2</div>
-                                <div class="swiper-slide">Slide 3</div>
+        <ul class="content" id="content" >
+            <div id="zhou">
+                <p id="time">2019/1/1</p>
+                <li v-for="(item,index) in personTime.data" >
+                    <!-- :style={background-image=url("{item.img}")} -->
+                    <div class="swiper-container" ref="swiperContainer" >
+                        <div class="swiper-wrapper" >
+                            <div class="swiper-slide">
+                               <div class="title">{{item.title}}</div>
+                               <div class="content">{{item.content}}</div>
                             </div>
+                            <div class="swiper-slide">
+                              <div class="title">{{item.title}}</div>
+                               <div class="content">{{item.content}}</div> 
+                            </div>
+                            <div class="swiper-slide">
+                               <div class="title">{{item.title}}</div>
+                               <div class="content">{{item.content}}</div>
+                            </div>    
                         </div>
-                    </li>
-                </div>
-			</ul>
+                    </div>
+                </li>
+            </div>
+        </ul>
 	</div>
 </template>
 
 <script>
 import BScroll from 'better-scroll';
 import Swiper from 'swiper';
+import vuex from "vuex";
 export default {
     mounted() {
           if(!this.scroll){
@@ -42,10 +53,20 @@ export default {
 
     },
     methods: {
-        handle(){
-            alert(1)
-        }
+        ...vuex.mapActions({
+            handleTime:"Main/handleTime"
+        })
     },
+    created() {
+        this.handleTime();
+        console.log(this.personTime.data)
+    },
+    computed: {
+        ...vuex.mapState({
+            personTime:state=>state.Main.personTime
+        })
+    },
+
 }
 </script>
 
@@ -81,6 +102,7 @@ export default {
           background:rgb(135, 160, 135);
           position:relative;
           margin-left:-.8rem;
+          margin-bottom:1rem;
            .swiper-container{
                width:100%;
                height:100%;

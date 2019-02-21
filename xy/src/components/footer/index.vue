@@ -22,7 +22,7 @@
         data() {
             return {
                 navs: [{
-                        name: "recommend",
+                        name: "hPage",
                         img: require("@/assets/footer/icon_tj_sq@2x.png"),
                         imgto: require("@/assets/footer/icon1-sy@2x.png"),
                         imgsrc: require("@/assets/footer/icon_tj_sq@2x.png"),

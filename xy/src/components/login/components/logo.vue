@@ -11,9 +11,14 @@
 
 <style lang="scss">
 	#pLogo{
-		padding-top:1.88rem;
-		padding-left: 2.83rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding-top: 1.92rem;
 		.imgwrap{
+		// 	display: flex;
+		// 	justify-content: center;
+		// align-items: center;
 			img{
 				display: block;
 				width: 1.85rem;
