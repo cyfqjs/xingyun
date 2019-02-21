@@ -38,26 +38,26 @@
     
     #booktitle {
         width: 100%;
-        padding: 0 10px;
+        padding: 0 .1rem;
         height: .9rem;
-        border: 1px solid #ccc;
-        font-size: 40px;
+        border: .01rem solid #ccc;
+        font-size: .4rem;
         font-family: PingFang-SC-Regular;
         font-weight: 400;
         color: rgba(184, 184, 184, 1);
         text-align: center;
         border: 0;
-        border-bottom: 1px solid #ccc;
+        border-bottom: .01rem solid #ccc;
     }
     
     #booktxt {
         width: 100%;
         flex: 1;
-        font-size: 32px !important;
+        font-size: .32rem !important;
         font-family: PingFang-SC-Regular;
         font-weight: 400;
         color: rgba(184, 184, 184, 1);
-        padding: 21px;
+        padding: .21rem;
         border: 0;
         resize: none;
     }
