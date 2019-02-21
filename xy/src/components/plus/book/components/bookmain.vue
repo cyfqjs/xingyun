@@ -41,7 +41,7 @@
         padding: 0 10px;
         height: .9rem;
         border: 1px solid #ccc;
-        font-size: 20px;
+        font-size: 40px;
         font-family: PingFang-SC-Regular;
         font-weight: 400;
         color: rgba(184, 184, 184, 1);
@@ -53,7 +53,7 @@
     #booktxt {
         width: 100%;
         flex: 1;
-        font-size: 16px !important;
+        font-size: 32px !important;
         font-family: PingFang-SC-Regular;
         font-weight: 400;
         color: rgba(184, 184, 184, 1);
