@@ -9,7 +9,6 @@
 		</div>
 		<div id="personContent">
 			<div id="signatrue">
-				<!-- 个人箴言？？？？ null -->
 				<span>{{personIndex.brief}}</span>
 				<router-link :to="{name:'redact'}">编辑资料</router-link>
 			</div>
@@ -43,7 +42,6 @@ export default{
 		"Time-com": Time
 	},
 	created() {
-		//console.log(this)
 		this.handleIndex();
 	},
 	computed: {
@@ -108,23 +106,26 @@ export default{
 			position: absolute;
 			left:1.6rem;
 			top:0.1rem;
-			width:26rem;
-			height:0.23px;
+			width:5.6rem;
+			height:1rem;
 			font-size:0.24rem;
 			font-family:PingFangSC-Regular;
 			font-weight:4rem;
 			color:rgba(255,255,255,1);
 			a{	
-				width:1rem;
-				height:1rem;
+				width:1.2rem;
+				height:.4rem;
 				color:rgb(15, 10, 10);
 				font-size:.25rem;
+				text-align: center;
 				font-family:PingFangSC-Regular;
 				font-weight:4rem;
 				color:rgba(255,255,255,1);
 				border:1px solid rgba(255,255,255,1);
 				border-radius:10px;
-				margin-left: 2rem;
+				position: absolute;
+				right:0;
+				top:.0;
 			}
 		}
 		#data{
@@ -151,7 +152,7 @@ export default{
 		ul{
 			width:7.5rem;
 			height:0.7rem;
-			background:rgba(47,40,75,1);
+			background:rgb(66, 57, 100);
 			line-height: 0.7rem;
 			li>a{
 				list-style: none;	

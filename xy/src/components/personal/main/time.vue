@@ -3,8 +3,8 @@
         <ul class="content" id="content" >
             <div id="zhou">
                 <p id="time">2019/1/1</p>
-                <li v-for="(item,index) in personTime.data" >
-                    <!-- :style={background-image=url("{item.img}")} -->
+                <li v-for="(item,index) in personTime.data">
+                    <!-- :style="background-image=url("{item.img}")" -->
                     <div class="swiper-container" ref="swiperContainer" >
                         <div class="swiper-wrapper" >
                             <div class="swiper-slide">
@@ -59,7 +59,7 @@ export default {
     },
     created() {
         this.handleTime();
-        console.log(this.personTime.data)
+       // console.log(this.personTime.data)
     },
     computed: {
         ...vuex.mapState({
@@ -99,13 +99,23 @@ export default {
           width:6rem;
           height:3.23rem;
           border-radius:.1rem;
-          background:rgb(135, 160, 135);
+          background:rgb(29, 26, 51);;
           position:relative;
           margin-left:-.8rem;
           margin-bottom:1rem;
+          padding:.2rem;
            .swiper-container{
                width:100%;
                height:100%;
+               .title{
+                  font-size:.3rem;
+                  font-weight:900;
+                  line-height:.6rem;
+               }
+               .content{
+                   font-size:.24rem;
+                   line-height:.34rem;
+                   text-indent: 2em;               }
            }
         };
         li:before{

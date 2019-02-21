@@ -4,15 +4,19 @@ export default{
 
     // 个人主页信息
     handleIndex({commit}){
+      let t = sessionStorage.getItem("token")
         axios({
             method:"get",
-            url:"/api/user/getDetails",
-            data:{
+            url:"http://39.96.91.169/StarOfSea/user/userDetails",
+            headers: {
+                accessToken: t
+            },
+            params:{
                 uid:1
             }
         })
         .then((data)=>{
-            //console.log(data.details);
+           // console.log(data.details);
             commit("handleIndex",data.details)
         })
     },
@@ -24,7 +28,7 @@ export default{
             url:"/getTime"
         })
         .then((data)=>{
-            //console.log(data);
+           // console.log(data);
             commit("handleTime",data)
         })
     },
