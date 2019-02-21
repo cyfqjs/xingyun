@@ -4,6 +4,7 @@ import getMyDate from "../../components/community/time"
 export default {
     // 获取动态列表
     handleMoments_zjy({commit,state}){
+        
         let t = sessionStorage.getItem("token");
         axios({
             method:"get",
@@ -23,7 +24,7 @@ export default {
     handleTalklist_zjy({commit,state}){
         let websocket = null;
         let sid=JSON.parse(sessionStorage.getItem("userMessage")).identity
-        let url="ws://39.96.91.169:8080/StarOfSea/websocket/"+sid
+        let url="ws://39.96.91.169:8080/StarOfSea/websocket/321"
         if ('WebSocket' in window) {
             // 创建一个websocket服务
                 websocket = new WebSocket(url);
@@ -53,7 +54,7 @@ export default {
     handleChat({commit},params){
         let uid=JSON.parse(sessionStorage.getItem("friend")).uid
         let sid=JSON.parse(sessionStorage.getItem("userMessage")).identity
-        let url="ws://39.96.91.169:8080/StarOfSea/websocket/"+sid+"a"+uid
+        let url="ws://39.96.91.169:8080/StarOfSea/websocket/321a123"
 		if ('WebSocket' in window) {
             // 123和321为好友id和自己的id   用a来连接
 			websocket = new WebSocket(url);
@@ -86,9 +87,9 @@ export default {
         console.log(uid)
         var message={};
          // 自己的id
-         message.rid=rid;
+         message.rid="321";
          //好友id
-         message.sid=uid;
+         message.sid="123";
         // 输入框的内容
         message.content=params
         var send=JSON.stringify(message);

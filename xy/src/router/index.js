@@ -8,6 +8,7 @@ let Details=()=>import("../components/community/details/index.vue")
 // import Details from "../components/community/details/index.vue"
 // import Reply from "../components/community/reply/index.vue"
 let Reply=()=>import("../components/community/reply/index.vue")
+let FanPer=()=>import("../components/community/home/fansindex.vue")
 
 
 
@@ -213,6 +214,15 @@ const router = new Router({
                 path:"/reply",
                 name:"reply",
                 component:Reply,
+                meta:{
+                  flag:false,
+                }
+          },
+        //   FanPer
+        {
+                path:"/fanper",
+                name:"fanper",
+                component:FanPer,
                 meta:{
                   flag:false,
                 }

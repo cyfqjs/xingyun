@@ -5,7 +5,7 @@
                 <!-- 点击到详情 -->
                 <router-link to="/details"  v-for="(item,index) in Moments_zjy" :key="index">
                     <li @click="handleDetails_zjy(item)">
-                        <p class="photo_zjy"><img :src="item.photo_path" alt=""></p>
+                        <p class="photo_zjy"><router-link :to="{name:'fanper',params:{id:item.id,name:item.name,img:item.photo_path,sign:item.fansSign}}"><img :src="item.photo_path" alt=""></router-link></p>
                         <p class="name_zjy">{{item.name}}<span>{{item.createdate}}</span></p>
                         <p class=" Concern_zjy" @click="handleGz_zjy(item)"><router-link to="" v-text="item.statu==1?'已关注':'+ 关注'" :class="item.statu==0?'ever':''"></router-link></p>
                         <p class="content_zjy">
@@ -166,7 +166,7 @@ export default {
          width:.9rem;
          height:.9rem;
      }
-     #main>.homeWrapper>Ul>a>li>.photo_zjy>img{
+     #main>.homeWrapper>Ul>a>li>.photo_zjy img{
          width:100%;
          height:100%;
          border-radius:50%;

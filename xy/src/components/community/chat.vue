@@ -21,6 +21,7 @@ export default {
                 this.comName="Talk-com";
             }
         })
+       
     },
     components:{
         "Talk-com":Talk,
