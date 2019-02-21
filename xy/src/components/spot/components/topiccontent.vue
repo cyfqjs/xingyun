@@ -1,7 +1,6 @@
 <template>
   <!-- 热门话题内容页 -->
   <div class="app">
-    <!--固定头部-->
     <div class="contentback-father">
       <mt-header fixed class="contentback">
         <router-link to="/spot" slot="left">
