@@ -123,7 +123,7 @@
     }
     
     #footer>ul>li>a>span {
-        font-size: 10px;
+        font-size: 20px;
         font-family: PingFang-SC-Regular;
         font-weight: 400;
         color: rgba(254, 254, 254, 1);
