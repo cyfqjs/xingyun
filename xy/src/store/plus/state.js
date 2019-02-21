@@ -1,6 +1,6 @@
 export default {
     flag: true,
-    linkto: "recommend",
+    linkto: "hPage",
     bktitle: "",
     bkmain: "",
     langmain: ""

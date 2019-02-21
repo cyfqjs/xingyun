@@ -18,7 +18,7 @@
             ...Vuex.mapState({
                 linkto: state => state.plus.linkto,
             })
-        },
+        }
     }
 </script>
 <style lang="scss" scoped>

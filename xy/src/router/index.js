@@ -133,11 +133,7 @@ const router = new Router({
             component: Plus,
             meta: {
                 flag: false,
-<<<<<<< HEAD
                 requireAuth:true
-
-=======
->>>>>>> sjw
             }
         },
         {
@@ -170,12 +166,10 @@ const router = new Router({
 
             }
         },
-<<<<<<< HEAD
-=======
         { //社区
             path: "/community",
             name: "community",
-            component: Community,
+         //   component: Community,
             meta: {
                 flag: true,
             }
@@ -184,7 +178,7 @@ const router = new Router({
         { //私信列表
             path: "/talklist",
             name: "talklist",
-            component: TalkChat,
+            //component: TalkChat,
             meta: {
                 flag: false,
             }
@@ -200,7 +194,7 @@ const router = new Router({
         { //评论详情
             path: "/details",
             name: "details",
-            component: Details,
+          //  component: Details,
             props: true,
             meta: {
                 flag: false,
@@ -209,13 +203,12 @@ const router = new Router({
                 //评论列表
                 path: "/details/reply",
                 name: "reply",
-                component: Reply,
+               // component: Reply,
                 meta: {
                     flag: false,
                 }
             }, ]
         },
->>>>>>> sjw
         //个人中心
         {
             path: "/personal",

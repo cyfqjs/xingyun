@@ -18,19 +18,22 @@
         },
         methods: {
             sendbook() {
+                let t=sessionStorage.getItem("token")
                 axios({
                         url: "http://39.96.91.169/StarOfSea/community/addArticle",
                         method: "post",
+                        headers:{
+                             accessToken:t
+                        },
                         data: {
                             title: this.bktitle,
                             content: this.bkmain
-                        },
+                        }
                     })
                     .then(data => {
-                        console.log(data)
                         if (data.code == 1) {
                             alert("发表成功");
-                            this.$router.push("/community")
+                            this.$router.push("/hPage")
                         } else if (data.code == 0) {
                             alert("发表失败");
                         }

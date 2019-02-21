@@ -26,7 +26,6 @@
                         img: require("@/assets/footer/icon_tj_sq@2x.png"),
                         imgto: require("@/assets/footer/icon1-sy@2x.png"),
                         imgsrc: require("@/assets/footer/icon_tj_sq@2x.png"),
-
                         title: "推荐"
                     }, {
                         name: "spot",
@@ -70,6 +69,17 @@
                 }
             }
         },
+        watch: {
+            $route(to, from) {
+              if(this.$route.path=="/hPage"){
+              for (var i = 0; i < 5; i++) {
+                        this.navs[i].img = this.navs[i].imgsrc;
+                    }
+                    this.navs[0].img = this.navs[0].imgto;
+             }
+          }
+        }
+
     }
 </script>
 
