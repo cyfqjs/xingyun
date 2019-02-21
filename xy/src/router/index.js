@@ -1,6 +1,18 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+// import Community from "../components/community/home/index.vue";
+let Community=()=>import("../components/community/home/index.vue")
+let Details=()=>import("../components/community/details/index.vue")
+
+// import Details from "../components/community/details/index.vue"
+// import Reply from "../components/community/reply/index.vue"
+let Reply=()=>import("../components/community/reply/index.vue")
+let FanPer=()=>import("../components/community/home/fansindex.vue")
+
+
+
+import TalkChat from "../components/community/chat.vue"
 
 
 import Footer from "../components/footer/index.vue";
@@ -170,95 +182,54 @@ const router = new Router({
 
             }
         },
-        { //社区
-            path: "/community",
-            name: "community",
-            //   component: Community,
-            meta: {
-                flag: true,
+        {  //社区
+            path:"/community",
+            name:"community",
+            component:Community,
+            meta:{
+              flag:true,
             }
-        },
-
-        { //私信列表
-            path: "/talklist",
-            name: "talklist",
-            //component: TalkChat,
-            meta: {
-                flag: false,
+          },
+       
+          {//私信列表
+            path:"/talklist",
+            name:"talklist",
+            component:TalkChat,
+            meta:{
+              flag:false,
             }
-        },
-        //   {//聊天框
-        //     path:"/chat",
-        //     name:"chat",
-        //     component:Chatbox,
-        //     meta:{
-        //       flag:false,
-        //     }
-        // },
-
-        // { //私信列表
-        //     path: "/talklist",
-        //     name: "talklist",
-        //     component: TalkChat,
-        //     meta: {
-        //         flag: false,
-        //     }
-        // },
-        // //   {//聊天框
-        // //     path:"/chat",
-        // //     name:"chat",
-        // //     component:Chatbox,
-        // //     meta:{
-        // //       flag:false,
-        // //     }
-        // //   },
-        // { //评论详情
-        //     path: "/details",
-        //     name: "details",
-        //     component: Details,
-        //     props: true,
-        //     meta: {
-        //         flag: false,
-        //     },
-
-        //     children: [{
-        //         //评论列表
-        //         path: "/details/reply",
-        //         name: "reply",
-        //         component: Reply,
-        //         meta: {
-        //             flag: false,
-        //         }
-        //     }, ]
-        // },
-
-        //   {
-        //     //评论列表
-        //         path:"/reply",
-        //         name:"reply",
-        //         component:Reply,
-        //         meta:{
-        //           flag:false,
-        //         }
-        //   },
-        { //评论详情
-            path: "/details",
-            name: "details",
-            //  component: Details,
-            props: true,
-            meta: {
-                flag: false,
+          },
+        
+          {//评论详情
+            path:"/details",
+            name:"details",
+            component:Details,
+            props:true,
+            meta:{
+              flag:false,
             },
-            children: [{
-                //评论列表
-                path: "/details/reply",
-                name: "reply",
-                // component: Reply,
-                meta: {
-                    flag: false,
+            children:[
+              
+            ]
+          },
+          {
+            //评论列表
+                path:"/reply",
+                name:"reply",
+                component:Reply,
+                meta:{
+                  flag:false,
                 }
-            }, ]
-        },
+          },
+        //   FanPer
+        {
+                path:"/fanper",
+                name:"fanper",
+                component:FanPer,
+                meta:{
+                  flag:false,
+                }
+          },
         //个人中心
         {
             path: "/personal",
