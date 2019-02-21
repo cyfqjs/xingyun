@@ -22,7 +22,7 @@
     #langtxt {
         flex: 1;
         padding: 5px;
-        font-size: 16px;
+        font-size: 32px;
         width: 100%;
     }
 </style>
