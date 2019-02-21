@@ -79,10 +79,10 @@ const router = new Router({
             path: "/hPage",
             name: "hPage",
             component: Hpage,
-            
+
             meta: {
                 flag: true,
-                requireAuth:true
+                requireAuth: true
             }
         },
         {
@@ -91,7 +91,7 @@ const router = new Router({
             component: Dpage,
             meta: {
                 flag: true,
-                requireAuth:true
+                requireAuth: true
             }
         },
         {
@@ -100,35 +100,35 @@ const router = new Router({
             component: Spot,
             meta: {
                 flag: true,
-                requireAuth:true
+                requireAuth: true
             }
-          
+
         },
         {
-            path:"/search",
-            name:"search",
-            component:Search,
-            meta:{
-              flag:false
+            path: "/search",
+            name: "search",
+            component: Search,
+            meta: {
+                flag: false
             }
         },
         {
-            path:"/topiccontent/:id",
-            name:"topiccontent",
-            component:Topiccontent,
-            meta:{
+            path: "/topiccontent/:id",
+            name: "topiccontent",
+            component: Topiccontent,
+            meta: {
                 flag: false,
-                requireAuth:true
-                
+                requireAuth: true
+
             }
-          },
-          {
-            path:"/essaycontent/:id",
-            name:"essaycontent",
-            component:Essaycontent,
-            meta:{
+        },
+        {
+            path: "/essaycontent/:id",
+            name: "essaycontent",
+            component: Essaycontent,
+            meta: {
                 flag: false,
-                requireAuth:true
+                requireAuth: true
             }
         },
         {
@@ -137,8 +137,7 @@ const router = new Router({
             component: Plus,
             meta: {
                 flag: false,
-                requireAuth:true
-
+                requireAuth: true
             }
         },
         {
@@ -147,7 +146,7 @@ const router = new Router({
             component: Pushpic,
             meta: {
                 flag: false,
-                requireAuth:true
+                requireAuth: true
 
             }
         },
@@ -157,7 +156,7 @@ const router = new Router({
             component: Pushbook,
             meta: {
                 flag: false,
-                requireAuth:true
+                requireAuth: true
 
             }
         },
@@ -167,16 +166,33 @@ const router = new Router({
             component: Pushlanguge,
             meta: {
                 flag: false,
-                requireAuth:true
+                requireAuth: true
 
             }
         },
-        // { //社区
-        //     path: "/community",
-        //     name: "community",
-        //     component: Community,
-        //     meta: {
-        //         flag: true,
+        { //社区
+            path: "/community",
+            name: "community",
+            //   component: Community,
+            meta: {
+                flag: true,
+            }
+        },
+
+        { //私信列表
+            path: "/talklist",
+            name: "talklist",
+            //component: TalkChat,
+            meta: {
+                flag: false,
+            }
+        },
+        //   {//聊天框
+        //     path:"/chat",
+        //     name:"chat",
+        //     component:Chatbox,
+        //     meta:{
+        //       flag:false,
         //     }
         // },
 
@@ -215,7 +231,7 @@ const router = new Router({
         //         }
         //     }, ]
         // },
-            
+
         //   {
         //     //评论列表
         //         path:"/reply",
@@ -225,6 +241,24 @@ const router = new Router({
         //           flag:false,
         //         }
         //   },
+        { //评论详情
+            path: "/details",
+            name: "details",
+            //  component: Details,
+            props: true,
+            meta: {
+                flag: false,
+            },
+            children: [{
+                //评论列表
+                path: "/details/reply",
+                name: "reply",
+                // component: Reply,
+                meta: {
+                    flag: false,
+                }
+            }, ]
+        },
         //个人中心
         {
             path: "/personal",
@@ -232,7 +266,7 @@ const router = new Router({
             component: Personal,
             meta: {
                 flag: true,
-                requireAuth:true
+                requireAuth: true
 
             }
         },
@@ -243,7 +277,7 @@ const router = new Router({
             component: Seth,
             meta: {
                 flag: false,
-                requireAuth:true
+                requireAuth: true
 
             }
         },
@@ -254,7 +288,7 @@ const router = new Router({
             component: BindP,
             meta: {
                 flag: false,
-                requireAuth:true
+                requireAuth: true
 
             }
         },
@@ -265,7 +299,7 @@ const router = new Router({
             component: BindOne,
             meta: {
                 flag: false,
-                requireAuth:true
+                requireAuth: true
 
             }
         },
@@ -276,53 +310,53 @@ const router = new Router({
             component: pushSet,
             meta: {
                 flag: false,
-                requireAuth:true
+                requireAuth: true
 
             }
         },
         //意见反馈
-    {
-        path:"/set/idea/index",
-        name:"idea",
-        component:Idea,
-        meta:{
-          flag:false
-        }
-      },
-      //关于我们
-      {
-        path:"/set/aboutMe/index",
-        name:"about",
-        component:About,
-        meta:{
-          flag:false
-        }
-      },
-      //绑定成功
-      {
-        path:"/bindPhone/bindPhoneOne/bindOk",
-        name:"bindok",
-        component:Bindok,
-        meta:{
-            flag:false
-        }
-      },
-      //切换账号
-      {
-        path:"/bindPhone/bindPhoneOne/bindChange",
-        name:"bindCh",
-        component:BindChange,
-        meta:{
-            flag:false
-        }
-      },
+        {
+            path: "/set/idea/index",
+            name: "idea",
+            component: Idea,
+            meta: {
+                flag: false
+            }
+        },
+        //关于我们
+        {
+            path: "/set/aboutMe/index",
+            name: "about",
+            component: About,
+            meta: {
+                flag: false
+            }
+        },
+        //绑定成功
+        {
+            path: "/bindPhone/bindPhoneOne/bindOk",
+            name: "bindok",
+            component: Bindok,
+            meta: {
+                flag: false
+            }
+        },
+        //切换账号
+        {
+            path: "/bindPhone/bindPhoneOne/bindChange",
+            name: "bindCh",
+            component: BindChange,
+            meta: {
+                flag: false
+            }
+        },
         { //粉丝列表
             path: "/fans/:id/:name/:sign/:img",
             name: "fans",
             component: Fans,
             meta: {
                 falg: false,
-                requireAuth:true
+                requireAuth: true
 
             }
         },
@@ -332,7 +366,7 @@ const router = new Router({
             component: Fansindex,
             meta: {
                 flag: false,
-                requireAuth:true
+                requireAuth: true
 
             }
         },
@@ -342,7 +376,7 @@ const router = new Router({
             component: Foucson,
             meta: {
                 flag: false,
-                requireAuth:true
+                requireAuth: true
 
             }
         },
@@ -352,7 +386,7 @@ const router = new Router({
             component: Redact,
             meta: {
                 flag: false,
-                requireAuth:true
+                requireAuth: true
 
             }
         },
@@ -362,7 +396,7 @@ const router = new Router({
             component: Proberbs,
             meta: {
                 flag: false,
-                requireAuth:true
+                requireAuth: true
 
             }
         },
@@ -403,17 +437,17 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
     let t = sessionStorage.getItem("token")
-  if(to.meta.requireAuth){
-    //用户是否登陆成功
-    if(t){
-      //工作当中这里面需要做token的验证
-      next();
-    }else{
-      next("/login")
+    if (to.meta.requireAuth) {
+        //用户是否登陆成功
+        if (t) {
+            //工作当中这里面需要做token的验证
+            next();
+        } else {
+            next("/login")
+        }
+    } else {
+        next();
     }
-  }else{
-    next();
-  }
 })
 
 export default router;

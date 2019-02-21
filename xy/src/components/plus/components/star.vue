@@ -18,7 +18,9 @@
 <script>
     export default {
         created() {
-            var st = "白羊";
+            let m=JSON.parse(sessionStorage.getItem("userMessage")).birthday;
+            let birth=this.getMyDate(m);
+            var st = this.getConstellation(birth.month,birth.day)
             switch (st) {
                 case "白羊":
                     this.starname = this.arr[0].p1;
@@ -104,9 +106,7 @@
                         this.starplace = this.arr[11].p4,
                         this.starpic = this.arr[11].p5;
                     break;
-
             }
-            this.getMyDate(156155148965)
         },
         data() {
             return {
@@ -198,9 +198,8 @@
             },
               getMyDate(time){ 
                  var unixTimestamp = new Date(time) ;
-                 const monthtime = Number(unixTimestamp.toLocaleString().split("/")[1])+1>12 ?Number(unixTimestamp.toLocaleString().split("/")[1])+1-12:Number(unixTimestamp.toLocaleString().split("/")[1])+1>12;
+                 const monthtime = Number(unixTimestamp.toLocaleString().split("/")[1])+1>12 ? Number(unixTimestamp.toLocaleString().split("/")[1])+1-12:Number(unixTimestamp.toLocaleString().split("/")[1])+1;
                  const daytime = parseInt(unixTimestamp.toLocaleString().split("/")[2]);
-                 console.log(unixTimestamp,monthtime,daytime)
                  return {
                      month:monthtime,
                      day:daytime

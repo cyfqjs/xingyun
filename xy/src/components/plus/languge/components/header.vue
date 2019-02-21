@@ -18,19 +18,23 @@
         },
         methods: {
             sendlang() {
+                let t=sessionStorage.getItem("token");
                 axios({
                         url: "http://39.96.91.169/StarOfSea/community/addShare",
                         method: "post",
                         data: {
-                            "title": "c",
+                            "title": "",
                             "content": this.langtxt,
-                            "img": "c"
-                        }
+                            "img": ""
+                        },
+                         headers:{
+                             accessToken:t
+                        },
                     })
                     .then(data => {
                         if (data.code == 1) {
                             alert("发表成功");
-                            this.$router.push("/community")
+                            this.$router.push("/hPage")
                         } else if (data.code == 0) {
                             alert("发表失败");
                         }
