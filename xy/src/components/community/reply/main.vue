@@ -2,11 +2,7 @@
     <div id="main_zjy">
         <div class="wrapper mainWrapper" ref="mainWrapper">
             <ul class="content list_zjy">
-<<<<<<< HEAD
-                <router-link to="" v-for="(item,index) in Talklist_zjy" :key="item,index">
-=======
                 <router-link to="" v-for="(item,index) in plList" :key="index">
->>>>>>> zjy
                     <li>
                         <p class="photo_zjy">
                             <img :src="item.img_path" alt="">

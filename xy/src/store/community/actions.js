@@ -4,19 +4,17 @@ import getMyDate from "../../components/community/time"
 export default {
     // 获取动态列表
     handleMoments_zjy({commit,state}){
-        // let t = sessionStorage.getItem("token");
-
+        let t = sessionStorage.getItem("token");
         axios({
             method:"get",
             url:"http://39.96.91.169/StarOfSea/community/getShares",
             // headers:{"Content-type":"application/json"},
             withCredentials:true,
-            // headers: {
-            //     accessToken: t
-            //     }
+            headers: {
+                accessToken: t
+                }
         })
         .then(data=>{
-            console.log(data)
             commit("handleMoments_zjy",data.shares);
             // commit("handleTalklist_zjy",data.Talktlist);
         })
@@ -24,9 +22,11 @@ export default {
     // 私信列表
     handleTalklist_zjy({commit,state}){
         let websocket = null;
+        let sid=JSON.parse(sessionStorage.getItem("userMessage")).identity
+        let url="ws://39.96.91.169:8080/StarOfSea/websocket/"+sid
         if ('WebSocket' in window) {
             // 创建一个websocket服务
-                websocket = new WebSocket("ws://39.96.91.169:8080/StarOfSea/websocket/321");
+                websocket = new WebSocket(url);
             } else {
                 alert('当前浏览器 Not support websocket');
             }
@@ -51,12 +51,12 @@ export default {
         },
     // 聊天室记录
     handleChat({commit},params){
-        console.log(params)
         let uid=JSON.parse(sessionStorage.getItem("friend")).uid
-        
+        let sid=JSON.parse(sessionStorage.getItem("userMessage")).identity
+        let url="ws://39.96.91.169:8080/StarOfSea/websocket/"+sid+"a"+uid
 		if ('WebSocket' in window) {
             // 123和321为好友id和自己的id   用a来连接
-			websocket = new WebSocket("ws://39.96.91.169:8080/StarOfSea/websocket/321a123");
+			websocket = new WebSocket(url);
 		} else {
 			alert('当前浏览器 Not support websocket');
 		}
@@ -81,12 +81,14 @@ export default {
     // 实时聊天
     handleChatSend({dispatch,commit},params){
         let uid=JSON.parse(sessionStorage.getItem("friend")).uid
-        // console.log(uid)
+        let rid=JSON.parse(sessionStorage.getItem("userMessage")).identity
+
+        console.log(uid)
         var message={};
          // 自己的id
-         message.rid="321";
+         message.rid=rid;
          //好友id
-         message.sid="123";
+         message.sid=uid;
         // 输入框的内容
         message.content=params
         var send=JSON.stringify(message);
@@ -94,20 +96,6 @@ export default {
         websocket.send(send);
         dispatch("handleChat")
     },
-    // 私信列表
-    // handleTalklist_zjy({commit,state}){
-    //     axios({
-    //         method:"post",
-    //         url:"/api/mock/5c36ed7596e17359c184e353/community/getShares",
-    //         // data:{
-    //         //     uid:1
-    //         // },
-    //     })
-    //     .then(data=>{
-    //         console.log(data)
-    //         commit("handleTalklist_zjy",data.Talktlist);
-    //     })
-    // },
     // 转发
     handlePush_zjy({commit}){
         commit("handlePush_zjy")
@@ -115,6 +103,7 @@ export default {
     // 点赞
     handleAddDz_zjy({commit,state,dispatch},params){
         let flagStatu=null;
+        let t = sessionStorage.getItem("token");
         params.flag==0?flagStatu=0:flagStatu=1;
         axios({
             method:"post",
@@ -124,7 +113,10 @@ export default {
                 type:"3",
                 state:flagStatu
             },
-            withCredentials:true
+            withCredentials:true,
+            headers: {
+                accessToken: t
+                }
         })
         .then((data)=>{
             if(data.code==1){
@@ -136,6 +128,7 @@ export default {
     handleSendT_zjy({commit,dispatch},params){
         let num=null;
         let id=null;
+        let t = sessionStorage.getItem("token");
         if(params.con==3){
             num=3;
             id=params.id;
@@ -156,7 +149,10 @@ export default {
                 opinion:"",
                 content:params.main_zjy,
             },
-            withCredentials:true
+            withCredentials:true,
+            headers: {
+                accessToken: t
+                }
 
         }).then(data=>{
             if(data.code==1){
@@ -168,6 +164,7 @@ export default {
     // 关注
     handleGz_zjy({commit,state},params){
         let url_zjy=null;
+        let t = sessionStorage.getItem("token");
         if(params.statu==1){
             url_zjy="http://39.96.91.169/StarOfSea/user/unattention"
         }else{
@@ -177,7 +174,10 @@ export default {
             params:{  
                 fid:params.uid,
             },
-            withCredentials:true
+            withCredentials:true,
+            headers: {
+                accessToken: t
+                }
         })
         .then(data=>{
            if(data.code==1){
@@ -187,12 +187,16 @@ export default {
     },
     //获取某条具体动态
     handleOne_zjy({commit},val){
+        let t = sessionStorage.getItem("token");
         axios.get("http://39.96.91.169/StarOfSea/community/findShare",{
-
+            
             params:{
                 aid:val.id,
             },
-            withCredentials:true
+            withCredentials:true,
+            headers: {
+                accessToken: t
+                }
         })
         .then(data=>{
             if(data.code==1){
