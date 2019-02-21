@@ -5,21 +5,19 @@
 const path = require('path')
     // https://www.easy-mock.com/mock/5c36ed7596e17359c184e353/community
 module.exports = {
-    dev: {
-        // https://www.easy-mock.com/mock/5c373fe95394183730861ee2/lei/fans
-        // Paths
-        assetsSubDirectory: 'static',
-        assetsPublicPath: '/',
-        proxyTable: {
-            // "/api": {
-            //     target: "",
-            //     changeOrigin: true,
-            //     pathRewrite: {
-            //         "^/api": ""
-            //     }
-            // }
-
-        },
+  dev: {
+    // Paths
+    assetsSubDirectory: 'static',
+    assetsPublicPath: '/',
+    proxyTable: {
+        // "/api":{
+        //   target:"http://39.96.91.169/StarOfSea",
+        //   changeOrigin:true,
+        //   pathRewrite:{
+        //     "^/api":""
+        //   }
+        // }
+      },
 
         // Various Dev Server settings
         host: 'localhost', // can be overwritten by process.env.HOST

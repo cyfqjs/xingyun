@@ -53,12 +53,12 @@
           <input type="text" value="22">
         </div>
         <div class="data">
-          <label>出生日期</label>
-          <input type="datetime-local">
+          <label>星座</label>
+          <input type="text" :value="personIndex.constellat">
         </div>
         <div class="time">
-          <label>出生时间</label>
-          <input type="time">
+          <label>联系电话</label>
+          <input type="input" :value="personIndex.phone">
         </div>
         <div class="proberbs">
           <label>个人箴言</label>
@@ -109,7 +109,8 @@ export default {
           const imgURL = window.URL.createObjectURL(str) ;
           //console.log(e.target.result,imgURL)    
         }
-  }},
+    },
+  },
   computed: {
 		...vuex.mapState({
   			personIndex:state=>state.Main.personIndex
