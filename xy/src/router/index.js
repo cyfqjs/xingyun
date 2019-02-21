@@ -167,60 +167,60 @@ const router = new Router({
 
             }
         },
-        { //社区
-            path: "/community",
-            name: "community",
-            component: Community,
-            meta: {
-                flag: true,
-            }
-        },
-
-        { //私信列表
-            path: "/talklist",
-            name: "talklist",
-            component: TalkChat,
-            meta: {
-                flag: false,
-            }
-        },
-        //   {//聊天框
-        //     path:"/chat",
-        //     name:"chat",
-        //     component:Chatbox,
-        //     meta:{
-        //       flag:false,
+        // { //社区
+        //     path: "/community",
+        //     name: "community",
+        //     component: Community,
+        //     meta: {
+        //         flag: true,
         //     }
-        //   },
-        { //评论详情
-            path: "/details",
-            name: "details",
-            component: Details,
-            props: true,
-            meta: {
-                flag: false,
-            },
+        // },
 
-            children: [{
-                //评论列表
-                path: "/details/reply",
-                name: "reply",
-                component: Reply,
-                meta: {
-                    flag: false,
-                }
-            }, ]
-        },
+        // { //私信列表
+        //     path: "/talklist",
+        //     name: "talklist",
+        //     component: TalkChat,
+        //     meta: {
+        //         flag: false,
+        //     }
+        // },
+        // //   {//聊天框
+        // //     path:"/chat",
+        // //     name:"chat",
+        // //     component:Chatbox,
+        // //     meta:{
+        // //       flag:false,
+        // //     }
+        // //   },
+        // { //评论详情
+        //     path: "/details",
+        //     name: "details",
+        //     component: Details,
+        //     props: true,
+        //     meta: {
+        //         flag: false,
+        //     },
+
+        //     children: [{
+        //         //评论列表
+        //         path: "/details/reply",
+        //         name: "reply",
+        //         component: Reply,
+        //         meta: {
+        //             flag: false,
+        //         }
+        //     }, ]
+        // },
             
-          {
-            //评论列表
-                path:"/reply",
-                name:"reply",
-                component:Reply,
-                meta:{
-                  flag:false,
-                }
-          },
+        //   {
+        //     //评论列表
+        //         path:"/reply",
+        //         name:"reply",
+        //         component:Reply,
+        //         meta:{
+        //           flag:false,
+        //         }
+        //   },
         //个人中心
         {
             path: "/personal",
