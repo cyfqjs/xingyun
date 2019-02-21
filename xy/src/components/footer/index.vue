@@ -1,11 +1,11 @@
 <template>
 	<div id="footer">
 		<ul >
-			<li v-for="(item,index) in navs"  @click="handletog(index)" ref="footbs">
-               <router-link :to="{name:item.name}">
-                    <div class="icon"><img :src="item.img" alt=""></div>
-               		<span @click="open(index)">{{item.title}}</span>
-               </router-link>
+            <li v-for="(item,index) in navs" :key="index"  @click="handletog(index)" ref="footbs">
+                <router-link :to="{name:item.name}">
+                     <div class="icon"><img :src="item.img" alt=""></div>
+                        <span @click="open(index)">{{item.title}}</span>
+                </router-link>
             </li>
             
 		</ul>
