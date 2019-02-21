@@ -53,10 +53,16 @@ export default {
     };
   },
   created() {
+    let t=sessionStorage.getItem("token");
+    this.t=t;
     Axios({
       method: "get",
-      url: "apiStarOfSea/focus/getArtilces"
+      url: "http://39.96.91.169/StarOfSea/focus/getArtilces",
+      headers:{
+        accessToken:this.t
+      }
     }).then(data => {
+      
       this.articles = data.articles;
       console.log(this.articles);
     });

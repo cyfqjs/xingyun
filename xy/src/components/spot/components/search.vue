@@ -1,15 +1,21 @@
 <template>
   <div class="app">
     <div class="search">
-      <span class="back" @click="back()"><img src="../../../assets/spot/icon_fh_dt@2x.png"/></span>
-      <span class="searchicon"><img src="../../../assets/spot/icon1-kd@2x.png"/></span>
+      <span class="back" @click="back()">
+        <img src="../../../assets/spot/icon_fh_dt@2x.png">
+      </span>
+      <span class="searchicon">
+        <img src="../../../assets/spot/icon1-kd@2x.png">
+      </span>
       <input type="text" placeholder="请输入博主ID" v-model="searchcontent" @keyup="search()">
     </div>
     <div class="wrapper" ref="homeWrapper">
       <div class="content">
         <ul>
           <li v-for="(item,index) in list">
-            <span><img :src="item.imgpath"/></span>
+            <span>
+              <img :src="item.imgpath">
+            </span>
             <div class="user">
               <h2>{{item.name}}</h2>
               <p>{{item.gender}}</p>
@@ -29,7 +35,8 @@ export default {
   data() {
     return {
       searchcontent: "",
-      list: []
+      list: [],
+      t: ""
     };
   },
   mounted() {
@@ -39,18 +46,29 @@ export default {
       pullUpLoad: true
     });
   },
+  created() {
+    let t = sessionStorage.getItem("token");
+    this.t = t;
+  },
   methods: {
-    search() {
-      Axios.post("api/StarOfSea/action/searchUser", {
-        search: this.searchcontent
+    search(){
+      Axios({
+        method: "post",
+        url: "http://39.96.91.169/StarOfSea/action/searchUser",
+        data: {
+          search: this.searchcontent
+        },
+        headers: {
+          accessToken: this.t
+        }
       }).then(data => {
         console.log(data);
         this.list = data.users;
         console.log(this.list);
       });
     },
-    back(){
-      this.$router.history.push('/spot');
+    back() {
+      this.$router.history.push("/spot");
     }
   }
 };
@@ -65,18 +83,19 @@ export default {
 
   .search {
     text-align: center;
+    height: 1.6rem;
     position: relative;
-    .back{
+    .back {
       display: block;
-     position: absolute;
-     left: .2rem;
-     top: 1rem;
+      position: absolute;
+      left: 0.2rem;
+      top: 1rem;
     }
-    .searchicon{
+    .searchicon {
       display: block;
-     position: absolute;
-     right: 1rem;
-     top: 1rem;
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
     }
     input {
       width: 6rem;
@@ -88,7 +107,7 @@ export default {
       font-size: 0.28rem;
       color: #cdcdcd;
       margin-top: 0.9rem;
-          margin-bottom: .7rem;
+      margin-bottom: 0.7rem;
       padding-left: 0.2rem;
       z-index: 3rem;
     }
@@ -97,15 +116,13 @@ export default {
     height: 88%;
     z-index: 33;
     overflow: hidden;
-    margin-top: -1rem;
+    margin-top: 0;
     .content {
       width: 90%;
-
       margin: 0.2rem auto;
-
+      padding-bottom: .3rem;
       ul {
         width: 100%;
-
         li {
           width: 100%;
           height: 1rem;
@@ -115,12 +132,11 @@ export default {
           span {
             display: block;
             width: 1.05rem;
-            margin-left: .2rem;
+            margin-left: 0.2rem;
             border-radius: 50%;
             overflow: hidden;
             img {
               width: 100%;
-
             }
           }
           .user {
@@ -130,23 +146,23 @@ export default {
             margin-top: 0.1rem;
             h2 {
               font-size: 0.34rem;
-              color: #F7EBEB;
+              color: #f7ebeb;
               font-weight: 300;
               margin-top: 0.07rem;
             }
             p {
               font-size: 0.22rem;
               display: inline-block;
-              color: #F7EBEB;
+              color: #f7ebeb;
               margin-top: 0.04rem;
-              margin-left: .08rem;
+              margin-left: 0.08rem;
             }
             h5 {
               font-size: 0.22rem;
-              color: #F7EBEB;
+              color: #f7ebeb;
               font-weight: 100;
               margin-top: 0.05rem;
-              margin-left: .08rem;
+              margin-left: 0.08rem;
             }
           }
         }

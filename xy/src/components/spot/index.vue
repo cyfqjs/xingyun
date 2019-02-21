@@ -131,7 +131,7 @@ export default {
 .stop {
   width: 100%;
   height: 100%;
-  background: url("../../assets/spot/tucen1@2x.png");
+  background: url("../../assets/spot/tucen1@3x.png");
   background-size: 100% 100%;
   text-align: center;
   padding-top: 0.1rem;

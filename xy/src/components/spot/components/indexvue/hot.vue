@@ -57,9 +57,14 @@ export default {
     });
   },
   created() {
+    let t=sessionStorage.getItem("token");
+    this.t=t;
     Axios({
       method: "get",
-      url: "http://39.96.91.169:8080/StarOfSea/focus/getCurlycues"
+      url: "http://39.96.91.169:8080/StarOfSea/focus/getCurlycues",
+      headers:{
+        accessToken:this.t
+      }
     }).then(data => {
       this.hotlist = data.curlycues;
       console.log(data);

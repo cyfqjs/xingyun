@@ -19,7 +19,7 @@ import Spot from "../components/spot";
 import Topiccontent from "@/components/spot/components/topiccontent";
 import Essaycontent from "@/components/spot/components/essaycontent";
 import Search from "@/components/spot/components/search";
-
+import Fansspot from "@/components/spot/components/fansindex";
 import Plus from "../components/plus";
 import Pushpic from "../components/plus/pic";
 import Pushbook from "../components/plus/book";
@@ -40,6 +40,7 @@ import Proberbs from "../components/personal/main/proberbs";
 import Idea from "../components/personal/set/idea/index.vue"
 //关于我们
 import About from "../components/personal/set/aboutMe/index.vue"
+
 
 
 
@@ -99,6 +100,14 @@ const router = new Router({
                 requireAuth:true
             }
           
+        },
+        {
+            path:"/fansspot",
+            name:"fansspot",
+            component:Fansspot,
+            meta:{
+                flag:false
+            }
         },
         {
             path:"/search",
