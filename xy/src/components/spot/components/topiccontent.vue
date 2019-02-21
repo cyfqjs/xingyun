@@ -1,11 +1,10 @@
 <template>
   <!-- 热门话题内容页 -->
   <div class="app">
-    <!--固定头部-->
     <div class="contentback-father">
       <mt-header fixed class="contentback">
         <router-link to="/spot" slot="left">
-          <mt-button icon="back"></mt-button>
+          <mt-button><img src="@/assets/spot/icon8-ht@2x.png"/></mt-button>
         </router-link>
       </mt-header>
     </div>
@@ -39,11 +38,13 @@
               <div class="right">
                 <div class="uname">
                   <span>{{item.name}}</span>
-                  <span>{{item.createtime}}</span>
+                  <span>{{new Date(item.createtime).toLocaleDateString()}}</span>
                 </div>
-                <div class="sex">{{item.gender}}{{item.constellat}}</div>
+                <div class="sex">{{item.gender}} {{item.constellat}}</div>
                 <div class="vote">投票给:{{item.opinion}}</div>
                 <div class="viewpoint">{{item.content}}</div>
+                <div class="hfcontent" v-for="(repliesitem,index) in item.replies"><span>{{repliesitem.name}}</span>{{" 回复:" +repliesitem.content}}</div>
+
                 <div class="zandpl">
                   <div class="z">
                     <div class="dz" @click="dz(item)">
@@ -55,10 +56,7 @@
                     </div>
                     <span>{{item.compliments}}</span>
                   </div>
-                  <div
-                    class="pl"
-                    @click="pl(item)"
-                  >
+                  <div class="pl" @click="pl(item)">
                     <div class="hf">
                       <img src="@/assets/spot/icon_pl_dt@2x.png" class="pl">
                     </div>
@@ -133,7 +131,7 @@ export default {
   data() {
     return {
       xx: [],
-      opinion:"",
+      opinion: "",
       message: "",
       umessage: "",
       floag: false,
@@ -147,7 +145,8 @@ export default {
         //"createdate":(发表时间),
         //"id":(详情id),
         //"flag": 1(1赞同，-1反对),
-      }
+      },
+      t: ""
     };
   },
   methods: {
@@ -155,33 +154,69 @@ export default {
       //投票给同意
       this.floag = true;
       this.$refs.textarea.focus();
-      this.opinion="同意";
+      this.opinion = "同意";
       Axios({
         method: "post",
-        url: "api/StarOfSea/action/compliment",
+        url: "http://39.96.91.169/StarOfSea/action/compliment",
         data: {
           aid: this.id,
           type: 2,
           state: 1
+        },
+        headers: {
+          accessToken: this.t
         }
-      }).then(data=>{
-        console.log(data)
+      }).then(data => {
+        console.log(data);
+        Axios({
+      method: "get",
+      url: "http://39.96.91.169/StarOfSea/focus/getCurlycueDetails",
+      params: {
+        aid: this.id
+      },
+      headers: {
+        accessToken: this.t
+      }
+    }).then(data => {
+      this.details = data.details;
+      //console.log(this.details);
+      this.replies = data.details.replies;
+      //console.log(this.replies);
+    });
       });
     },
     no() {
       this.floag = true;
       this.$refs.textarea.focus();
-      this.opinion="反对";
+      this.opinion = "反对";
       Axios({
         method: "post",
-        url: "api/StarOfSea/action/compliment",
+        url: "http://39.96.91.169/StarOfSea/action/compliment",
         data: {
           aid: this.id,
           type: 2,
-          state: 0,
+          state: 0
+        },
+        headers: {
+          accessToken: this.t
         }
-      }).then(data=>{
+      }).then(data => {
         //console.log(data)
+        Axios({
+      method: "get",
+      url: "http://39.96.91.169/StarOfSea/focus/getCurlycueDetails",
+      params: {
+        aid: this.id
+      },
+      headers: {
+        accessToken: this.t
+      }
+    }).then(data => {
+      this.details = data.details;
+      //console.log(this.details);
+      this.replies = data.details.replies;
+      //console.log(this.replies);
+    });
       });
     },
     cancel() {
@@ -193,22 +228,28 @@ export default {
       // this.message="";
       Axios({
         method: "post",
-        url: "api/StarOfSea/action/addReply",
+        url: "http://39.96.91.169/StarOfSea/action/addReply",
         data: {
           aid: this.details.id,
           type: 2,
-          opinion:this.opinion,
+          opinion: this.opinion,
           content: this.message
+        },
+        headers: {
+          accessToken: this.t
         }
       }).then(data => {
         //返回的参数"status":1,"msg":"发表成功"
         //      "status":0,"msg":"发表失败"
-        if (data.data.code == 1) {
+        if (data.code == 1) {
           Axios({
             method: "get",
-            url: "api/StarOfSea/focus/getCurlycueDetails",
-            data: {
+            url: "http://39.96.91.169/StarOfSea/focus/getCurlycueDetails",
+            params: {
               aid: this.id
+            },
+            headers: {
+              accessToken: this.t
             }
           }).then(data => {
             this.details = data.details;
@@ -229,22 +270,28 @@ export default {
       }
       Axios({
         method: "post",
-        url: "api/StarOfSea/action/compliment",
+        url: "http://39.96.91.169/StarOfSea/action/compliment",
         data: {
           aid: val.id,
           type: 4,
           state: this.uflag
+        },
+        headers: {
+          accessToken: this.t
         }
       }).then(data => {
         Axios({
           method: "get",
-          url: "api/StarOfSea/focus/getCurlycueDetails",
-          data: {
+          url: "http://39.96.91.169/StarOfSea/focus/getCurlycueDetails",
+          params: {
             aid: this.id
+          },
+          headers: {
+            accessToken: this.t
           }
         }).then(data => {
           this.details = data.details;
-         // console.log(this.details);
+          // console.log(this.details);
           this.replies = data.details.replies;
           //console.log(this.replies);
         });
@@ -254,34 +301,64 @@ export default {
       this.floagtwo = true;
       this.xx = val;
       //console.log(this.xx);
-      
     },
     close() {
       this.floagtwo = false;
     },
+    //评论用户观点
     comments() {
-      
+      console.log(this.umessage)
       Axios({
-      method: "post",
-       url: "api/StarOfSea/action/addReply",
+        method: "post",
+        url: "http://39.96.91.169/StarOfSea/action/addReply",
         data: {
           aid: this.xx.id,
           type: 4,
-          content: this.plcontent
+          opinion:"",
+          content: this.umessage
+        },
+        headers: {
+          accessToken: this.t
         }
-       })
+      }).then(data => {
+        this.floagtwo = false;
+        console.log(data);
+        this.umessage="";
+        if (data.code == 1) {
+
+          Axios({
+            method: "get",
+            url: "http://39.96.91.169/StarOfSea/focus/getCurlycueDetails",
+            params: {
+              aid: this.id
+            },
+            headers: {
+              accessToken: this.t
+            }
+          }).then(data => {
+            this.details = data.details;
+            console.log(this.details);
+            this.replies = data.details.replies;
+            console.log(this.replies);
+          });
+        }
+      });
     }
   },
 
-  beforecreate() {},
   created() {
     this.id = this.$route.params.id;
     console.log(this.id);
+    let t = sessionStorage.getItem("token");
+    this.t = t;
     Axios({
       method: "get",
-      url: "api/StarOfSea/focus/getCurlycueDetails",
-      data: {
+      url: "http://39.96.91.169/StarOfSea/focus/getCurlycueDetails",
+      params: {
         aid: this.id
+      },
+      headers: {
+        accessToken: this.t
       }
     }).then(data => {
       this.details = data.details;
@@ -451,6 +528,9 @@ export default {
               }
               .viewpoint {
                 color: #ebe8f9;
+              }
+              .hfcontent{
+                color: rgb(182, 175, 175);
               }
               .zandpl {
                 width: 100%;

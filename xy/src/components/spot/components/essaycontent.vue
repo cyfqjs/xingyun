@@ -4,7 +4,9 @@
     <div class="back">
       <mt-header fixed class="contentback">
         <router-link to="/spot" slot="left">
-          <mt-button class="backicon"><img src="@/assets/spot/icon8-ht@2x.png"/></mt-button>
+          <mt-button class="backicon">
+            <img src="@/assets/spot/icon8-ht@2x.png">
+          </mt-button>
         </router-link>
         <mt-button slot="right" @click="share()">分享</mt-button>
       </mt-header>
@@ -17,7 +19,11 @@
             <div class="content">
               <div class="user">
                 <div class="headphoto">
+                  <router-link :to="{name:'fansspot',params:{id:articledetails.uid,name:articledetails.name,img:articledetails.imgpath,sign:articledetails.title}}" >
+                    
                   <img :src="articledetails.imgpath">
+                  </router-link>
+                  <!--  -->
                 </div>
                 <div class="uname">
                   <div class="name">{{articledetails.name}}</div>
@@ -66,7 +72,9 @@
                   <!--点赞评论-->
                   <div class="zwrap" @click="dzpl(4,item)">
                     <div class="z">
-                      <img :src="item.flag?require('../../../assets/spot/icon_ax_hf@2x.png'):require('../../../assets/spot/icon_axq_hf@2x.png')">
+                      <img
+                        :src="item.flag?require('../../../assets/spot/icon_ax_hf@2x.png'):require('../../../assets/spot/icon_axq_hf@2x.png')"
+                      >
                     </div>
                     <span>{{item.compliments}}</span>
                   </div>
@@ -184,7 +192,8 @@ export default {
       show: false,
       plcontent: "",
       articledetails: {},
-      replies: {}
+      replies: {},
+      t: ""
     };
   },
   methods: {
@@ -208,8 +217,8 @@ export default {
       //console.log(this.id)
     },
     //评论点赞
-    dzpl(val,item) {
-      console.log(item)
+    dzpl(val, item) {
+      console.log(item);
       console.log(val);
       if (item.flag == 1) {
         this.uflag = 0;
@@ -218,33 +227,36 @@ export default {
       }
       Axios({
         method: "post",
-        url: "api/StarOfSea/action/compliment",
+        url: "http://39.96.91.169/StarOfSea/action/compliment",
         data: {
-          uid: 1,
           aid: item.id,
           type: 4,
           state: this.uflag
+        },
+        headers: {
+          accessToken: this.t
         }
       }).then(data => {
         console.log(data);
         Axios({
-          method: "post",
-          url: "api/StarOfSea/focus/getArticleDetails",
-          headers: { "Content-type": "application/json" },
-          data: {
-            uid: 1,
+          method: "get",
+          url: "http://39.96.91.169/StarOfSea/focus/getArticleDetails",
+          params: {
             aid: this.aid
+          },
+          headers: {
+            accessToken: this.t
           }
         }).then(data => {
           this.articledetails = data.articledetails;
           this.replies = data.articledetails.replies;
           console.log(this.articledetails);
           this.flag = this.articledetails.flag;
-          // if (this.flag == 1) {
-          //   this.tpurl = require("../../../assets/spot/icon_ax_hf@2x.png");
-          // } else {
-          //   this.tpurl = require("../../../assets/spot/icon_axq_hf@2x.png");
-          // }
+          if (this.flag == 1) {
+            this.tpurl = require("../../../assets/spot/icon_ax_hf@2x.png");
+          } else {
+            this.tpurl = require("../../../assets/spot/icon_axq_hf@2x.png");
+          }
 
           //console.log(this.replies);
         });
@@ -255,11 +267,14 @@ export default {
       if (this.flag == 1) {
         Axios({
           method: "post",
-          url: "api/StarOfSea/action/compliment",
+          url: "http://39.96.91.169/StarOfSea/action/compliment",
           data: {
             aid: this.aid,
             type: 1,
             state: 0
+          },
+          headers: {
+            accessToken: this.t
           }
         }).then(data => {
           //console.log(data)
@@ -270,12 +285,13 @@ export default {
         });
       } else {
         Axios({
-          method: "post",
-          url: "api/StarOfSea/action/compliment",
-          data: {
-            aid: this.aid,
-            type: 1,
-            state: 1
+          method: "get",
+          url: "http://39.96.91.169/StarOfSea/focus/getArticleDetails",
+          params: {
+            aid: this.aid
+          },
+          headers: {
+            accessToken: this.t
           }
         }).then(data => {
           //console.log(data)
@@ -293,22 +309,27 @@ export default {
 
       Axios({
         method: "post",
-        url: "api/StarOfSea/action/addReply",
+        url: "http://39.96.91.169/StarOfSea/action/addReply",
         data: {
           aid: this.plid,
           type: this.type,
           option: this.option,
           content: this.plcontent
+        },
+        headers: {
+          accessToken: this.t
         }
       }).then(data => {
         this.plcontent = "";
         if (data.code == 1) {
           Axios({
             method: "get",
-            url: "api/StarOfSea/focus/getArticleDetails",
-            headers: { "Content-type": "application/json" },
-            data: {
+            url: "http://39.96.91.169/StarOfSea/focus/getArticleDetails",
+            params: {
               aid: this.aid
+            },
+            headers: {
+              accessToken: this.t
             }
           }).then(data => {
             this.articledetails = data.articledetails;
@@ -323,12 +344,16 @@ export default {
   created() {
     this.aid = this.$route.params.id;
     // console.log(this.aid);
+    let t = sessionStorage.getItem("token");
+    this.t = t;
     Axios({
       method: "get",
-      url: "api/StarOfSea/focus/getArticleDetails",
-      headers: { "Content-type": "application/json" },
-      data: {
+      url: "http://39.96.91.169/StarOfSea/focus/getArticleDetails",
+      params: {
         aid: this.aid
+      },
+      headers: {
+        accessToken: this.t
       }
     }).then(data => {
       this.articledetails = data.articledetails;
@@ -410,10 +435,16 @@ export default {
                 width: 13.8%; //.98
                 height: 0.98rem;
                 margin-left: 0.08rem;
-                img {
+                a{
+                  display: block;
+                  width: 100%;
+                  height: 100%;
+                  img {
                   width: 100%;
                   height: 100%;
                 }
+                }
+                
               }
               .uname {
                 width: 62%; //4.41
@@ -523,9 +554,10 @@ export default {
           width: 100%;
           height: auto;
           li {
-            width: 92%;
-            min-height: 1.87rem;
+            width: 94%;
+            height: 1.6rem;
             margin: 0.1rem auto;
+            overflow: hidden;
             display: flex;
             .headpho {
               width: 0.8rem;
