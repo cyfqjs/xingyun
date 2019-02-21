@@ -21,8 +21,8 @@
 <style lang="scss" scoped>
     #langtxt {
         flex: 1;
-        padding: 5px;
-        font-size: 16px;
+        padding: .05rem;
+        font-size: .32rem;
         width: 100%;
     }
 </style>

@@ -71,13 +71,34 @@
         },
         watch: {
             $route(to, from) {
-              if(this.$route.path=="/hPage"){
-              for (var i = 0; i < 5; i++) {
-                        this.navs[i].img = this.navs[i].imgsrc;
-                    }
-                    this.navs[0].img = this.navs[0].imgto;
-             }
-          }
+                switch (this.$route.path) {
+                    case "/hPage":
+                        for (var i = 0; i < 5; i++) {
+                            this.navs[i].img = this.navs[i].imgsrc;
+                        }
+                        this.navs[0].img = this.navs[0].imgto;
+                        break;
+                    case "/spot":
+                        for (var i = 0; i < 5; i++) {
+                            this.navs[i].img = this.navs[i].imgsrc;
+                        }
+                        this.navs[1].img = this.navs[1].imgto;
+                        break;
+                    case "/community":
+                        for (var i = 0; i < 5; i++) {
+                            this.navs[i].img = this.navs[i].imgsrc;
+                        }
+                        this.navs[3].img = this.navs[3].imgto;
+                        break;
+                    case "/personal":
+                        for (var i = 0; i < 5; i++) {
+                            this.navs[i].img = this.navs[i].imgsrc;
+                        }
+                        this.navs[4].img = this.navs[4].imgto;
+                        break;
+                }
+
+            }
         }
 
     }
@@ -117,19 +138,19 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        line-height: 49px;
+        line-height: .5rem;
         color: #fff;
-        padding: 5px 0;
+        padding: .05rem 0;
     }
     
     #footer>ul>li>a>span {
-        font-size: 10px;
+        font-size: .2rem;
         font-family: PingFang-SC-Regular;
         font-weight: 400;
         color: rgba(254, 254, 254, 1);
-        height: 10px;
-        line-height: 10px;
-        margin-top: 5px;
+        height: .1rem;
+        line-height: .1rem;
+        margin-top: .15rem;
     }
     
     #footer>ul>li>a>.icon {
@@ -154,6 +175,6 @@
         left: 50%;
         transform: translateX(-50%);
         background: rgba(47, 40, 75, 1);
-        border-radius: 44px 44px 0 0;
+        border-radius: .44rem .44rem 0 0;
     }
 </style>
