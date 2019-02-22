@@ -1,4 +1,5 @@
 export default {
+
     handleopen(state, parms) {
         
         // if (parms == 2) {
@@ -10,6 +11,7 @@ export default {
     handtitle(state, e) {
         let val = e.target.value;
         state.bktitle = val;
+
     },
     handmain(state, e) {
         let val = e.target.value;

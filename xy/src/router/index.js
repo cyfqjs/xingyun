@@ -1,16 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-// import Community from "../components/community/home/index.vue";
 let Community=()=>import("../components/community/home/index.vue")
 let Details=()=>import("../components/community/details/index.vue")
-
-// import Details from "../components/community/details/index.vue"
-// import Reply from "../components/community/reply/index.vue"
 let Reply=()=>import("../components/community/reply/index.vue")
 let FanPer=()=>import("../components/community/home/fansindex.vue")
 
-
+import BootPage from "../components/bootpage/index.vue"
 
 import TalkChat from "../components/community/chat.vue"
 import Footer from "../components/footer/index.vue";
@@ -58,7 +54,12 @@ const router = new Router({
 
     routes: [{
             path: "/",
-            redirect: "/login",
+            redirect: "/boot",
+        },
+        {
+            path: "/boot",
+            name: "boot",
+            component: BootPage
         },
         {
             path: "/login",

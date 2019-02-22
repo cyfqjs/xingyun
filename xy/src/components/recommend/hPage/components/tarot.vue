@@ -15,14 +15,14 @@
         <div class="cBefore" v-show="!flagx">
           <h2 class="everyDay">每日塔罗</h2>
           <p class="noti">今日的专属塔罗提示</p>
-          <span class="cGet" @click="fnTarot(),handleFlag()">点解获取</span>
+          <span class="cGet" @click="fnTarot(flagx)">点解获取</span>
         </div>
         <div class="cAfter" v-show="flagx">
           <img :src = "img_pathx" />
         </div>
       </div>
       <div class="tRight">
-        <span class="details" @click="toDpage">查看详情</span>
+        <span class="details" @click="toDpage()">查看详情</span>
         <div class="xBlock">
           <span class="constellation">星座</span>
           <span class="gConstellation" v-show="flagx" v-text="constellatx"></span>
@@ -42,7 +42,9 @@ import Vuex from "vuex";
 import axios from "axios";
 export default {
   data() {
-    return {};
+    return {
+    	flag:true
+    };
   },
   computed: {
     ...Vuex.mapState({
@@ -55,15 +57,12 @@ export default {
     })
   },
   methods: {
-    ...Vuex.mapMutations({
-      handleFlag: "recommendBlock/handleFlag"
-    }),
     ...Vuex.mapActions({
-      fnTarot: "recommendBlock/fnTarot"
+      fnTarot: "recommendBlock/fnTarot",
     }),
     toDpage() {
       this.$router.push("../../dPage");
-    }
+    },
   }
 };
 </script>
