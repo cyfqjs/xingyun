@@ -19,10 +19,7 @@ import Calendar from "./components/calendar";
 import Topic from "./components/topic";
 import Article from "./components/article";
 
-
-
 import BScroll from 'better-scroll';
-
 
 export default {
   components: {
@@ -37,14 +34,17 @@ export default {
   mounted() {
     // let wrapper = document.querySelector('.wrapper');
       this.$nextTick(() => {
-        this.scroll = new BScroll(this.$refs.mainWrapper, {});
+        this.scroll = new BScroll(this.$refs.mainWrapper, {
+        	click:true
+        });
         // console.log(this.scroll);
+        
       })
     }
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .wrapper{
     height: 100%;
     background: url(../../../assets/recommend/bj1@2x.png) no-repeat center 1.28rem ;

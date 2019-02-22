@@ -3,8 +3,11 @@ export default {
         state.flag = false;
         location.href = state.linkto;
     },
-    handleopen(state, parms) {
+    handleopen(state, params) {
+        // console.log(1);
+        console.log(params);
         if (parms == 2) {
+            console.log(1);
             var str = location.href;
             state.flag = true;
             state.linkto = str.split("/")[4];

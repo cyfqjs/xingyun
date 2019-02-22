@@ -26,7 +26,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .midwrapper{
     height: 100%;
     background: url(../../../assets/recommend/szbj.png) no-repeat center 1.28rem ;

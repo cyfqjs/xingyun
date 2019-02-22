@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-
+import BootPage from "../components/bootpage/index.vue"
 
 import Footer from "../components/footer/index.vue";
 import Err from "../components/error/error.vue";
@@ -48,7 +48,12 @@ const router = new Router({
 
     routes: [{
             path: "/",
-            redirect: "/login",
+            redirect: "/boot",
+        },
+        {
+            path: "/boot",
+            name: "boot",
+            component: BootPage
         },
         {
             path: "/login",

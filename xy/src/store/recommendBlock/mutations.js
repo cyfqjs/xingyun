@@ -1,9 +1,6 @@
 export default {
-    handleFlag(state) { 
-        state.flag = true;
-        
-    },
-    fnTarot(state, params) { 
+    fnTarot(state, params) {
+    	state.flag = true;
         if (params.keyword == null) {
             state.keyword = '无';
         } else { 
@@ -16,9 +13,7 @@ export default {
         }
         state.constellat = params.constellat;
         state.brand = params.brand;
-        // console.log(params.img_path);
         let imgPath = "../../../../static/" + params.img_path;
-        // console.log(imgPath);
         state.img_path = imgPath;
     }
 }
