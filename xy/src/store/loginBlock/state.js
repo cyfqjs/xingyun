@@ -1,4 +1,6 @@
 export default {
     username:"",
-    password:""
+    password:"",
+    flagName: "",
+    flagPwd: "",
 }

@@ -167,7 +167,7 @@ export default {
           accessToken: this.t
         }
       }).then(data => {
-        console.log(data);
+        //console.log(data);
         Axios({
       method: "get",
       url: "http://39.96.91.169/StarOfSea/focus/getCurlycueDetails",
@@ -307,7 +307,7 @@ export default {
     },
     //评论用户观点
     comments() {
-      console.log(this.umessage)
+      //console.log(this.umessage)
       Axios({
         method: "post",
         url: "http://39.96.91.169/StarOfSea/action/addReply",
@@ -322,7 +322,7 @@ export default {
         }
       }).then(data => {
         this.floagtwo = false;
-        console.log(data);
+        //console.log(data);
         this.umessage="";
         if (data.code == 1) {
 
@@ -337,9 +337,9 @@ export default {
             }
           }).then(data => {
             this.details = data.details;
-            console.log(this.details);
+            //console.log(this.details);
             this.replies = data.details.replies;
-            console.log(this.replies);
+            //console.log(this.replies);
           });
         }
       });
@@ -348,7 +348,7 @@ export default {
 
   created() {
     this.id = this.$route.params.id;
-    console.log(this.id);
+    //console.log(this.id);
     let t = sessionStorage.getItem("token");
     this.t = t;
     Axios({
@@ -393,6 +393,9 @@ export default {
       height: 0.98rem;
       margin-top: 0.25rem;
       background: #2f284b;
+      img{
+        width: .2rem;
+      }
     }
   }
   .wrapper {

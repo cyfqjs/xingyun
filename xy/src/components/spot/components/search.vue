@@ -62,9 +62,9 @@ export default {
           accessToken: this.t
         }
       }).then(data => {
-        console.log(data);
+        //console.log(data);
         this.list = data.users;
-        console.log(this.list);
+        //console.log(this.list);
       });
     },
     back() {
@@ -85,11 +85,18 @@ export default {
     text-align: center;
     height: 1.6rem;
     position: relative;
+    img{
+      width: .3rem;
+    }
     .back {
       display: block;
       position: absolute;
       left: 0.2rem;
       top: 1rem;
+      width:.4rem;
+      img{
+        width: 100%;
+      }
     }
     .searchicon {
       display: block;

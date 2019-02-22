@@ -13,30 +13,22 @@ let FanPer=()=>import("../components/community/home/fansindex.vue")
 
 
 import TalkChat from "../components/community/chat.vue"
-
-
 import Footer from "../components/footer/index.vue";
 import Err from "../components/error/error.vue";
-
 import Login from "../components/login/login.vue";
 import Regone from "../components/register/pageone";
 import Regtwo from "../components/register/pagetwo";
 import Regthree from "../components/register/pagethree";
-
-
 import Hpage from "../components/recommend/hPage";
 import Dpage from "../components/recommend/dPage";
-
 import Spot from "../components/spot";
 import Topiccontent from "@/components/spot/components/topiccontent";
 import Essaycontent from "@/components/spot/components/essaycontent";
 import Search from "@/components/spot/components/search";
-import Fansspot from "@/components/spot/components/fansindex";
 import Plus from "../components/plus";
 import Pushpic from "../components/plus/pic";
 import Pushbook from "../components/plus/book";
 import Pushlanguge from "../components/plus/languge";
-
 import Personal from "../components/personal/main/index";
 import pushSet from "../components/personal/set/pushSet/index.vue";
 import BindP from "../components/personal/bindPhone/index.vue";
@@ -117,14 +109,7 @@ const router = new Router({
             }
 
         },
-        {
-            path:"/fansspot",
-            name:"fansspot",
-            component:Fansspot,
-            meta:{
-                flag:false
-            }
-        },
+        
         {
             path:"/search",
             name:"search",

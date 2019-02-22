@@ -67,7 +67,7 @@ export default {
       }
     }).then(data => {
       this.hotlist = data.curlycues;
-      console.log(data);
+      //console.log(data);
     });
   }
 };

@@ -64,7 +64,7 @@ export default {
     }).then(data => {
       
       this.articles = data.articles;
-      console.log(this.articles);
+      //console.log(this.articles);
     });
   },
   mounted() {

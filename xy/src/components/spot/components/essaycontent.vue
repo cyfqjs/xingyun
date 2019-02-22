@@ -19,9 +19,10 @@
             <div class="content">
               <div class="user">
                 <div class="headphoto">
-                  <router-link :to="{name:'fansspot',params:{id:articledetails.uid,name:articledetails.name,img:articledetails.imgpath,sign:articledetails.title}}" >
-                    
-                  <img :src="articledetails.imgpath">
+                  <router-link
+                    :to="{name:'personal',params:{id:articledetails.uid,name:articledetails.name,img:articledetails.imgpath,sign:articledetails.title}}"
+                  >
+                    <img :src="articledetails.imgpath">
                   </router-link>
                   <!--  -->
                 </div>
@@ -218,8 +219,8 @@ export default {
     },
     //评论点赞
     dzpl(val, item) {
-      console.log(item);
-      console.log(val);
+      //console.log(item);
+      //console.log(val);
       if (item.flag == 1) {
         this.uflag = 0;
       } else {
@@ -237,7 +238,7 @@ export default {
           accessToken: this.t
         }
       }).then(data => {
-        console.log(data);
+        //console.log(data);
         Axios({
           method: "get",
           url: "http://39.96.91.169/StarOfSea/focus/getArticleDetails",
@@ -250,7 +251,7 @@ export default {
         }).then(data => {
           this.articledetails = data.articledetails;
           this.replies = data.articledetails.replies;
-          console.log(this.articledetails);
+          //console.log(this.articledetails);
           this.flag = this.articledetails.flag;
           if (this.flag == 1) {
             this.tpurl = require("../../../assets/spot/icon_ax_hf@2x.png");
@@ -335,7 +336,7 @@ export default {
             this.articledetails = data.articledetails;
             this.replies = data.articledetails.replies;
             // console.log(this.articledetails);
-            console.log(this.replies);
+            //console.log(this.replies);
           });
         }
       });
@@ -358,7 +359,7 @@ export default {
     }).then(data => {
       this.articledetails = data.articledetails;
       this.replies = data.articledetails.replies;
-      console.log(this.articledetails);
+      //console.log(this.articledetails);
       this.flag = this.articledetails.flag;
       if (this.flag == 1) {
         this.tpurl = require("../../../assets/spot/icon_ax_hf@2x.png");
@@ -396,6 +397,9 @@ export default {
       background: #2f284b;
       font-size: 0.25rem;
       color: #ccc;
+      img{
+        width: .2rem;
+      }
       a {
         font-size: 0.3rem;
       }
@@ -435,16 +439,15 @@ export default {
                 width: 13.8%; //.98
                 height: 0.98rem;
                 margin-left: 0.08rem;
-                a{
+                a {
                   display: block;
                   width: 100%;
                   height: 100%;
                   img {
-                  width: 100%;
-                  height: 100%;
+                    width: 100%;
+                    height: 100%;
+                  }
                 }
-                }
-                
               }
               .uname {
                 width: 62%; //4.41

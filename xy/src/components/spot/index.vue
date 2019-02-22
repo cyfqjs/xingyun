@@ -88,7 +88,7 @@ export default {
           search: this.searchcontent
         })
         .then(data => {
-          console.log(data);
+          //console.log(data);
         });
     },
     handleTo(index) {
@@ -118,7 +118,7 @@ export default {
       freeScroll: true,
       bounce: true
     });
-    console.log(this.scroll);
+    //console.log(this.scroll);
   }
 };
 </script>
